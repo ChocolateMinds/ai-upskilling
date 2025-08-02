@@ -3,588 +3,752 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 3: AI Tools Landscape - 5-Day AI Literacy Course</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Day 3: AI Tools Landscape - AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Modern Color Palette */
+            --primary-50: #f0f4ff;
+            --primary-100: #e0edff;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --primary-900: #1e3a8a;
+            
+            --secondary-500: #8b5cf6;
+            --secondary-600: #7c3aed;
+            
+            --success-500: #10b981;
+            --warning-500: #f59e0b;
+            --error-500: #ef4444;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-sans);
             line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            color: var(--gray-900);
+            background: linear-gradient(135deg, var(--primary-50) 0%, #fafbff 50%, var(--gray-50) 100%);
+            min-height: 100vh;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 var(--space-6);
         }
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
             color: white;
-            padding: 2rem 0;
+            padding: var(--space-16) 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .day-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-2xl);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Breadcrumb */
         .breadcrumb {
             background: white;
-            padding: 1rem 0;
-            border-bottom: 1px solid #e9ecef;
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
 
-        .breadcrumb a {
-            color: #667eea;
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.875rem;
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary-600);
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
         }
 
-        .breadcrumb a:hover {
-            text-decoration: underline;
+        .breadcrumb-nav a:hover {
+            color: var(--primary-700);
         }
 
-        .content {
+        .breadcrumb-nav span {
+            color: var(--gray-500);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: var(--space-12) 0;
+        }
+
+        .content-card {
             background: white;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: var(--space-8) 0;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-100);
         }
 
+        .content-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-6);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .content-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+        }
+
+        .learning-goals {
+            background: var(--primary-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--primary-500);
+            margin-bottom: var(--space-8);
+        }
+
+        .learning-goals h3 {
+            color: var(--primary-900);
+            margin-bottom: var(--space-4);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .goals-list {
+            list-style: none;
+        }
+
+        .goals-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            color: var(--gray-700);
+        }
+
+        .goals-list li i {
+            color: var(--success-500);
+            margin-top: 2px;
+            font-size: 0.875rem;
+        }
+
+        /* Session Styling */
         .session {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            border-left: 4px solid #667eea;
-            background: #f8f9fa;
-            border-radius: 0 8px 8px 0;
+            margin: var(--space-8) 0;
+            padding: var(--space-6);
+            border-left: 4px solid var(--primary-500);
+            background: var(--gray-50);
+            border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
         }
 
+        .session h3 {
+            color: var(--primary-900);
+            margin-bottom: var(--space-4);
+            font-size: 1.375rem;
+            font-weight: 600;
+        }
+
+        .session-time {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--primary-100);
+            color: var(--primary-900);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-4);
+        }
+
+        /* Activity Styling */
         .activity {
             background: white;
-            margin: 1rem 0;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
+            margin: var(--space-6) 0;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
         }
 
+        .activity:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .activity h4 {
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .activity p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+            line-height: 1.7;
+        }
+
+        /* Resource Links */
         .resource-link {
-            display: inline-block;
-            background: #667eea;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
             color: white;
-            padding: 8px 16px;
+            padding: var(--space-2) var(--space-4);
             text-decoration: none;
-            border-radius: 5px;
-            margin: 5px 5px 5px 0;
-            transition: background 0.3s ease;
+            border-radius: var(--radius-lg);
+            margin: var(--space-1) var(--space-2) var(--space-1) 0;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
         }
 
         .resource-link:hover {
-            background: #5a6fd8;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
-        .assignment {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem 0;
+        .resource-link.secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
 
-        .checklist {
-            background: #e8f5e8;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #28a745;
+        .resource-link.secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
         }
 
-        .checklist ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .checklist li {
-            padding: 0.5rem 0;
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .checklist li:before {
-            content: '☐';
-            position: absolute;
-            left: 0;
-            font-size: 1.2rem;
-            color: #28a745;
-        }
-
-        .time-badge {
-            background: #ffc107;
-            color: #333;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin: 2rem 0;
-        }
-
-        .nav-button {
-            background: #667eea;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-
-        .nav-button:hover {
-            background: #5a6fd8;
-        }
-
-        .nav-button.disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        h1, h2, h3 {
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            color: #667eea;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 0.5rem;
-        }
-
-        ul, ol {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-
-        .highlight {
-            background: #fff3cd;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #ffc107;
-            margin: 1rem 0;
-        }
-
+        /* Comparison Table */
         .comparison-table {
             overflow-x: auto;
-            margin: 1rem 0;
+            margin: var(--space-6) 0;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
         }
 
         .comparison-table table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1rem 0;
+            background: white;
         }
 
         .comparison-table th,
         .comparison-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
+            border: 1px solid var(--gray-200);
+            padding: var(--space-4);
             text-align: left;
         }
 
         .comparison-table th {
-            background: #667eea;
+            background: var(--primary-600);
             color: white;
+            font-weight: 600;
         }
 
         .comparison-table tr:nth-child(even) {
-            background: #f8f9fa;
+            background: var(--gray-50);
         }
 
+        /* Tool Cards */
         .tool-card {
-            background: #e7f1ff;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #007bff;
-            margin: 1rem 0;
+            background: var(--secondary-50);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--secondary-500);
+            margin: var(--space-4) 0;
         }
 
+        .tool-card h4 {
+            color: var(--secondary-900);
+            margin-bottom: var(--space-2);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Framework Box */
         .framework-box {
-            background: #d1ecf1;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #17a2b8;
-            margin: 1rem 0;
+            background: var(--success-50);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--success-500);
+            margin: var(--space-4) 0;
         }
 
+        .framework-box h4 {
+            color: var(--success-900);
+            margin-bottom: var(--space-2);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Assignment Section */
+        .assignment {
+            background: linear-gradient(135deg, var(--warning-500), #d97706);
+            color: white;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            margin: var(--space-8) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .assignment::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: translate(50%, -50%);
+        }
+
+        .assignment-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .assignment h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+        }
+
+        .assignment p {
+            margin-bottom: var(--space-4);
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-12);
+            padding-top: var(--space-8);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .nav-btn.secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-btn.secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            .content {
-                margin: 1rem 0;
-                padding: 1rem;
-            }
-            
             .navigation {
                 flex-direction: column;
-                gap: 1rem;
+                gap: var(--space-4);
             }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .content-card {
+                padding: var(--space-6);
+                margin: var(--space-6) 0;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles */
+        .resource-link:focus,
+        .nav-btn:focus {
+            outline: 2px solid var(--primary-500);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Hero Header -->
+    <header class="hero-header">
         <div class="container">
-            <h1><i class="fas fa-tools"></i> Day 3: AI Tools Landscape</h1>
-            <p>Understanding different AI models and when to use each tool</p>
+            <div class="hero-content">
+                <div class="day-badge">
+                    <i class="fas fa-calendar-day"></i>
+                    Day 3 of 5
+                </div>
+                <h1 class="hero-title">AI Tools Landscape</h1>
+                <p class="hero-subtitle">Explore different AI models and specialized tools for various tasks</p>
+            </div>
         </div>
     </header>
 
-    <div class="breadcrumb">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
         <div class="container">
-            <a href="../index.html"><i class="fas fa-home"></i> Course Home</a> / 
-            <a href="day1.html">Day 1</a> /
-            <a href="day2.html">Day 2</a> /
-            <span>Day 3: AI Tools Landscape</span>
+            <div class="breadcrumb-nav">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <a href="index.html">Course Materials</a>
+                <span>/</span>
+                <span>Day 3</span>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="container">
-        <div class="content">
-            <div class="highlight">
-                <h3><i class="fas fa-target"></i> Learning Goal</h3>
-                <p>Understand the landscape of AI tools beyond ChatGPT, learn when to use different models, and develop frameworks for selecting the right AI tool for specific tasks. By the end of today, you'll be able to choose optimal AI tools for different workplace scenarios.</p>
-            </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-card">
+                <div class="content-header">
+                    <h2 class="content-title">Navigate the AI Ecosystem</h2>
+                    <p class="content-subtitle">Learn to choose the right AI tool for every task and understand the capabilities of different AI models</p>
+                </div>
 
-            <div class="highlight">
-                <h3><i class="fas fa-clock"></i> Time Commitment</h3>
-                <p><strong>Total: 2 hours</strong> (Morning: 60 min, Afternoon: 60 min, Assignment: 30 min)</p>
-            </div>
-
-            <div class="session">
-                <h2><i class="fas fa-sun"></i> Morning Session <span class="time-badge">60 minutes</span></h2>
-                
-                <div class="activity">
-                    <h3><i class="fas fa-play-circle"></i> Understanding Large Language Models <span class="time-badge">30 minutes</span></h3>
-                    
-                    <h4>Primary Video (15 minutes)</h4>
-                    <p><strong>Large Language Models Explained Simply</strong></p>
-                    <a href="https://www.youtube.com/watch?v=5sLYAQS9sWQ" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> How LLMs work without technical complexity</li>
-                        <li><strong>Key Takeaways:</strong> Training process, capabilities, limitations</li>
-                    </ul>
-
-                    <h4>AI Models Comparison (10 minutes)</h4>
-                    <p><strong>ChatGPT vs Claude vs Gemini: Which is Best?</strong></p>
-                    <a href="https://www.youtube.com/watch?v=VGFpV3Qj4as" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Direct comparison of major AI models</li>
-                        <li><strong>Key Takeaways:</strong> Strengths, weaknesses, use cases</li>
-                    </ul>
-
-                    <h4>Quick Read (5 minutes)</h4>
-                    <p><strong>AI Model Comparison Guide - Anthropic</strong></p>
-                    <a href="https://www.anthropic.com/claude" class="resource-link" target="_blank">
-                        <i class="fas fa-external-link-alt"></i> Read About Claude
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Understanding Claude's unique features</li>
-                        <li><strong>Key Takeaways:</strong> Safety focus, longer context, different training</li>
+                <!-- Learning Goals -->
+                <div class="learning-goals">
+                    <h3><i class="fas fa-target"></i> Learning Goals</h3>
+                    <ul class="goals-list">
+                        <li><i class="fas fa-check-circle"></i>Understand different types of AI models and their strengths</li>
+                        <li><i class="fas fa-check-circle"></i>Compare major AI platforms (ChatGPT, Claude, Gemini, etc.)</li>
+                        <li><i class="fas fa-check-circle"></i>Explore specialized AI tools for specific tasks</li>
+                        <li><i class="fas fa-check-circle"></i>Develop frameworks for AI tool selection</li>
+                        <li><i class="fas fa-check-circle"></i>Build your personal AI toolkit for work efficiency</li>
                     </ul>
                 </div>
 
-                <div class="activity">
-                    <h3><i class="fas fa-microscope"></i> AI Tool Safari <span class="time-badge">30 minutes</span></h3>
+                <!-- Time Commitment -->
+                <div class="session-time">
+                    <i class="fas fa-clock"></i>
+                    <span>Time Commitment: 2-3 hours</span>
+                </div>
+
+                <!-- Morning Session -->
+                <div class="session">
+                    <h3><i class="fas fa-sun"></i> Morning Session: Understanding LLMs</h3>
                     
-                    <h4>Activity 1: Major AI Model Testing (20 minutes)</h4>
-                    <p>Test the same prompts across different platforms:</p>
-                    
-                    <div class="tool-card">
-                        <h5>Test Prompt Set:</h5>
-                        <ol>
-                            <li>"Explain blockchain technology in simple terms"</li>
-                            <li>"Write a creative story about a time-traveling coffee shop"</li>
-                            <li>"Analyze the pros and cons of remote work"</li>
-                            <li>"Help me plan a team building event for 20 people"</li>
-                        </ol>
+                    <div class="activity">
+                        <h4><i class="fas fa-brain"></i> Learn: Large Language Model Fundamentals</h4>
+                        <p>Understand how different AI models work and what makes them unique for various applications.</p>
+                        <a href="https://www.youtube.com/watch?v=5sLYAQS9sWQ" target="_blank" class="resource-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            What are LLMs?
+                        </a>
+                        <a href="https://www.ibm.com/topics/large-language-models" target="_blank" class="resource-link secondary">
+                            <i class="fas fa-book"></i>
+                            IBM LLM Guide
+                        </a>
                     </div>
 
-                    <p><strong>Platforms to Test:</strong></p>
-                    <ul>
-                        <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a> (OpenAI)</li>
-                        <li><a href="https://claude.ai" target="_blank">Claude</a> (Anthropic)</li>
-                        <li><a href="https://gemini.google.com" target="_blank">Google Gemini</a></li>
-                        <li><a href="https://www.bing.com/chat" target="_blank">Microsoft Copilot</a></li>
-                    </ul>
-
-                    <h4>Activity 2: Specialized AI Tools Exploration (10 minutes)</h4>
-                    <p>Discover AI tools for specific tasks:</p>
-                    <ul>
-                        <li><strong>Writing:</strong> <a href="https://www.grammarly.com" target="_blank">Grammarly</a>, <a href="https://app.writesonic.com" target="_blank">Writesonic</a></li>
-                        <li><strong>Images:</strong> <a href="https://www.canva.com" target="_blank">Canva AI</a>, <a href="https://www.remove.bg" target="_blank">Remove.bg</a></li>
-                        <li><strong>Presentations:</strong> <a href="https://www.beautiful.ai" target="_blank">Beautiful.AI</a>, <a href="https://tome.app" target="_blank">Tome</a></li>
-                        <li><strong>Video:</strong> <a href="https://www.descript.com" target="_blank">Descript</a>, <a href="https://www.synthesia.io" target="_blank">Synthesia</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="session">
-                <h2><i class="fas fa-moon"></i> Afternoon Session <span class="time-badge">60 minutes</span></h2>
-                
-                <div class="activity">
-                    <h3><i class="fas fa-chart-line"></i> AI Tool Categories & Use Cases <span class="time-badge">30 minutes</span></h3>
-                    
-                    <h4>Video: AI Tools for Business (15 minutes)</h4>
-                    <p><strong>Top AI Tools Every Professional Should Know</strong></p>
-                    <a href="https://www.youtube.com/watch?v=hTKer_MsDuw" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Practical AI tools for workplace productivity</li>
-                        <li><strong>Key Takeaways:</strong> Tool categories, integration, workflow enhancement</li>
-                    </ul>
-
-                    <h4>Interactive Learning (15 minutes)</h4>
-                    <div class="comparison-table">
-                        <table>
-                            <tr>
-                                <th>Category</th>
-                                <th>Primary Use</th>
-                                <th>Best Tools</th>
-                                <th>When to Use</th>
-                            </tr>
-                            <tr>
-                                <td>General Chat AI</td>
-                                <td>Text generation, Q&A, brainstorming</td>
-                                <td>ChatGPT, Claude, Gemini</td>
-                                <td>Complex reasoning, creative tasks</td>
-                            </tr>
-                            <tr>
-                                <td>Writing Assistants</td>
-                                <td>Grammar, style, content improvement</td>
-                                <td>Grammarly, Jasper, Copy.ai</td>
-                                <td>Professional writing, marketing content</td>
-                            </tr>
-                            <tr>
-                                <td>Image Generation</td>
-                                <td>Creating visuals from text</td>
-                                <td>DALL-E, Midjourney, Stable Diffusion</td>
-                                <td>Marketing materials, presentations</td>
-                            </tr>
-                            <tr>
-                                <td>Code Assistants</td>
-                                <td>Programming help, debugging</td>
-                                <td>GitHub Copilot, CodeWhisperer</td>
-                                <td>Software development, automation</td>
-                            </tr>
-                            <tr>
-                                <td>Voice AI</td>
-                                <td>Speech-to-text, voice synthesis</td>
-                                <td>Otter.ai, Eleven Labs</td>
-                                <td>Meeting transcription, content creation</td>
-                            </tr>
-                        </table>
+                    <div class="activity">
+                        <h4><i class="fas fa-compare"></i> Compare: Major AI Models</h4>
+                        <p>Hands-on comparison of the leading AI models to understand their unique strengths and use cases.</p>
+                        
+                        <div class="comparison-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>Best For</th>
+                                        <th>Strengths</th>
+                                        <th>Limitations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>ChatGPT (GPT-4)</strong></td>
+                                        <td>General tasks, creative writing</td>
+                                        <td>Versatile, creative, conversational</td>
+                                        <td>Can be verbose, occasionally inaccurate</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Claude (Anthropic)</strong></td>
+                                        <td>Analysis, safety-critical tasks</td>
+                                        <td>Careful, nuanced, ethical reasoning</td>
+                                        <td>More conservative responses</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Google Gemini</strong></td>
+                                        <td>Research, factual information</td>
+                                        <td>Web access, current information</td>
+                                        <td>Less creative than others</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Microsoft Copilot</strong></td>
+                                        <td>Office tasks, productivity</td>
+                                        <td>Integrated with Office, web access</td>
+                                        <td>Limited to Microsoft ecosystem</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <div class="activity">
-                    <h3><i class="fas fa-compass"></i> Building Selection Frameworks <span class="time-badge">30 minutes</span></h3>
+                <!-- Afternoon Session -->
+                <div class="session">
+                    <h3><i class="fas fa-tools"></i> Afternoon Session: Specialized AI Tools</h3>
                     
-                    <h4>Activity 3: Decision Framework Development (20 minutes)</h4>
-                    <div class="framework-box">
-                        <h5><i class="fas fa-lightbulb"></i> AI Tool Selection Framework</h5>
-                        <p><strong>Step 1: Define Your Task</strong></p>
-                        <ul>
-                            <li>What exactly do you need to accomplish?</li>
-                            <li>What type of output do you need?</li>
-                            <li>How complex is the task?</li>
-                        </ul>
+                    <div class="activity">
+                        <h4><i class="fas fa-palette"></i> Explore: Creative AI Tools</h4>
+                        <p>Discover AI tools specialized for creative and visual tasks.</p>
                         
-                        <p><strong>Step 2: Consider Context Requirements</strong></p>
-                        <ul>
-                            <li>How much background information is needed?</li>
-                            <li>Do you need real-time information?</li>
-                            <li>What's the desired response length?</li>
-                        </ul>
-                        
-                        <p><strong>Step 3: Evaluate Tool Capabilities</strong></p>
-                        <ul>
-                            <li>Does the tool excel at this type of task?</li>
-                            <li>Can it handle your context requirements?</li>
-                            <li>Does it have the features you need?</li>
-                        </ul>
-                        
-                        <p><strong>Step 4: Consider Practical Factors</strong></p>
-                        <ul>
-                            <li>Is the tool free or paid?</li>
-                            <li>How easy is it to use?</li>
-                            <li>Does it integrate with your workflow?</li>
-                        </ul>
+                        <div class="tool-card">
+                            <h4><i class="fas fa-image"></i> DALL-E / Midjourney</h4>
+                            <p>Create stunning images from text descriptions. Perfect for presentations, social media, and creative projects.</p>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4><i class="fas fa-video"></i> Runway ML</h4>
+                            <p>AI-powered video editing and generation. Create professional videos with minimal technical skills.</p>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4><i class="fas fa-music"></i> Mubert / AIVA</h4>
+                            <p>Generate background music and soundtracks for presentations, videos, or ambient work environments.</p>
+                        </div>
                     </div>
 
-                    <h4>Activity 4: Scenario-Based Tool Selection (10 minutes)</h4>
-                    <p>Practice choosing tools for these scenarios:</p>
-                    <ol>
-                        <li><strong>Scenario:</strong> Write a detailed technical report</li>
-                        <li><strong>Scenario:</strong> Create social media content for a campaign</li>
-                        <li><strong>Scenario:</strong> Analyze customer feedback data</li>
-                        <li><strong>Scenario:</strong> Generate ideas for a new product</li>
-                        <li><strong>Scenario:</strong> Translate documents to multiple languages</li>
-                    </ol>
-                    <p><strong>For each scenario:</strong> Which tool would you choose and why?</p>
+                    <div class="activity">
+                        <h4><i class="fas fa-briefcase"></i> Business & Productivity AI Tools</h4>
+                        <p>Specialized tools for common business tasks and workflow optimization.</p>
+                        
+                        <div class="tool-card">
+                            <h4><i class="fas fa-chart-line"></i> Jasper AI</h4>
+                            <p>Marketing copy and content creation. Specialized for sales pages, ads, and marketing materials.</p>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4><i class="fas fa-microphone"></i> Otter.ai</h4>
+                            <p>Meeting transcription and summarization. Turn recordings into actionable notes automatically.</p>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4><i class="fas fa-search"></i> Perplexity AI</h4>
+                            <p>Research and fact-checking with real-time web search capabilities and source citations.</p>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4><i class="fas fa-code"></i> GitHub Copilot</h4>
+                            <p>Code writing assistant for developers. Suggests code completions and functions based on context.</p>
+                        </div>
+                    </div>
+
+                    <div class="activity">
+                        <h4><i class="fas fa-decision"></i> Framework: Choosing the Right AI Tool</h4>
+                        <p>Develop a systematic approach to selecting the best AI tool for any given task.</p>
+                        
+                        <div class="framework-box">
+                            <h4>AI Tool Selection Framework</h4>
+                            <ol style="margin-left: var(--space-6); margin-top: var(--space-2);">
+                                <li><strong>Define the task:</strong> What exactly do you need to accomplish?</li>
+                                <li><strong>Identify requirements:</strong> Speed, accuracy, creativity, integration needs</li>
+                                <li><strong>Consider constraints:</strong> Budget, privacy, learning curve</li>
+                                <li><strong>Test and compare:</strong> Try 2-3 tools with the same task</li>
+                                <li><strong>Evaluate results:</strong> Quality, efficiency, ease of use</li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="assignment">
-                <h2><i class="fas fa-clipboard-check"></i> Daily Assignment <span class="time-badge">30 minutes</span></h2>
-                
-                <h3>Task: Create an AI Tool Selection Guide</h3>
-                <ol>
-                    <li><strong>Test 5 different AI tools</strong> for various tasks</li>
-                    <li><strong>For each tool, document:</strong>
-                        <ul>
-                            <li>Tool name and primary purpose</li>
-                            <li>Specific task you tested</li>
-                            <li>Quality of results (rate 1-5)</li>
-                            <li>Ease of use (rate 1-5)</li>
-                            <li>Best use cases you identified</li>
-                            <li>Limitations or drawbacks</li>
-                        </ul>
-                    </li>
-                    <li><strong>Create a decision matrix</strong> comparing tools for different task types</li>
-                    <li><strong>Develop 3 workflow scenarios</strong> showing when to use which tools</li>
-                    <li><strong>Submit:</strong> Comprehensive AI tool guide with recommendations</li>
-                </ol>
+                <!-- Daily Assignment -->
+                <div class="assignment">
+                    <div class="assignment-content">
+                        <h3><i class="fas fa-clipboard-list"></i> Daily Assignment: Build Your AI Toolkit Strategy</h3>
+                        <p>Create a personalized AI tool selection guide based on your work needs and test different tools for effectiveness.</p>
+                        
+                        <div style="background: rgba(255,255,255,0.1); padding: var(--space-4); border-radius: var(--radius-lg); margin-top: var(--space-4);">
+                            <h4 style="margin-bottom: var(--space-3);">Assignment Tasks:</h4>
+                            <ol style="padding-left: var(--space-6);">
+                                <li>Test the same task across 3 different AI models (ChatGPT, Claude, Gemini)</li>
+                                <li>Identify 5 work tasks that could benefit from specialized AI tools</li>
+                                <li>Research and test 2 specialized AI tools from the categories covered</li>
+                                <li>Create a decision matrix for when to use which AI tool</li>
+                                <li>Document your findings and create a personal AI tool reference guide</li>
+                            </ol>
+                        </div>
+                        
+                        <a href="#" class="resource-link" style="background: rgba(255,255,255,0.2); margin-top: var(--space-4);">
+                            <i class="fas fa-download"></i>
+                            Download Decision Matrix Template
+                        </a>
+                    </div>
+                </div>
 
-                <h3>Suggested Tools to Test</h3>
-                <ul>
-                    <li>✅ <strong>ChatGPT:</strong> General conversation and complex reasoning</li>
-                    <li>✅ <strong>Claude:</strong> Long-form content and analysis</li>
-                    <li>✅ <strong>Google Gemini:</strong> Research and real-time information</li>
-                    <li>✅ <strong>Grammarly:</strong> Writing enhancement and editing</li>
-                    <li>✅ <strong>Canva AI:</strong> Design and visual content creation</li>
-                    <li>✅ <strong>Otter.ai:</strong> Meeting transcription and notes</li>
-                    <li>✅ <strong>Copy.ai or Jasper:</strong> Marketing content generation</li>
-                </ul>
-
-                <h3>Assessment Criteria</h3>
-                <ul>
-                    <li>✅ Thorough testing of diverse AI tools</li>
-                    <li>✅ Clear analysis of tool strengths and limitations</li>
-                    <li>✅ Practical decision framework development</li>
-                    <li>✅ Real-world workflow scenarios and recommendations</li>
-                </ul>
-            </div>
-
-            <div class="checklist">
-                <h2><i class="fas fa-tasks"></i> Key Learning Outcomes for Day 3</h2>
-                <p>By the end of today, you should be able to:</p>
-                <ul>
-                    <li>Understand the differences between major AI models (ChatGPT, Claude, Gemini)</li>
-                    <li>Identify specialized AI tools for specific task categories</li>
-                    <li>Apply a systematic framework for selecting AI tools</li>
-                    <li>Recognize when to use generalist vs. specialist AI tools</li>
-                    <li>Evaluate AI tools based on task requirements and context</li>
-                    <li>Create efficient workflows combining multiple AI tools</li>
-                    <li>Understand the landscape of emerging AI technologies</li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-book"></i> Optional Evening Resources</h2>
-                <p>For deeper exploration (completely optional):</p>
-                
-                <h3>AI Tool Discovery</h3>
-                <ul>
-                    <li><a href="https://theresanaiforthat.com/" target="_blank">There's An AI For That - Tool Directory (15 minutes)</a></li>
-                    <li><a href="https://aitools.fyi/" target="_blank">AI Tools Database (20 minutes)</a></li>
-                </ul>
-
-                <h3>Advanced AI Concepts</h3>
-                <ul>
-                    <li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M" target="_blank">How AI Models Are Trained (15 minutes)</a></li>
-                    <li><a href="https://www.anthropic.com/research" target="_blank">Anthropic Research Papers - Simplified (20 minutes)</a></li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-arrow-right"></i> Preparation for Day 4</h2>
-                <p><strong>Tomorrow's Topic:</strong> "Practical Applications - AI in Your Workflow"</p>
-                <p><strong>What to expect:</strong> Apply AI tools to real work scenarios, design AI-enhanced workflows, and measure productivity improvements</p>
-                
-                <h3>Quick Prep</h3>
-                <ul>
-                    <li>Identify 3 repetitive tasks in your current work</li>
-                    <li>Think about workflow bottlenecks or time-consuming processes</li>
-                    <li>Consider: What would you want AI to help you do faster or better?</li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-question-circle"></i> Common Questions & Quick Answers</h2>
-                
-                <h3>Q: Which AI tool should I use for most tasks?</h3>
-                <p><strong>A:</strong> Start with ChatGPT for general tasks, then explore specialized tools as you identify specific needs.</p>
-
-                <h3>Q: Are paid AI tools worth it?</h3>
-                <p><strong>A:</strong> Start with free versions to understand your needs, then upgrade if you hit limitations or need premium features.</p>
-
-                <h3>Q: How do I stay updated on new AI tools?</h3>
-                <p><strong>A:</strong> Follow AI newsletters, Twitter accounts, and tool directories. Set aside time monthly to explore new options.</p>
-
-                <h3>Q: Can I use multiple AI tools together?</h3>
-                <p><strong>A:</strong> Yes! Many professionals use different tools for different parts of their workflow for optimal results.</p>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-chart-bar"></i> Day 3 Success Metrics</h2>
-                <ul>
-                    <li>✅ Successfully tested and compared 5+ different AI tools</li>
-                    <li>✅ Created practical tool selection framework</li>
-                    <li>✅ Developed understanding of AI tool categories and use cases</li>
-                    <li>✅ Can recommend appropriate tools for different scenarios</li>
-                    <li>✅ Completed comprehensive AI tool guide</li>
-                </ul>
-                
-                <div class="highlight">
-                    <h3>🎉 You're now an AI tool expert! </h3>
-                    <p>You understand the AI landscape and can choose the right tools for any task. Tomorrow, we'll put this knowledge to work by designing AI-enhanced workflows for real workplace challenges.</p>
+                <!-- Navigation -->
+                <div class="navigation">
+                    <a href="day2.html" class="nav-btn secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Day 2: Prompt Engineering
+                    </a>
+                    <a href="day4.html" class="nav-btn primary">
+                        Day 4: Practical Applications
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
-
-        <div class="navigation">
-            <a href="day2.html" class="nav-button">
-                <i class="fas fa-arrow-left"></i> Day 2: Generative AI
-            </a>
-            <a href="day4.html" class="nav-button">
-                Day 4: Practical Applications <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
+    </main>
 
     <script>
-        // Add interactive checklist functionality
-        document.querySelectorAll('.checklist li').forEach(item => {
-            item.addEventListener('click', function() {
-                if (this.style.textDecoration === 'line-through') {
-                    this.style.textDecoration = 'none';
-                    this.style.opacity = '1';
-                } else {
-                    this.style.textDecoration = 'line-through';
-                    this.style.opacity = '0.6';
-                }
-            });
-        });
+        // Track page view and interactions
+        if (window.courseTracker) {
+            window.courseTracker.trackPageView('Day 3: AI Tools Landscape');
+            window.courseTracker.startDay(3);
+        }
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -593,18 +757,11 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
-        });
-
-        // Mark course as completed when user finishes
-        window.addEventListener('beforeunload', function() {
-            const completed = confirm('Mark Day 3 as completed?');
-            if (completed) {
-                localStorage.setItem('day3_completed', 'true');
-            }
         });
     </script>
 </body>

@@ -3,455 +3,848 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 1: AI Basics & Recognition - 5-Day AI Literacy Course</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Day 1: AI Basics & Recognition - AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Modern Color Palette */
+            --primary-50: #f0f4ff;
+            --primary-100: #e0edff;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --primary-900: #1e3a8a;
+            
+            --secondary-500: #8b5cf6;
+            --secondary-600: #7c3aed;
+            
+            --success-500: #10b981;
+            --warning-500: #f59e0b;
+            --error-500: #ef4444;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-sans);
             line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            color: var(--gray-900);
+            background: linear-gradient(135deg, var(--primary-50) 0%, #fafbff 50%, var(--gray-50) 100%);
+            min-height: 100vh;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 var(--space-6);
         }
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
             color: white;
-            padding: 2rem 0;
+            padding: var(--space-16) 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .day-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-2xl);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Breadcrumb */
         .breadcrumb {
             background: white;
-            padding: 1rem 0;
-            border-bottom: 1px solid #e9ecef;
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
 
-        .breadcrumb a {
-            color: #667eea;
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.875rem;
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary-600);
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
         }
 
-        .breadcrumb a:hover {
-            text-decoration: underline;
+        .breadcrumb-nav a:hover {
+            color: var(--primary-700);
         }
 
-        .content {
+        .breadcrumb-nav span {
+            color: var(--gray-500);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: var(--space-12) 0;
+        }
+
+        .content-card {
             background: white;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: var(--space-8) 0;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-100);
         }
 
+        .content-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-6);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .content-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+        }
+
+        .learning-goals {
+            background: var(--primary-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--primary-500);
+            margin-bottom: var(--space-8);
+        }
+
+        .learning-goals h3 {
+            color: var(--primary-900);
+            margin-bottom: var(--space-4);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .goals-list {
+            list-style: none;
+        }
+
+        .goals-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            color: var(--gray-700);
+        }
+
+        .goals-list li i {
+            color: var(--success-500);
+            margin-top: 2px;
+            font-size: 0.875rem;
+        }
+
+        /* Session Styling */
         .session {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            border-left: 4px solid #667eea;
-            background: #f8f9fa;
-            border-radius: 0 8px 8px 0;
+            margin: var(--space-8) 0;
+            padding: var(--space-6);
+            border-left: 4px solid var(--primary-500);
+            background: var(--gray-50);
+            border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
         }
 
+        .session h3 {
+            color: var(--primary-900);
+            margin-bottom: var(--space-4);
+            font-size: 1.375rem;
+            font-weight: 600;
+        }
+
+        .session-time {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--primary-100);
+            color: var(--primary-900);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-4);
+        }
+
+        /* Activity Styling */
         .activity {
             background: white;
-            margin: 1rem 0;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
+            margin: var(--space-6) 0;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
         }
 
+        .activity:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .activity h4 {
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .activity p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+            line-height: 1.7;
+        }
+
+        /* Resource Links */
         .resource-link {
-            display: inline-block;
-            background: #667eea;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
             color: white;
-            padding: 8px 16px;
+            padding: var(--space-2) var(--space-4);
             text-decoration: none;
-            border-radius: 5px;
-            margin: 5px 5px 5px 0;
-            transition: background 0.3s ease;
+            border-radius: var(--radius-lg);
+            margin: var(--space-1) var(--space-2) var(--space-1) 0;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
         }
 
         .resource-link:hover {
-            background: #5a6fd8;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
+        .resource-link.secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .resource-link.secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+        }
+
+        /* Assignment Section */
         .assignment {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            background: linear-gradient(135deg, var(--warning-500), #d97706);
             color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-        }
-
-        .checklist {
-            background: #e8f5e8;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #28a745;
-        }
-
-        .checklist ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .checklist li {
-            padding: 0.5rem 0;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            margin: var(--space-8) 0;
             position: relative;
-            padding-left: 2rem;
+            overflow: hidden;
         }
 
-        .checklist li:before {
-            content: '☐';
+        .assignment::before {
+            content: '';
             position: absolute;
-            left: 0;
-            font-size: 1.2rem;
-            color: #28a745;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: translate(50%, -50%);
         }
 
-        .time-badge {
-            background: #ffc107;
-            color: #333;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: bold;
+        .assignment-content {
+            position: relative;
+            z-index: 1;
         }
 
+        .assignment h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+        }
+
+        .assignment p {
+            margin-bottom: var(--space-4);
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: var(--success-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            margin: var(--space-6) 0;
+            border: 1px solid var(--success-200);
+        }
+
+        .checklist h4 {
+            color: var(--success-900);
+            margin-bottom: var(--space-4);
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checklist-item:hover {
+            background: var(--success-100);
+            padding: var(--space-2);
+            border-radius: var(--radius-md);
+            margin-left: calc(-1 * var(--space-2));
+            margin-right: calc(-1 * var(--space-2));
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--success-500);
+        }
+
+        .checklist-item label {
+            color: var(--gray-700);
+            cursor: pointer;
+            flex: 1;
+        }
+
+        /* Key Outcomes */
+        .key-outcomes {
+            background: var(--secondary-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--secondary-500);
+            margin: var(--space-8) 0;
+        }
+
+        .key-outcomes h3 {
+            color: var(--secondary-900);
+            margin-bottom: var(--space-4);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .outcomes-list {
+            list-style: none;
+        }
+
+        .outcomes-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            color: var(--gray-700);
+        }
+
+        .outcomes-list li i {
+            color: var(--secondary-500);
+            margin-top: 2px;
+        }
+
+        /* Navigation */
         .navigation {
             display: flex;
             justify-content: space-between;
-            margin: 2rem 0;
+            align-items: center;
+            margin-top: var(--space-12);
+            padding-top: var(--space-8);
+            border-top: 1px solid var(--gray-200);
         }
 
-        .nav-button {
-            background: #667eea;
-            color: white;
-            padding: 12px 24px;
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        .nav-button:hover {
-            background: #5a6fd8;
+        .nav-btn.primary {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+            color: white;
+            box-shadow: var(--shadow-lg);
         }
 
-        .nav-button.disabled {
-            background: #ccc;
-            cursor: not-allowed;
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
         }
 
-        h1, h2, h3 {
-            margin-bottom: 1rem;
+        .nav-btn.secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
 
-        h2 {
-            color: #667eea;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 0.5rem;
+        .nav-btn.secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+            transform: translateY(-1px);
         }
 
-        ul, ol {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-
-        .highlight {
-            background: #fff3cd;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #ffc107;
-            margin: 1rem 0;
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            .content {
-                margin: 1rem 0;
-                padding: 1rem;
-            }
-            
             .navigation {
                 flex-direction: column;
-                gap: 1rem;
+                gap: var(--space-4);
             }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .content-card {
+                padding: var(--space-6);
+                margin: var(--space-6) 0;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles */
+        .resource-link:focus,
+        .nav-btn:focus,
+        .checklist-item:focus {
+            outline: 2px solid var(--primary-500);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Hero Header -->
+    <header class="hero-header">
         <div class="container">
-            <h1><i class="fas fa-brain"></i> Day 1: AI Basics & Recognition</h1>
-            <p>Understanding what AI is and recognizing AI in daily life</p>
+            <div class="hero-content">
+                <div class="day-badge">
+                    <i class="fas fa-calendar-day"></i>
+                    Day 1 of 5
+                </div>
+                <h1 class="hero-title">AI Basics & Recognition</h1>
+                <p class="hero-subtitle">Understanding what AI is and recognizing AI in daily life</p>
+            </div>
         </div>
     </header>
 
-    <div class="breadcrumb">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
         <div class="container">
-            <a href="../index.html"><i class="fas fa-home"></i> Course Home</a> / 
-            <span>Day 1: AI Basics & Recognition</span>
+            <div class="breadcrumb-nav">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <a href="index.html">Course Materials</a>
+                <span>/</span>
+                <span>Day 1</span>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="container">
-        <div class="content">
-            <div class="highlight">
-                <h3><i class="fas fa-target"></i> Learning Goal</h3>
-                <p>Understand what AI is, how it works at a basic level, and see real-world examples. By the end of today, you'll be able to identify AI applications in your daily life and have hands-on experience with ChatGPT.</p>
-            </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-card">
+                <div class="content-header">
+                    <h2 class="content-title">Your AI Learning Journey Begins</h2>
+                    <p class="content-subtitle">Start with the fundamentals and build your AI awareness</p>
+                </div>
 
-            <div class="highlight">
-                <h3><i class="fas fa-clock"></i> Time Commitment</h3>
-                <p><strong>Total: 2 hours</strong> (Morning: 60 min, Afternoon: 60 min, Assignment: 30 min)</p>
-            </div>
-
-            <div class="session">
-                <h2><i class="fas fa-sun"></i> Morning Session <span class="time-badge">60 minutes</span></h2>
-                
-                <div class="activity">
-                    <h3><i class="fas fa-play-circle"></i> Watch & Learn <span class="time-badge">30 minutes</span></h3>
-                    
-                    <h4>Primary Video (10 minutes)</h4>
-                    <p><strong>Google's AI Course for Beginners</strong></p>
-                    <a href="https://www.youtube.com/watch?v=Yq0QkCxoTHM" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Basic AI definitions and concepts</li>
-                        <li><strong>Key Takeaways:</strong> What AI is, what it isn't, and why it matters</li>
-                    </ul>
-
-                    <h4>Supplementary Video (15 minutes)</h4>
-                    <p><strong>AI Basics for Beginners</strong></p>
-                    <a href="https://www.youtube.com/watch?v=VGFpV3Qj4as" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Essential AI concepts you need to know</li>
-                        <li><strong>Key Takeaways:</strong> Types of AI, how AI learns, real-world applications</li>
-                    </ul>
-
-                    <h4>Quick Read (5 minutes)</h4>
-                    <p><strong>What Is Artificial Intelligence? - Coursera Article</strong></p>
-                    <a href="https://www.coursera.org/articles/what-is-artificial-intelligence" class="resource-link" target="_blank">
-                        <i class="fas fa-external-link-alt"></i> Read Article
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Comprehensive but simple definition</li>
-                        <li><strong>Key Takeaways:</strong> AI vs human intelligence, current capabilities</li>
+                <!-- Learning Goals -->
+                <div class="learning-goals">
+                    <h3><i class="fas fa-target"></i> Learning Goals</h3>
+                    <ul class="goals-list">
+                        <li><i class="fas fa-check-circle"></i>Understand what AI is and isn't</li>
+                        <li><i class="fas fa-check-circle"></i>Recognize AI applications in daily life</li>
+                        <li><i class="fas fa-check-circle"></i>Get hands-on experience with ChatGPT</li>
+                        <li><i class="fas fa-check-circle"></i>Distinguish between AI and human intelligence</li>
+                        <li><i class="fas fa-check-circle"></i>Create your personal "AI Around Me" inventory</li>
                     </ul>
                 </div>
 
-                <div class="activity">
-                    <h3><i class="fas fa-hands"></i> Hands-On Exploration <span class="time-badge">30 minutes</span></h3>
-                    
-                    <h4>Activity 1: AI in Your Daily Life (15 minutes)</h4>
-                    <ul>
-                        <li>Open your smartphone and identify 5 AI features you use daily</li>
-                        <li><strong>Examples:</strong> Voice assistant, photo recognition, predictive text, recommendations</li>
-                        <li><strong>Write down:</strong> What does each feature do? How does it help you?</li>
-                    </ul>
-
-                    <h4>Activity 2: First ChatGPT Experience (15 minutes)</h4>
-                    <p>Go to <a href="https://chat.openai.com" target="_blank" class="resource-link">chat.openai.com</a> (create free account)</p>
-                    <p><strong>Try these simple prompts:</strong></p>
-                    <ol>
-                        <li>"Explain what you are in simple terms"</li>
-                        <li>"What's the weather like?" (notice it can't access real-time data)</li>
-                        <li>"Write a short poem about coffee"</li>
-                    </ol>
-                    <p><strong>Observe:</strong> What can it do well? What are its limitations?</p>
+                <!-- Time Commitment -->
+                <div class="session-time">
+                    <i class="fas fa-clock"></i>
+                    <span>Time Commitment: 2-3 hours</span>
                 </div>
-            </div>
 
-            <div class="session">
-                <h2><i class="fas fa-moon"></i> Afternoon Session <span class="time-badge">60 minutes</span></h2>
-                
-                <div class="activity">
-                    <h3><i class="fas fa-search"></i> Deep Dive Learning <span class="time-badge">30 minutes</span></h3>
+                <!-- Morning Session -->
+                <div class="session">
+                    <h3><i class="fas fa-sun"></i> Morning Session: Understanding AI Fundamentals</h3>
                     
-                    <h4>Video: IBM AI Explanation (10 minutes)</h4>
-                    <p><strong>What is Artificial Intelligence? - IBM</strong></p>
-                    <a href="https://www.ibm.com/think/topics/artificial-intelligence" class="resource-link" target="_blank">
-                        <i class="fas fa-external-link-alt"></i> Read & Watch
+                    <div class="activity">
+                        <h4><i class="fas fa-play-circle"></i> Watch: AI for Everyone Course Introduction</h4>
+                        <p>Start with Google's comprehensive introduction to AI concepts. This 30-minute video provides a solid foundation for understanding artificial intelligence.</p>
+                        <a href="https://www.youtube.com/watch?v=ad79nYk2keg" target="_blank" class="resource-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Watch on YouTube
+                        </a>
+                        <a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" class="resource-link secondary">
+                            <i class="fas fa-graduation-cap"></i>
+                            Full Course on Coursera
+                        </a>
+                    </div>
+
+                    <div class="activity">
+                        <h4><i class="fas fa-brain"></i> Read: What is AI? Simple Definitions</h4>
+                        <p>Understanding AI in practical terms - what it can do, what it can't do, and how it impacts your daily life.</p>
+                        <a href="https://www.ibm.com/cloud/learn/what-is-artificial-intelligence" target="_blank" class="resource-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            IBM AI Guide
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Afternoon Session -->
+                <div class="session">
+                    <h3><i class="fas fa-laptop"></i> Afternoon Session: Hands-on AI Experience</h3>
+                    
+                    <div class="activity">
+                        <h4><i class="fas fa-comments"></i> Hands-on: Your First ChatGPT Experience</h4>
+                        <p>Create a free ChatGPT account and try these beginner-friendly prompts to understand how AI responds to human input.</p>
+                        <a href="https://chat.openai.com" target="_blank" class="resource-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Open ChatGPT
+                        </a>
+                        
+                        <div class="checklist">
+                            <h4>Try These Prompts:</h4>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="prompt1">
+                                <label for="prompt1">"Explain artificial intelligence in simple terms for a 10-year-old"</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="prompt2">
+                                <label for="prompt2">"Write a professional email declining a meeting invitation"</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="prompt3">
+                                <label for="prompt3">"Help me brainstorm 5 ways to improve team communication"</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="prompt4">
+                                <label for="prompt4">"Summarize the main benefits of renewable energy in 3 bullet points"</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activity">
+                        <h4><i class="fas fa-search"></i> Explore: AI Detection in Everyday Tools</h4>
+                        <p>Discover the AI that's already part of your daily routine. Most people use AI without realizing it!</p>
+                        <div class="checklist">
+                            <h4>Check These Common AI Applications:</h4>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="detect1">
+                                <label for="detect1">Email spam filtering (Gmail, Outlook)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="detect2">
+                                <label for="detect2">Search autocomplete (Google, Bing)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="detect3">
+                                <label for="detect3">Social media feed algorithms (LinkedIn, Facebook)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="detect4">
+                                <label for="detect4">Voice assistants (Siri, Alexa, Google Assistant)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="detect5">
+                                <label for="detect5">Navigation apps (Google Maps, Waze)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="detect6">
+                                <label for="detect6">Photo organization (Google Photos, iPhone Photos)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Assignment -->
+                <div class="assignment">
+                    <div class="assignment-content">
+                        <h3><i class="fas fa-clipboard-list"></i> Daily Assignment: "AI Around Me" Inventory</h3>
+                        <p>Create a personal inventory of AI tools and applications you encounter in your daily life. This will help you understand how pervasive AI already is.</p>
+                        
+                        <div style="background: rgba(255,255,255,0.1); padding: var(--space-4); border-radius: var(--radius-lg); margin-top: var(--space-4);">
+                            <h4 style="margin-bottom: var(--space-3);">Instructions:</h4>
+                            <ol style="padding-left: var(--space-6);">
+                                <li>List 10 AI applications you use regularly (even if you didn't know they were AI)</li>
+                                <li>For each application, note: What it does, How it helps you, How often you use it</li>
+                                <li>Identify 3 new AI tools you discovered today</li>
+                                <li>Reflect: How would your daily routine change without these AI tools?</li>
+                            </ol>
+                        </div>
+                        
+                        <a href="../assets/downloads/ai-around-me-template.pdf" class="resource-link" style="background: rgba(255,255,255,0.2); margin-top: var(--space-4);">
+                            <i class="fas fa-download"></i>
+                            Download Assignment Template
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Key Learning Outcomes -->
+                <div class="key-outcomes">
+                    <h3><i class="fas fa-lightbulb"></i> Key Learning Outcomes</h3>
+                    <ul class="outcomes-list">
+                        <li><i class="fas fa-check"></i>You can define AI in simple, practical terms</li>
+                        <li><i class="fas fa-check"></i>You've successfully used ChatGPT for basic tasks</li>
+                        <li><i class="fas fa-check"></i>You recognize AI in tools you use daily</li>
+                        <li><i class="fas fa-check"></i>You understand the difference between AI and automation</li>
+                        <li><i class="fas fa-check"></i>You've created your personal AI inventory</li>
+                    </ul>
+                </div>
+
+                <!-- Optional Resources -->
+                <div class="activity">
+                    <h4><i class="fas fa-plus-circle"></i> Optional: Deeper Learning Resources</h4>
+                    <p>If you want to explore further, these resources provide additional context and depth.</p>
+                    <a href="https://www.ted.com/talks/fei_fei_li_how_we_re_teaching_computers_to_understand_pictures" target="_blank" class="resource-link secondary">
+                        <i class="fas fa-play"></i>
+                        TED Talk: AI & Computer Vision
                     </a>
-                    <ul>
-                        <li><strong>Focus:</strong> How AI works in business and industry</li>
-                        <li><strong>Key Takeaways:</strong> Machine learning, automation, decision-making</li>
-                    </ul>
-
-                    <h4>Interactive Course (20 minutes)</h4>
-                    <p><strong>AI For Everyone - Coursera (Week 1, free audit)</strong></p>
-                    <a href="https://www.coursera.org/learn/ai-for-everyone" class="resource-link" target="_blank">
-                        <i class="fas fa-graduation-cap"></i> Start Course
+                    <a href="https://www.elementsofai.com/" target="_blank" class="resource-link secondary">
+                        <i class="fas fa-book"></i>
+                        Elements of AI Course
                     </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Complete "What is AI?" module</li>
-                        <li><strong>Key Takeaways:</strong> AI terminology, what AI can and cannot do</li>
-                    </ul>
                 </div>
 
-                <div class="activity">
-                    <h3><i class="fas fa-laptop"></i> Practical Application <span class="time-badge">30 minutes</span></h3>
-                    
-                    <h4>Activity 3: AI Detective Game (20 minutes)</h4>
-                    <p>Visit these websites and identify which features use AI:</p>
-                    <ul>
-                        <li><strong>Netflix:</strong> recommendations</li>
-                        <li><strong>Google Search:</strong> autocomplete, results ranking</li>
-                        <li><strong>Amazon:</strong> product recommendations, Alexa</li>
-                        <li><strong>LinkedIn:</strong> job suggestions, connection recommendations</li>
-                    </ul>
-
-                    <h4>Activity 4: Reflection & Discussion (10 minutes)</h4>
-                    <p>Write a 2-paragraph reflection:</p>
-                    <ol>
-                        <li><strong>Before Today:</strong> What did you think AI was before this session?</li>
-                        <li><strong>After Learning:</strong> How has your understanding changed? What surprised you most?</li>
-                    </ol>
+                <!-- Preparation for Tomorrow -->
+                <div class="session">
+                    <h3><i class="fas fa-arrow-right"></i> Preparing for Day 2</h3>
+                    <p>Tomorrow we'll dive deeper into generative AI and learn advanced ChatGPT techniques. Make sure you have:</p>
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="prep1">
+                            <label for="prep1">Completed your "AI Around Me" inventory</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="prep2">
+                            <label for="prep2">Practiced using ChatGPT with the suggested prompts</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="prep3">
+                            <label for="prep3">Reflected on today's learning in your notes</label>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="assignment">
-                <h2><i class="fas fa-clipboard-check"></i> Daily Assignment <span class="time-badge">30 minutes</span></h2>
-                
-                <h3>Task: Create an "AI Around Me" inventory</h3>
-                <ol>
-                    <li><strong>List 10 AI tools/features</strong> you discovered you already use</li>
-                    <li><strong>For each item, write:</strong>
-                        <ul>
-                            <li>What it does</li>
-                            <li>How it makes your life easier</li>
-                            <li>Whether you knew it was AI before today</li>
-                        </ul>
-                    </li>
-                    <li><strong>Choose 3 items</strong> and explain how they might work (based on today's learning)</li>
-                    <li><strong>Submit:</strong> One-page document with your inventory and explanations</li>
-                </ol>
-
-                <h3>Assessment Criteria</h3>
-                <ul>
-                    <li>✅ Identified 10 real AI applications</li>
-                    <li>✅ Demonstrated understanding of AI vs non-AI features</li>
-                    <li>✅ Showed curiosity and critical thinking about how AI works</li>
-                    <li>✅ Clear, organized presentation of findings</li>
-                </ul>
-            </div>
-
-            <div class="checklist">
-                <h2><i class="fas fa-tasks"></i> Key Learning Outcomes for Day 1</h2>
-                <p>By the end of today, you should be able to:</p>
-                <ul>
-                    <li>Define artificial intelligence in simple terms</li>
-                    <li>Distinguish between AI and non-AI technology</li>
-                    <li>Identify at least 10 AI applications in your daily life</li>
-                    <li>Explain basic concepts: machine learning, automation, pattern recognition</li>
-                    <li>Use ChatGPT for simple tasks and understand its limitations</li>
-                    <li>Describe how AI is different from human intelligence</li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-book"></i> Optional Evening Resources</h2>
-                <p>If you want to learn more (completely optional):</p>
-                
-                <h3>Quick Reads</h3>
-                <ul>
-                    <li><a href="https://www.nasa.gov/what-is-artificial-intelligence/" target="_blank">NASA's Simple AI Explanation (5 minutes)</a></li>
-                    <li><a href="https://www.heinz.cmu.edu/media/2023/July/artificial-intelligence-explained" target="_blank">Carnegie Mellon's AI Explained (10 minutes)</a></li>
-                </ul>
-
-                <h3>Videos for Curious Minds</h3>
-                <ul>
-                    <li><a href="https://www.youtube.com/watch?v=nVyD6THcvDQ" target="_blank">99% of Beginners Don't Know AI Basics (15 minutes)</a></li>
-                    <li><a href="https://www.youtube.com/playlist?list=PLGs0VKk2DiYyXlbJVaE8y1qr24YldYNDm" target="_blank">AI Introduction Playlist - First 2 videos (20 minutes)</a></li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-arrow-right"></i> Preparation for Day 2</h2>
-                <p><strong>Tomorrow's Topic:</strong> "Generative AI and Large Language Models"</p>
-                <p><strong>What to expect:</strong> Deep dive into ChatGPT, understanding how AI creates content, and hands-on practice with different AI tools</p>
-                
-                <h3>Quick Prep</h3>
-                <ul>
-                    <li>Keep your ChatGPT account handy</li>
-                    <li>Think about content creation tasks you do at work (writing emails, reports, presentations)</li>
-                    <li>Consider: What would you want AI to help you create?</li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-question-circle"></i> Common Questions & Quick Answers</h2>
-                
-                <h3>Q: Do I need technical background for this course?</h3>
-                <p><strong>A:</strong> No! This course is designed for complete beginners with no technical knowledge required.</p>
-
-                <h3>Q: Is ChatGPT really free?</h3>
-                <p><strong>A:</strong> Yes, the basic version is free. You may hit usage limits, but it's sufficient for this course.</p>
-
-                <h3>Q: What if I can't access some videos?</h3>
-                <p><strong>A:</strong> All resources have alternatives. Contact your instructor for backup materials.</p>
-
-                <h3>Q: How much time should I really spend?</h3>
-                <p><strong>A:</strong> Stick to the 2-hour guideline. Quality of engagement matters more than extra time.</p>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-chart-bar"></i> Day 1 Success Metrics</h2>
-                <ul>
-                    <li>✅ Completed all morning and afternoon activities</li>
-                    <li>✅ Successfully used ChatGPT for basic tasks</li>
-                    <li>✅ Submitted "AI Around Me" inventory</li>
-                    <li>✅ Can explain AI to a friend or colleague in simple terms</li>
-                </ul>
-                
-                <div class="highlight">
-                    <h3>🎉 Congratulations on starting your AI literacy journey!</h3>
-                    <p>You've taken the first step toward becoming an AI-augmented professional. Tomorrow, we'll dive deeper into generative AI and learn how to create content with AI tools.</p>
+                <!-- Navigation -->
+                <div class="navigation">
+                    <a href="index.html" class="nav-btn secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Course Overview
+                    </a>
+                    <a href="day2.html" class="nav-btn primary">
+                        Day 2: Generative AI Mastery
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
-
-        <div class="navigation">
-            <a href="../index.html" class="nav-button">
-                <i class="fas fa-home"></i> Course Home
-            </a>
-            <a href="day2.html" class="nav-button">
-                Day 2: Generative AI <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
+    </main>
 
     <script>
-        // Add interactive checklist functionality
-        document.querySelectorAll('.checklist li').forEach(item => {
-            item.addEventListener('click', function() {
-                if (this.style.textDecoration === 'line-through') {
-                    this.style.textDecoration = 'none';
-                    this.style.opacity = '1';
-                    this.querySelector('::before') ? this.querySelector('::before').textContent = '☐' : null;
-                } else {
-                    this.style.textDecoration = 'line-through';
-                    this.style.opacity = '0.6';
-                }
-            });
+        // Track progress and save to localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            setupProgressTracking();
         });
+
+        function setupProgressTracking() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    saveProgress();
+                    updateProgressIndicator();
+                });
+            });
+        }
+
+        function saveProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const progress = {};
+            checkboxes.forEach(checkbox => {
+                progress[checkbox.id] = checkbox.checked;
+            });
+            
+            localStorage.setItem('day1_progress', JSON.stringify(progress));
+            
+            // Check if day is completed
+            const total = checkboxes.length;
+            const completed = Object.values(progress).filter(Boolean).length;
+            const isCompleted = completed >= total * 0.8; // 80% completion threshold
+            
+            if (isCompleted) {
+                localStorage.setItem('day1_completed', 'true');
+                // Track completion with course tracker if available
+                if (window.courseTracker) {
+                    window.courseTracker.completeDay(1, {
+                        score: Math.round((completed / total) * 100),
+                        timeSpent: Date.now() - (localStorage.getItem('day1_start_time') || Date.now())
+                    });
+                }
+            }
+        }
+
+        function loadProgress() {
+            const progress = localStorage.getItem('day1_progress');
+            if (progress) {
+                const progressData = JSON.parse(progress);
+                Object.entries(progressData).forEach(([id, checked]) => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = checked;
+                    }
+                });
+            }
+            
+            // Track start time
+            if (!localStorage.getItem('day1_start_time')) {
+                localStorage.setItem('day1_start_time', Date.now());
+            }
+        }
+
+        function updateProgressIndicator() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const total = checkboxes.length;
+            const completed = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const percentage = Math.round((completed / total) * 100);
+            
+            // Update title to show progress
+            document.title = `Day 1: AI Basics (${percentage}% complete) - AI Literacy Course`;
+        }
+
+        // Track page view and interactions
+        if (window.courseTracker) {
+            window.courseTracker.trackPageView('Day 1: AI Basics & Recognition');
+            window.courseTracker.startDay(1);
+        }
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -460,7 +853,8 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });

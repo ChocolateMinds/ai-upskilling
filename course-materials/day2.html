@@ -3,516 +3,673 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 2: Generative AI Mastery - 5-Day AI Literacy Course</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Day 2: Generative AI Mastery - AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Modern Color Palette */
+            --primary-50: #f0f4ff;
+            --primary-100: #e0edff;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --primary-900: #1e3a8a;
+            
+            --secondary-500: #8b5cf6;
+            --secondary-600: #7c3aed;
+            
+            --success-500: #10b981;
+            --warning-500: #f59e0b;
+            --error-500: #ef4444;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-sans);
             line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            color: var(--gray-900);
+            background: linear-gradient(135deg, var(--primary-50) 0%, #fafbff 50%, var(--gray-50) 100%);
+            min-height: 100vh;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 var(--space-6);
         }
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
             color: white;
-            padding: 2rem 0;
+            padding: var(--space-16) 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .day-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-2xl);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Breadcrumb */
         .breadcrumb {
             background: white;
-            padding: 1rem 0;
-            border-bottom: 1px solid #e9ecef;
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
 
-        .breadcrumb a {
-            color: #667eea;
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.875rem;
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary-600);
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
         }
 
-        .breadcrumb a:hover {
-            text-decoration: underline;
+        .breadcrumb-nav a:hover {
+            color: var(--primary-700);
         }
 
-        .content {
+        .breadcrumb-nav span {
+            color: var(--gray-500);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: var(--space-12) 0;
+        }
+
+        .content-card {
             background: white;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: var(--space-8) 0;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-100);
         }
 
+        .content-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-6);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .content-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+        }
+
+        .learning-goals {
+            background: var(--primary-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--primary-500);
+            margin-bottom: var(--space-8);
+        }
+
+        .learning-goals h3 {
+            color: var(--primary-900);
+            margin-bottom: var(--space-4);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .goals-list {
+            list-style: none;
+        }
+
+        .goals-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            color: var(--gray-700);
+        }
+
+        .goals-list li i {
+            color: var(--success-500);
+            margin-top: 2px;
+            font-size: 0.875rem;
+        }
+
+        /* Session Styling */
         .session {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            border-left: 4px solid #667eea;
-            background: #f8f9fa;
-            border-radius: 0 8px 8px 0;
+            margin: var(--space-8) 0;
+            padding: var(--space-6);
+            border-left: 4px solid var(--primary-500);
+            background: var(--gray-50);
+            border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
         }
 
+        .session h3 {
+            color: var(--primary-900);
+            margin-bottom: var(--space-4);
+            font-size: 1.375rem;
+            font-weight: 600;
+        }
+
+        .session-time {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--primary-100);
+            color: var(--primary-900);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-4);
+        }
+
+        /* Activity Styling */
         .activity {
             background: white;
-            margin: 1rem 0;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
+            margin: var(--space-6) 0;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
         }
 
+        .activity:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .activity h4 {
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .activity p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+            line-height: 1.7;
+        }
+
+        /* Resource Links */
         .resource-link {
-            display: inline-block;
-            background: #667eea;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
             color: white;
-            padding: 8px 16px;
+            padding: var(--space-2) var(--space-4);
             text-decoration: none;
-            border-radius: 5px;
-            margin: 5px 5px 5px 0;
-            transition: background 0.3s ease;
+            border-radius: var(--radius-lg);
+            margin: var(--space-1) var(--space-2) var(--space-1) 0;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
         }
 
         .resource-link:hover {
-            background: #5a6fd8;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
+        .resource-link.secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .resource-link.secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+        }
+
+        /* Assignment Section */
         .assignment {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            background: linear-gradient(135deg, var(--warning-500), #d97706);
             color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-        }
-
-        .checklist {
-            background: #e8f5e8;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #28a745;
-        }
-
-        .checklist ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .checklist li {
-            padding: 0.5rem 0;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            margin: var(--space-8) 0;
             position: relative;
-            padding-left: 2rem;
+            overflow: hidden;
         }
 
-        .checklist li:before {
-            content: '☐';
+        .assignment::before {
+            content: '';
             position: absolute;
-            left: 0;
-            font-size: 1.2rem;
-            color: #28a745;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: translate(50%, -50%);
         }
 
-        .time-badge {
-            background: #ffc107;
-            color: #333;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: bold;
+        .assignment-content {
+            position: relative;
+            z-index: 1;
         }
 
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin: 2rem 0;
+        .assignment h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
         }
 
-        .nav-button {
-            background: #667eea;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+        .assignment p {
+            margin-bottom: var(--space-4);
+            opacity: 0.9;
+            line-height: 1.7;
         }
 
-        .nav-button:hover {
-            background: #5a6fd8;
-        }
-
-        .nav-button.disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        h1, h2, h3 {
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            color: #667eea;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 0.5rem;
-        }
-
-        ul, ol {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-
-        .highlight {
-            background: #fff3cd;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #ffc107;
-            margin: 1rem 0;
-        }
-
+        /* Prompt Examples */
         .prompt-example {
-            background: #e7f1ff;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #007bff;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
+            background: var(--primary-100);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--primary-500);
+            margin: var(--space-4) 0;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--primary-900);
         }
 
         .tip-box {
-            background: #d1ecf1;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #17a2b8;
-            margin: 1rem 0;
+            background: var(--secondary-50);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--secondary-500);
+            margin: var(--space-4) 0;
         }
 
+        .tip-box h4 {
+            color: var(--secondary-900);
+            margin-bottom: var(--space-2);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-12);
+            padding-top: var(--space-8);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .nav-btn.secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-btn.secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            .content {
-                margin: 1rem 0;
-                padding: 1rem;
-            }
-            
             .navigation {
                 flex-direction: column;
-                gap: 1rem;
+                gap: var(--space-4);
             }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .content-card {
+                padding: var(--space-6);
+                margin: var(--space-6) 0;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles */
+        .resource-link:focus,
+        .nav-btn:focus {
+            outline: 2px solid var(--primary-500);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Hero Header -->
+    <header class="hero-header">
         <div class="container">
-            <h1><i class="fas fa-magic"></i> Day 2: Generative AI Mastery</h1>
-            <p>Master ChatGPT and prompt engineering techniques</p>
+            <div class="hero-content">
+                <div class="day-badge">
+                    <i class="fas fa-calendar-day"></i>
+                    Day 2 of 5
+                </div>
+                <h1 class="hero-title">Generative AI Mastery</h1>
+                <p class="hero-subtitle">Master ChatGPT and prompt engineering techniques</p>
+            </div>
         </div>
     </header>
 
-    <div class="breadcrumb">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
         <div class="container">
-            <a href="../index.html"><i class="fas fa-home"></i> Course Home</a> / 
-            <a href="day1.html">Day 1</a> /
-            <span>Day 2: Generative AI Mastery</span>
+            <div class="breadcrumb-nav">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <a href="index.html">Course Materials</a>
+                <span>/</span>
+                <span>Day 2</span>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="container">
-        <div class="content">
-            <div class="highlight">
-                <h3><i class="fas fa-target"></i> Learning Goal</h3>
-                <p>Master generative AI tools, especially ChatGPT, and learn to write effective prompts that consistently produce high-quality results. By the end of today, you'll be able to use AI for content creation, problem-solving, and communication enhancement.</p>
-            </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-card">
+                <div class="content-header">
+                    <h2 class="content-title">Advanced AI Communication</h2>
+                    <p class="content-subtitle">Learn to communicate effectively with AI systems using proven prompt engineering techniques</p>
+                </div>
 
-            <div class="highlight">
-                <h3><i class="fas fa-clock"></i> Time Commitment</h3>
-                <p><strong>Total: 2 hours</strong> (Morning: 60 min, Afternoon: 60 min, Assignment: 30 min)</p>
-            </div>
-
-            <div class="session">
-                <h2><i class="fas fa-sun"></i> Morning Session <span class="time-badge">60 minutes</span></h2>
-                
-                <div class="activity">
-                    <h3><i class="fas fa-play-circle"></i> Advanced ChatGPT Training <span class="time-badge">30 minutes</span></h3>
-                    
-                    <h4>Primary Video (15 minutes)</h4>
-                    <p><strong>ChatGPT Tutorial: Complete Guide for Beginners</strong></p>
-                    <a href="https://www.youtube.com/watch?v=lBRCb4d6jWo" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Advanced ChatGPT features and capabilities</li>
-                        <li><strong>Key Takeaways:</strong> Interface navigation, conversation management, advanced settings</li>
-                    </ul>
-
-                    <h4>Prompt Engineering Masterclass (10 minutes)</h4>
-                    <p><strong>How to Write Perfect Prompts for AI</strong></p>
-                    <a href="https://www.youtube.com/watch?v=jC4v5AS4RIM" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Prompt structure, specificity, and best practices</li>
-                        <li><strong>Key Takeaways:</strong> Clear instructions, context setting, output formatting</li>
-                    </ul>
-
-                    <h4>Quick Read (5 minutes)</h4>
-                    <p><strong>OpenAI's Official Best Practices Guide</strong></p>
-                    <a href="https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api" class="resource-link" target="_blank">
-                        <i class="fas fa-external-link-alt"></i> Read Guide
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Official recommendations for prompt writing</li>
-                        <li><strong>Key Takeaways:</strong> Clear, specific, contextual prompting</li>
+                <!-- Learning Goals -->
+                <div class="learning-goals">
+                    <h3><i class="fas fa-target"></i> Learning Goals</h3>
+                    <ul class="goals-list">
+                        <li><i class="fas fa-check-circle"></i>Master advanced ChatGPT features and capabilities</li>
+                        <li><i class="fas fa-check-circle"></i>Learn the CLEAR prompt engineering methodology</li>
+                        <li><i class="fas fa-check-circle"></i>Create effective prompts for various work scenarios</li>
+                        <li><i class="fas fa-check-circle"></i>Build your personal prompt toolkit for daily use</li>
+                        <li><i class="fas fa-check-circle"></i>Understand how to iterate and improve AI responses</li>
                     </ul>
                 </div>
 
-                <div class="activity">
-                    <h3><i class="fas fa-hands"></i> Prompt Writing Practice <span class="time-badge">30 minutes</span></h3>
-                    
-                    <h4>Activity 1: Basic Prompt Patterns (15 minutes)</h4>
-                    <p>Practice these fundamental prompt patterns in ChatGPT:</p>
-                    
-                    <div class="prompt-example">
-                        <strong>Pattern 1 - Task + Context + Format:</strong><br>
-                        "Write a professional email [TASK] to decline a meeting invitation [CONTEXT] using a polite and brief format [FORMAT]"
-                    </div>
-                    
-                    <div class="prompt-example">
-                        <strong>Pattern 2 - Role + Task + Constraints:</strong><br>
-                        "Act as a marketing expert [ROLE]. Create 5 social media post ideas [TASK] for a coffee shop, each under 280 characters [CONSTRAINTS]"
-                    </div>
-                    
-                    <div class="prompt-example">
-                        <strong>Pattern 3 - Step-by-step Instructions:</strong><br>
-                        "Help me plan a presentation. First, ask me about the topic and audience. Then suggest an outline. Finally, provide tips for delivery."
-                    </div>
-
-                    <h4>Activity 2: Content Creation Challenge (15 minutes)</h4>
-                    <p>Use ChatGPT to create these work-related content pieces:</p>
-                    <ol>
-                        <li><strong>Meeting agenda</strong> for a project kickoff</li>
-                        <li><strong>Brief report summary</strong> of a fictional quarterly review</li>
-                        <li><strong>Follow-up email</strong> after a client meeting</li>
-                        <li><strong>Training outline</strong> for new employee onboarding</li>
-                    </ol>
-                    <p><strong>Challenge:</strong> Make each prompt specific and include desired format/tone</p>
+                <!-- Time Commitment -->
+                <div class="session-time">
+                    <i class="fas fa-clock"></i>
+                    <span>Time Commitment: 2-3 hours</span>
                 </div>
-            </div>
 
-            <div class="session">
-                <h2><i class="fas fa-moon"></i> Afternoon Session <span class="time-badge">60 minutes</span></h2>
-                
-                <div class="activity">
-                    <h3><i class="fas fa-brain"></i> Advanced Prompt Engineering <span class="time-badge">30 minutes</span></h3>
+                <!-- Morning Session -->
+                <div class="session">
+                    <h3><i class="fas fa-sun"></i> Morning Session: Advanced ChatGPT Training</h3>
                     
-                    <h4>Video: Prompt Engineering Strategies (15 minutes)</h4>
-                    <p><strong>10 ChatGPT Prompt Engineering Tips</strong></p>
-                    <a href="https://www.youtube.com/watch?v=u4eXW8hWgVw" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    <div class="activity">
+                        <h4><i class="fas fa-play-circle"></i> Watch: Advanced ChatGPT Techniques</h4>
+                        <p>Learn professional-level ChatGPT usage from experts who use it daily for business applications.</p>
+                        <a href="https://www.youtube.com/watch?v=jC4v5AS4RIM" target="_blank" class="resource-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            Advanced ChatGPT Tutorial
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=EYjG6i53-xk" target="_blank" class="resource-link secondary">
+                            <i class="fas fa-play"></i>
+                            Prompt Engineering Guide
+                        </a>
+                    </div>
+
+                    <div class="activity">
+                        <h4><i class="fas fa-brain"></i> Learn: The CLEAR Prompt Methodology</h4>
+                        <p>A proven framework for creating effective prompts that get consistent, high-quality results.</p>
+                        
+                        <div class="tip-box">
+                            <h4>CLEAR Method Breakdown:</h4>
+                            <ul style="margin-left: var(--space-6); margin-top: var(--space-2);">
+                                <li><strong>C</strong> - Context: Provide background information</li>
+                                <li><strong>L</strong> - Length: Specify desired response length</li>
+                                <li><strong>E</strong> - Examples: Give examples when helpful</li>
+                                <li><strong>A</strong> - Audience: Define who the response is for</li>
+                                <li><strong>R</strong> - Role: Tell AI what role to take</li>
+                            </ul>
+                        </div>
+
+                        <div class="prompt-example">
+                            <strong>Example CLEAR Prompt:</strong><br>
+                            "You are a professional email writer (Role). Help me write a follow-up email to a client who hasn't responded to our proposal (Context). Keep it to 2-3 paragraphs (Length). The tone should be friendly but professional, suitable for a busy executive (Audience). Here's an example of our usual tone: [previous email example] (Examples)."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Afternoon Session -->
+                <div class="session">
+                    <h3><i class="fas fa-laptop"></i> Afternoon Session: Hands-on Prompt Engineering</h3>
+                    
+                    <div class="activity">
+                        <h4><i class="fas fa-comments"></i> Practice: Essential Business Prompts</h4>
+                        <p>Try these professional prompts and observe how the CLEAR method improves responses.</p>
+                        
+                        <div class="prompt-example">
+                            <strong>Email Writing:</strong><br>
+                            "Act as a professional business communicator. Write a polite email declining a meeting invitation due to scheduling conflicts. Keep it to 1 paragraph, use a warm but professional tone suitable for a colleague, and suggest alternative times for next week."
+                        </div>
+
+                        <div class="prompt-example">
+                            <strong>Content Creation:</strong><br>
+                            "You are a content marketing specialist. Create 5 engaging social media post ideas for a company that sells eco-friendly office supplies. Each post should be 1-2 sentences, target environmentally conscious business owners, and include a call to action. Make them informative yet conversational."
+                        </div>
+
+                        <div class="prompt-example">
+                            <strong>Problem Solving:</strong><br>
+                            "Act as a business consultant. I need to improve team communication in our remote-first company of 25 people. Provide 3 specific, actionable recommendations. Each should be 2-3 sentences explaining what to do and why it works. Focus on solutions that don't require expensive software."
+                        </div>
+                    </div>
+
+                    <div class="activity">
+                        <h4><i class="fas fa-tools"></i> Build: Your Personal Prompt Toolkit</h4>
+                        <p>Create a collection of go-to prompts for your most common work tasks.</p>
+                        
+                        <div class="tip-box">
+                            <h4>Toolkit Categories to Build:</h4>
+                            <ul style="margin-left: var(--space-6); margin-top: var(--space-2);">
+                                <li>Email templates for different scenarios</li>
+                                <li>Meeting preparation and follow-up</li>
+                                <li>Content creation and editing</li>
+                                <li>Research and analysis helpers</li>
+                                <li>Problem-solving frameworks</li>
+                            </ul>
+                        </div>
+
+                        <a href="../assets/downloads/prompt-toolkit-template.md" class="resource-link">
+                            <i class="fas fa-download"></i>
+                            Download Prompt Toolkit Template
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Daily Assignment -->
+                <div class="assignment">
+                    <div class="assignment-content">
+                        <h3><i class="fas fa-clipboard-list"></i> Daily Assignment: Build Your Personal AI Prompt Toolkit</h3>
+                        <p>Create a personalized collection of prompts for your specific work role and responsibilities. This will become your go-to resource for daily AI assistance.</p>
+                        
+                        <div style="background: rgba(255,255,255,0.1); padding: var(--space-4); border-radius: var(--radius-lg); margin-top: var(--space-4);">
+                            <h4 style="margin-bottom: var(--space-3);">Assignment Steps:</h4>
+                            <ol style="padding-left: var(--space-6);">
+                                <li>Identify 5 common work tasks where AI could help you</li>
+                                <li>Write 2 prompts for each task using the CLEAR method</li>
+                                <li>Test each prompt with ChatGPT and refine based on results</li>
+                                <li>Organize your prompts by category (email, content, analysis, etc.)</li>
+                                <li>Add notes on when and how to use each prompt effectively</li>
+                            </ol>
+                        </div>
+                        
+                        <a href="../assets/downloads/prompt-toolkit-template.md" class="resource-link" style="background: rgba(255,255,255,0.2); margin-top: var(--space-4);">
+                            <i class="fas fa-download"></i>
+                            Download Template
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="navigation">
+                    <a href="day1.html" class="nav-btn secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Day 1: AI Basics
                     </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Advanced techniques for better AI responses</li>
-                        <li><strong>Key Takeaways:</strong> Chain prompting, role assignment, example provision</li>
-                    </ul>
-
-                    <h4>Interactive Learning (15 minutes)</h4>
-                    <p><strong>Prompt Engineering Course - DeepLearning.AI</strong></p>
-                    <a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" class="resource-link" target="_blank">
-                        <i class="fas fa-graduation-cap"></i> Start Course (Free)
+                    <a href="day3.html" class="nav-btn primary">
+                        Day 3: AI Tools Landscape
+                        <i class="fas fa-arrow-right"></i>
                     </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Complete first 2 lessons on prompting principles</li>
-                        <li><strong>Key Takeaways:</strong> Clear instructions, giving time to think, systematic approach</li>
-                    </ul>
-
-                    <div class="tip-box">
-                        <h4><i class="fas fa-lightbulb"></i> Pro Tip: The CLEAR Method</h4>
-                        <p><strong>C</strong>ontext - Provide background information<br>
-                        <strong>L</strong>ength - Specify desired output length<br>
-                        <strong>E</strong>xamples - Give examples of desired output<br>
-                        <strong>A</strong>udience - Define who the output is for<br>
-                        <strong>R</strong>ole - Assign a role to the AI</p>
-                    </div>
-                </div>
-
-                <div class="activity">
-                    <h3><i class="fas fa-toolbox"></i> AI Tool Comparison <span class="time-badge">30 minutes</span></h3>
-                    
-                    <h4>Activity 3: Multi-Tool Testing (20 minutes)</h4>
-                    <p>Test the same prompt across different AI tools:</p>
-                    <div class="prompt-example">
-                        Test Prompt: "Write a 150-word summary of the benefits of remote work for a company newsletter, focusing on productivity and employee satisfaction."
-                    </div>
-                    
-                    <p><strong>Tools to test:</strong></p>
-                    <ul>
-                        <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a> (OpenAI)</li>
-                        <li><a href="https://claude.ai" target="_blank">Claude</a> (Anthropic)</li>
-                        <li><a href="https://bard.google.com" target="_blank">Google Bard/Gemini</a></li>
-                    </ul>
-                    <p><strong>Compare:</strong> Response quality, tone, length, creativity, accuracy</p>
-
-                    <h4>Activity 4: Workplace Scenario Practice (10 minutes)</h4>
-                    <p>Practice prompts for common workplace tasks:</p>
-                    <ol>
-                        <li><strong>Email Enhancement:</strong> Improve a poorly written email</li>
-                        <li><strong>Data Analysis:</strong> Create insights from sample data</li>
-                        <li><strong>Problem Solving:</strong> Brainstorm solutions to a team conflict</li>
-                        <li><strong>Content Creation:</strong> Write social media posts for company updates</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="assignment">
-                <h2><i class="fas fa-clipboard-check"></i> Daily Assignment <span class="time-badge">30 minutes</span></h2>
-                
-                <h3>Task: Build Your Personal Prompt Toolkit</h3>
-                <ol>
-                    <li><strong>Create 10 work-specific prompts</strong> for tasks you do regularly</li>
-                    <li><strong>For each prompt, include:</strong>
-                        <ul>
-                            <li>The specific work task it addresses</li>
-                            <li>The complete prompt text</li>
-                            <li>Example output or result</li>
-                            <li>Notes on when to use it</li>
-                        </ul>
-                    </li>
-                    <li><strong>Test 5 prompts</strong> with different AI tools and compare results</li>
-                    <li><strong>Submit:</strong> Formatted prompt toolkit document with examples and comparisons</li>
-                </ol>
-
-                <h3>Prompt Categories to Consider</h3>
-                <ul>
-                    <li>✅ Email writing and enhancement</li>
-                    <li>✅ Meeting preparation and follow-up</li>
-                    <li>✅ Report writing and summarization</li>
-                    <li>✅ Creative brainstorming and ideation</li>
-                    <li>✅ Data analysis and interpretation</li>
-                    <li>✅ Training and presentation content</li>
-                    <li>✅ Problem-solving and decision support</li>
-                    <li>✅ Customer communication</li>
-                    <li>✅ Project planning and management</li>
-                    <li>✅ Research and information gathering</li>
-                </ul>
-
-                <h3>Assessment Criteria</h3>
-                <ul>
-                    <li>✅ Practical relevance to real work tasks</li>
-                    <li>✅ Clear, specific prompt construction</li>
-                    <li>✅ Demonstrated understanding of prompt engineering principles</li>
-                    <li>✅ Quality examples and thoughtful AI tool comparison</li>
-                </ul>
-            </div>
-
-            <div class="checklist">
-                <h2><i class="fas fa-tasks"></i> Key Learning Outcomes for Day 2</h2>
-                <p>By the end of today, you should be able to:</p>
-                <ul>
-                    <li>Write effective prompts using the CLEAR method</li>
-                    <li>Use advanced ChatGPT features and conversation management</li>
-                    <li>Apply prompt engineering principles for consistent results</li>
-                    <li>Compare different AI tools and select the best for specific tasks</li>
-                    <li>Create work-specific prompts that save time and improve quality</li>
-                    <li>Understand generative AI capabilities and limitations</li>
-                    <li>Use AI for content creation, editing, and enhancement</li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-book"></i> Optional Evening Resources</h2>
-                <p>For deeper learning (completely optional):</p>
-                
-                <h3>Advanced Prompt Engineering</h3>
-                <ul>
-                    <li><a href="https://www.promptingguide.ai/" target="_blank">Prompt Engineering Guide (20 minutes)</a></li>
-                    <li><a href="https://github.com/dair-ai/Prompt-Engineering-Guide" target="_blank">GitHub Prompt Engineering Repository (15 minutes)</a></li>
-                </ul>
-
-                <h3>Content Creation with AI</h3>
-                <ul>
-                    <li><a href="https://www.youtube.com/watch?v=ZYX1YLOy0jI" target="_blank">AI Content Creation for Professionals (20 minutes)</a></li>
-                    <li><a href="https://blog.openai.com/gpt-best-practices/" target="_blank">OpenAI Best Practices Blog (15 minutes)</a></li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-arrow-right"></i> Preparation for Day 3</h2>
-                <p><strong>Tomorrow's Topic:</strong> "AI Tools Landscape - Beyond ChatGPT"</p>
-                <p><strong>What to expect:</strong> Explore different AI models, specialized AI tools, and develop frameworks for choosing the right AI tool for specific tasks</p>
-                
-                <h3>Quick Prep</h3>
-                <ul>
-                    <li>Create accounts for Claude and Google Bard/Gemini if you haven't already</li>
-                    <li>Think about different types of tasks you do at work</li>
-                    <li>Consider: What specialized tools might make specific jobs easier?</li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-question-circle"></i> Common Questions & Quick Answers</h2>
-                
-                <h3>Q: What if the AI doesn't understand my prompt?</h3>
-                <p><strong>A:</strong> Rewrite with more specific instructions, add examples, or break complex tasks into smaller steps.</p>
-
-                <h3>Q: How long should my prompts be?</h3>
-                <p><strong>A:</strong> Long enough to be clear, short enough to be efficient. Usually 1-3 sentences for simple tasks, longer for complex ones.</p>
-
-                <h3>Q: Can I reuse prompts across different AI tools?</h3>
-                <p><strong>A:</strong> Yes! Most prompts work across tools, though you might need minor adjustments for optimal results.</p>
-
-                <h3>Q: How do I know if my prompt is good?</h3>
-                <p><strong>A:</strong> Test it multiple times. Good prompts consistently produce useful, relevant results.</p>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-chart-bar"></i> Day 2 Success Metrics</h2>
-                <ul>
-                    <li>✅ Created functional prompt toolkit with 10 work-specific prompts</li>
-                    <li>✅ Successfully tested prompts across multiple AI platforms</li>
-                    <li>✅ Demonstrated understanding of prompt engineering principles</li>
-                    <li>✅ Can explain the difference between basic and advanced prompting</li>
-                    <li>✅ Completed practical content creation exercises</li>
-                </ul>
-                
-                <div class="highlight">
-                    <h3>🎉 Excellent progress! You're becoming an AI power user!</h3>
-                    <p>You now have practical skills in prompt engineering and content creation with AI. Tomorrow, we'll explore the broader AI landscape and learn when to use different tools for maximum effectiveness.</p>
                 </div>
             </div>
         </div>
-
-        <div class="navigation">
-            <a href="day1.html" class="nav-button">
-                <i class="fas fa-arrow-left"></i> Day 1: AI Basics
-            </a>
-            <a href="day3.html" class="nav-button">
-                Day 3: AI Tools <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
+    </main>
 
     <script>
-        // Add interactive checklist functionality
-        document.querySelectorAll('.checklist li').forEach(item => {
-            item.addEventListener('click', function() {
-                if (this.style.textDecoration === 'line-through') {
-                    this.style.textDecoration = 'none';
-                    this.style.opacity = '1';
-                } else {
-                    this.style.textDecoration = 'line-through';
-                    this.style.opacity = '0.6';
-                }
-            });
-        });
+        // Track page view and interactions
+        if (window.courseTracker) {
+            window.courseTracker.trackPageView('Day 2: Generative AI Mastery');
+            window.courseTracker.startDay(2);
+        }
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -521,18 +678,11 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
-        });
-
-        // Mark course as completed when user finishes
-        window.addEventListener('beforeunload', function() {
-            const completed = confirm('Mark Day 2 as completed?');
-            if (completed) {
-                localStorage.setItem('day2_completed', 'true');
-            }
         });
     </script>
 </body>
