@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: AI Basics & Recognition - 5-Day AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .session {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .activity {
+            background: white;
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .resource-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px 5px 5px 0;
+            transition: background 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background: #5a6fd8;
+        }
+
+        .assignment {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .checklist {
+            background: #e8f5e8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .checklist li:before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            color: #28a745;
+        }
+
+        .time-badge {
+            background: #ffc107;
+            color: #333;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+
+        .nav-button {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #5a6fd8;
+        }
+
+        .nav-button.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .content {
+                margin: 1rem 0;
+                padding: 1rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-brain"></i> Day 1: AI Basics & Recognition</h1>
+            <p>Understanding what AI is and recognizing AI in daily life</p>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../index.html"><i class="fas fa-home"></i> Course Home</a> / 
+            <span>Day 1: AI Basics & Recognition</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="highlight">
+                <h3><i class="fas fa-target"></i> Learning Goal</h3>
+                <p>Understand what AI is, how it works at a basic level, and see real-world examples. By the end of today, you'll be able to identify AI applications in your daily life and have hands-on experience with ChatGPT.</p>
+            </div>
+
+            <div class="highlight">
+                <h3><i class="fas fa-clock"></i> Time Commitment</h3>
+                <p><strong>Total: 2 hours</strong> (Morning: 60 min, Afternoon: 60 min, Assignment: 30 min)</p>
+            </div>
+
+            <div class="session">
+                <h2><i class="fas fa-sun"></i> Morning Session <span class="time-badge">60 minutes</span></h2>
+                
+                <div class="activity">
+                    <h3><i class="fas fa-play-circle"></i> Watch & Learn <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Primary Video (10 minutes)</h4>
+                    <p><strong>Google's AI Course for Beginners</strong></p>
+                    <a href="https://www.youtube.com/watch?v=Yq0QkCxoTHM" class="resource-link" target="_blank">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Basic AI definitions and concepts</li>
+                        <li><strong>Key Takeaways:</strong> What AI is, what it isn't, and why it matters</li>
+                    </ul>
+
+                    <h4>Supplementary Video (15 minutes)</h4>
+                    <p><strong>AI Basics for Beginners</strong></p>
+                    <a href="https://www.youtube.com/watch?v=VGFpV3Qj4as" class="resource-link" target="_blank">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Essential AI concepts you need to know</li>
+                        <li><strong>Key Takeaways:</strong> Types of AI, how AI learns, real-world applications</li>
+                    </ul>
+
+                    <h4>Quick Read (5 minutes)</h4>
+                    <p><strong>What Is Artificial Intelligence? - Coursera Article</strong></p>
+                    <a href="https://www.coursera.org/articles/what-is-artificial-intelligence" class="resource-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Read Article
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Comprehensive but simple definition</li>
+                        <li><strong>Key Takeaways:</strong> AI vs human intelligence, current capabilities</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3><i class="fas fa-hands"></i> Hands-On Exploration <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Activity 1: AI in Your Daily Life (15 minutes)</h4>
+                    <ul>
+                        <li>Open your smartphone and identify 5 AI features you use daily</li>
+                        <li><strong>Examples:</strong> Voice assistant, photo recognition, predictive text, recommendations</li>
+                        <li><strong>Write down:</strong> What does each feature do? How does it help you?</li>
+                    </ul>
+
+                    <h4>Activity 2: First ChatGPT Experience (15 minutes)</h4>
+                    <p>Go to <a href="https://chat.openai.com" target="_blank" class="resource-link">chat.openai.com</a> (create free account)</p>
+                    <p><strong>Try these simple prompts:</strong></p>
+                    <ol>
+                        <li>"Explain what you are in simple terms"</li>
+                        <li>"What's the weather like?" (notice it can't access real-time data)</li>
+                        <li>"Write a short poem about coffee"</li>
+                    </ol>
+                    <p><strong>Observe:</strong> What can it do well? What are its limitations?</p>
+                </div>
+            </div>
+
+            <div class="session">
+                <h2><i class="fas fa-moon"></i> Afternoon Session <span class="time-badge">60 minutes</span></h2>
+                
+                <div class="activity">
+                    <h3><i class="fas fa-search"></i> Deep Dive Learning <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Video: IBM AI Explanation (10 minutes)</h4>
+                    <p><strong>What is Artificial Intelligence? - IBM</strong></p>
+                    <a href="https://www.ibm.com/think/topics/artificial-intelligence" class="resource-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Read & Watch
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> How AI works in business and industry</li>
+                        <li><strong>Key Takeaways:</strong> Machine learning, automation, decision-making</li>
+                    </ul>
+
+                    <h4>Interactive Course (20 minutes)</h4>
+                    <p><strong>AI For Everyone - Coursera (Week 1, free audit)</strong></p>
+                    <a href="https://www.coursera.org/learn/ai-for-everyone" class="resource-link" target="_blank">
+                        <i class="fas fa-graduation-cap"></i> Start Course
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Complete "What is AI?" module</li>
+                        <li><strong>Key Takeaways:</strong> AI terminology, what AI can and cannot do</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3><i class="fas fa-laptop"></i> Practical Application <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Activity 3: AI Detective Game (20 minutes)</h4>
+                    <p>Visit these websites and identify which features use AI:</p>
+                    <ul>
+                        <li><strong>Netflix:</strong> recommendations</li>
+                        <li><strong>Google Search:</strong> autocomplete, results ranking</li>
+                        <li><strong>Amazon:</strong> product recommendations, Alexa</li>
+                        <li><strong>LinkedIn:</strong> job suggestions, connection recommendations</li>
+                    </ul>
+
+                    <h4>Activity 4: Reflection & Discussion (10 minutes)</h4>
+                    <p>Write a 2-paragraph reflection:</p>
+                    <ol>
+                        <li><strong>Before Today:</strong> What did you think AI was before this session?</li>
+                        <li><strong>After Learning:</strong> How has your understanding changed? What surprised you most?</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="assignment">
+                <h2><i class="fas fa-clipboard-check"></i> Daily Assignment <span class="time-badge">30 minutes</span></h2>
+                
+                <h3>Task: Create an "AI Around Me" inventory</h3>
+                <ol>
+                    <li><strong>List 10 AI tools/features</strong> you discovered you already use</li>
+                    <li><strong>For each item, write:</strong>
+                        <ul>
+                            <li>What it does</li>
+                            <li>How it makes your life easier</li>
+                            <li>Whether you knew it was AI before today</li>
+                        </ul>
+                    </li>
+                    <li><strong>Choose 3 items</strong> and explain how they might work (based on today's learning)</li>
+                    <li><strong>Submit:</strong> One-page document with your inventory and explanations</li>
+                </ol>
+
+                <h3>Assessment Criteria</h3>
+                <ul>
+                    <li>✅ Identified 10 real AI applications</li>
+                    <li>✅ Demonstrated understanding of AI vs non-AI features</li>
+                    <li>✅ Showed curiosity and critical thinking about how AI works</li>
+                    <li>✅ Clear, organized presentation of findings</li>
+                </ul>
+            </div>
+
+            <div class="checklist">
+                <h2><i class="fas fa-tasks"></i> Key Learning Outcomes for Day 1</h2>
+                <p>By the end of today, you should be able to:</p>
+                <ul>
+                    <li>Define artificial intelligence in simple terms</li>
+                    <li>Distinguish between AI and non-AI technology</li>
+                    <li>Identify at least 10 AI applications in your daily life</li>
+                    <li>Explain basic concepts: machine learning, automation, pattern recognition</li>
+                    <li>Use ChatGPT for simple tasks and understand its limitations</li>
+                    <li>Describe how AI is different from human intelligence</li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-book"></i> Optional Evening Resources</h2>
+                <p>If you want to learn more (completely optional):</p>
+                
+                <h3>Quick Reads</h3>
+                <ul>
+                    <li><a href="https://www.nasa.gov/what-is-artificial-intelligence/" target="_blank">NASA's Simple AI Explanation (5 minutes)</a></li>
+                    <li><a href="https://www.heinz.cmu.edu/media/2023/July/artificial-intelligence-explained" target="_blank">Carnegie Mellon's AI Explained (10 minutes)</a></li>
+                </ul>
+
+                <h3>Videos for Curious Minds</h3>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=nVyD6THcvDQ" target="_blank">99% of Beginners Don't Know AI Basics (15 minutes)</a></li>
+                    <li><a href="https://www.youtube.com/playlist?list=PLGs0VKk2DiYyXlbJVaE8y1qr24YldYNDm" target="_blank">AI Introduction Playlist - First 2 videos (20 minutes)</a></li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-arrow-right"></i> Preparation for Day 2</h2>
+                <p><strong>Tomorrow's Topic:</strong> "Generative AI and Large Language Models"</p>
+                <p><strong>What to expect:</strong> Deep dive into ChatGPT, understanding how AI creates content, and hands-on practice with different AI tools</p>
+                
+                <h3>Quick Prep</h3>
+                <ul>
+                    <li>Keep your ChatGPT account handy</li>
+                    <li>Think about content creation tasks you do at work (writing emails, reports, presentations)</li>
+                    <li>Consider: What would you want AI to help you create?</li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-question-circle"></i> Common Questions & Quick Answers</h2>
+                
+                <h3>Q: Do I need technical background for this course?</h3>
+                <p><strong>A:</strong> No! This course is designed for complete beginners with no technical knowledge required.</p>
+
+                <h3>Q: Is ChatGPT really free?</h3>
+                <p><strong>A:</strong> Yes, the basic version is free. You may hit usage limits, but it's sufficient for this course.</p>
+
+                <h3>Q: What if I can't access some videos?</h3>
+                <p><strong>A:</strong> All resources have alternatives. Contact your instructor for backup materials.</p>
+
+                <h3>Q: How much time should I really spend?</h3>
+                <p><strong>A:</strong> Stick to the 2-hour guideline. Quality of engagement matters more than extra time.</p>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-chart-bar"></i> Day 1 Success Metrics</h2>
+                <ul>
+                    <li>✅ Completed all morning and afternoon activities</li>
+                    <li>✅ Successfully used ChatGPT for basic tasks</li>
+                    <li>✅ Submitted "AI Around Me" inventory</li>
+                    <li>✅ Can explain AI to a friend or colleague in simple terms</li>
+                </ul>
+                
+                <div class="highlight">
+                    <h3>🎉 Congratulations on starting your AI literacy journey!</h3>
+                    <p>You've taken the first step toward becoming an AI-augmented professional. Tomorrow, we'll dive deeper into generative AI and learn how to create content with AI tools.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="../index.html" class="nav-button">
+                <i class="fas fa-home"></i> Course Home
+            </a>
+            <a href="day2.html" class="nav-button">
+                Day 2: Generative AI <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive checklist functionality
+        document.querySelectorAll('.checklist li').forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.style.textDecoration === 'line-through') {
+                    this.style.textDecoration = 'none';
+                    this.style.opacity = '1';
+                    this.querySelector('::before') ? this.querySelector('::before').textContent = '☐' : null;
+                } else {
+                    this.style.textDecoration = 'line-through';
+                    this.style.opacity = '0.6';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

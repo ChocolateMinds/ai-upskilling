@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Materials - 5-Day AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .day-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .day-subtitle {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .day-content {
+            padding: 2rem;
+        }
+
+        .day-description {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .day-highlights {
+            margin-bottom: 2rem;
+        }
+
+        .day-highlights ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .day-highlights li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .day-highlights li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .day-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .time-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+
+        .difficulty {
+            background: #ffc107;
+            color: #333;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .start-button {
+            display: block;
+            width: 100%;
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .start-button:hover {
+            background: #5a6fd8;
+        }
+
+        .progress-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .course-overview {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .overview-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .resources-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .resource-link {
+            display: block;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .day-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-book-open"></i> Course Materials</h1>
+            <p>Complete 5-day curriculum with daily lesson plans, resources, and assignments</p>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../index.html"><i class="fas fa-home"></i> Course Home</a> / 
+            <span>Course Materials</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="course-overview">
+            <h2><i class="fas fa-info-circle"></i> Course Overview</h2>
+            <p>This 5-day intensive course transforms employees from AI novices to confident AI users through practical, hands-on learning. Each day builds upon the previous, creating a comprehensive foundation for AI literacy in the workplace.</p>
+            
+            <div class="overview-stats">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div>Days</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div>Total Hours</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div>Free Resources</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">0</div>
+                    <div>Prerequisites</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-grid">
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="progress-indicator">Day 1 of 5</div>
+                    <div class="day-number">01</div>
+                    <div class="day-title">AI Basics & Recognition</div>
+                    <div class="day-subtitle">Understanding what AI is and recognizing AI in daily life</div>
+                </div>
+                <div class="day-content">
+                    <div class="day-meta">
+                        <div class="time-info">
+                            <i class="fas fa-clock"></i>
+                            <span>2 hours</span>
+                        </div>
+                        <div class="difficulty">Beginner</div>
+                    </div>
+                    
+                    <div class="day-description">
+                        Start your AI journey by understanding what artificial intelligence really is and discovering how you already use AI in your daily life.
+                    </div>
+                    
+                    <div class="day-highlights">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>Define AI in simple, practical terms</li>
+                            <li>Identify AI applications in everyday tools</li>
+                            <li>Get hands-on experience with ChatGPT</li>
+                            <li>Understand AI vs human intelligence</li>
+                            <li>Create your personal "AI Around Me" inventory</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="day1.html" class="start-button">
+                        <i class="fas fa-play"></i> Start Day 1
+                    </a>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="progress-indicator">Day 2 of 5</div>
+                    <div class="day-number">02</div>
+                    <div class="day-title">Generative AI Mastery</div>
+                    <div class="day-subtitle">Master ChatGPT and prompt engineering techniques</div>
+                </div>
+                <div class="day-content">
+                    <div class="day-meta">
+                        <div class="time-info">
+                            <i class="fas fa-clock"></i>
+                            <span>2 hours</span>
+                        </div>
+                        <div class="difficulty">Beginner</div>
+                    </div>
+                    
+                    <div class="day-description">
+                        Dive deep into generative AI and learn how to write effective prompts that get you the results you want from AI tools.
+                    </div>
+                    
+                    <div class="day-highlights">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>Master advanced ChatGPT features</li>
+                            <li>Write effective prompts using best practices</li>
+                            <li>Create content for work scenarios</li>
+                            <li>Build your personal prompt toolkit</li>
+                            <li>Understand generative AI capabilities</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="day2.html" class="start-button">
+                        <i class="fas fa-play"></i> Start Day 2
+                    </a>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="progress-indicator">Day 3 of 5</div>
+                    <div class="day-number">03</div>
+                    <div class="day-title">AI Tools Landscape</div>
+                    <div class="day-subtitle">Understand different AI models and when to use each tool</div>
+                </div>
+                <div class="day-content">
+                    <div class="day-meta">
+                        <div class="time-info">
+                            <i class="fas fa-clock"></i>
+                            <span>2 hours</span>
+                        </div>
+                        <div class="difficulty">Intermediate</div>
+                    </div>
+                    
+                    <div class="day-description">
+                        Explore the broader AI ecosystem and learn how to choose the right AI tool for different tasks and scenarios.
+                    </div>
+                    
+                    <div class="day-highlights">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>Compare ChatGPT, Claude, and Gemini</li>
+                            <li>Understand Large Language Models (LLMs)</li>
+                            <li>Explore various AI tool categories</li>
+                            <li>Develop tool selection frameworks</li>
+                            <li>Test multiple AI platforms hands-on</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="day3.html" class="start-button">
+                        <i class="fas fa-play"></i> Start Day 3
+                    </a>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="progress-indicator">Day 4 of 5</div>
+                    <div class="day-number">04</div>
+                    <div class="day-title">Practical Applications</div>
+                    <div class="day-subtitle">Apply AI tools to real work scenarios and workflows</div>
+                </div>
+                <div class="day-content">
+                    <div class="day-meta">
+                        <div class="time-info">
+                            <i class="fas fa-clock"></i>
+                            <span>2 hours</span>
+                        </div>
+                        <div class="difficulty">Intermediate</div>
+                    </div>
+                    
+                    <div class="day-description">
+                        Put your AI knowledge to work by solving real workplace challenges and optimizing your daily workflows.
+                    </div>
+                    
+                    <div class="day-highlights">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>Enhance emails and documents with AI</li>
+                            <li>Use AI for research and analysis</li>
+                            <li>Design AI-enhanced workflows</li>
+                            <li>Measure productivity improvements</li>
+                            <li>Implement AI solutions for work challenges</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="day4.html" class="start-button">
+                        <i class="fas fa-play"></i> Start Day 4
+                    </a>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="progress-indicator">Day 5 of 5</div>
+                    <div class="day-number">05</div>
+                    <div class="day-title">Future & Integration</div>
+                    <div class="day-subtitle">Plan for continued learning and organizational AI adoption</div>
+                </div>
+                <div class="day-content">
+                    <div class="day-meta">
+                        <div class="time-info">
+                            <i class="fas fa-clock"></i>
+                            <span>2 hours</span>
+                        </div>
+                        <div class="difficulty">Advanced</div>
+                    </div>
+                    
+                    <div class="day-description">
+                        Look ahead to AI trends and create your personal plan for continued learning and organizational AI integration.
+                    </div>
+                    
+                    <div class="day-highlights">
+                        <h4>What You'll Learn:</h4>
+                        <ul>
+                            <li>Understand AI trends and future developments</li>
+                            <li>Create personal 90-day learning plan</li>
+                            <li>Develop organizational implementation proposal</li>
+                            <li>Build continued learning strategies</li>
+                            <li>Become an AI champion in your organization</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="day5.html" class="start-button">
+                        <i class="fas fa-play"></i> Start Day 5
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="resources-section">
+            <h2><i class="fas fa-tools"></i> Additional Resources</h2>
+            <p>Supplementary materials to support your learning journey</p>
+            
+            <div class="resource-links">
+                <a href="../docs/implementation-guide.html" class="resource-link">
+                    <h4><i class="fas fa-cogs"></i> Implementation Guide</h4>
+                    <p>Step-by-step instructions for deploying this course in your organization</p>
+                </a>
+                
+                <a href="../docs/assessment-framework.html" class="resource-link">
+                    <h4><i class="fas fa-chart-bar"></i> Assessment Framework</h4>
+                    <p>Rubrics and tools for measuring learning outcomes and progress</p>
+                </a>
+                
+                <a href="../docs/facilitator-guide.html" class="resource-link">
+                    <h4><i class="fas fa-chalkboard-teacher"></i> Facilitator Guide</h4>
+                    <p>Instructions for instructors and course coordinators</p>
+                </a>
+                
+                <a href="../assets/downloads/" class="resource-link">
+                    <h4><i class="fas fa-download"></i> Downloadable Materials</h4>
+                    <p>Templates, worksheets, and printable resources</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="course-overview">
+            <h2><i class="fas fa-graduation-cap"></i> Learning Path</h2>
+            <p>Follow this structured path to maximize your AI learning experience:</p>
+            
+            <ol style="margin: 1.5rem 0; padding-left: 2rem;">
+                <li><strong>Complete each day in sequence</strong> - Each lesson builds on the previous day's learning</li>
+                <li><strong>Allocate 2 hours per day</strong> - Don't rush; quality engagement is more important than speed</li>
+                <li><strong>Complete all assignments</strong> - Hands-on practice is essential for skill development</li>
+                <li><strong>Join discussions</strong> - Engage with other learners and share your experiences</li>
+                <li><strong>Apply immediately</strong> - Use AI tools in your real work as soon as you learn them</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Add progress tracking functionality
+        const days = ['day1', 'day2', 'day3', 'day4', 'day5'];
+        
+        // Check for completed days in localStorage
+        days.forEach((day, index) => {
+            const completed = localStorage.getItem(`${day}_completed`);
+            if (completed) {
+                const dayCard = document.querySelectorAll('.day-card')[index];
+                const button = dayCard.querySelector('.start-button');
+                button.innerHTML = '<i class="fas fa-check"></i> Completed';
+                button.style.background = '#28a745';
+                
+                // Add completion indicator
+                const progressIndicator = dayCard.querySelector('.progress-indicator');
+                progressIndicator.innerHTML = '<i class="fas fa-check"></i> Completed';
+                progressIndicator.style.background = 'rgba(40, 167, 69, 0.8)';
+            }
+        });
+
+        // Add click tracking for analytics
+        document.querySelectorAll('.start-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const dayTitle = this.closest('.day-card').querySelector('.day-title').textContent;
+                console.log(`Started: ${dayTitle}`);
+                // Here you could add analytics tracking
+            });
+        });
+    </script>
+</body>
+</html>
+
