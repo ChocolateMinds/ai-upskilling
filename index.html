@@ -3,247 +3,651 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5-Day AI Literacy Course</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>5-Day AI Literacy Course - Transform Your Organization with AI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Modern Color Palette */
+            --primary-50: #f0f4ff;
+            --primary-100: #e0edff;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --primary-900: #1e3a8a;
+            
+            --secondary-500: #8b5cf6;
+            --secondary-600: #7c3aed;
+            
+            --success-500: #10b981;
+            --warning-500: #f59e0b;
+            --error-500: #ef4444;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-sans);
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--gray-900);
+            background: linear-gradient(135deg, var(--primary-50) 0%, #fafbff 50%, var(--gray-50) 100%);
             min-height: 100vh;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        /* Modern Navigation */
+        .navbar {
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        nav {
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            justify-content: space-between;
+            height: 72px;
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
+            font-weight: 700;
+            color: var(--primary-600);
             text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 1.75rem;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: var(--space-8);
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: var(--gray-700);
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            color: var(--primary-600);
         }
 
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-600);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-700);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
         .hero {
-            padding: 120px 0 80px;
+            padding: 120px 0 var(--space-20);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
             color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-2xl);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-6);
+            animation: fadeInUp 0.8s ease;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-6);
+            background: linear-gradient(135deg, var(--gray-900), var(--primary-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease 0.1s both;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s both;
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            color: var(--gray-600);
+            margin-bottom: var(--space-8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.2s both;
         }
 
-        .cta-button {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 30px;
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            sm:flex-direction: row;
+            gap: var(--space-4);
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        /* Modern Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.95rem;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .cta-button:hover {
-            background: #ff5252;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
-        }
-
-        .features {
-            background: white;
-            padding: 80px 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        .course-overview {
-            background: #f8f9fa;
-            padding: 80px 0;
-        }
-
-        .day-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .day-card {
-            background: white;
-            border-radius: 15px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
         }
 
-        .day-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .day-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
             color: white;
-            padding: 1.5rem;
-            text-align: center;
+            box-shadow: var(--shadow-lg);
         }
 
-        .day-content {
-            padding: 1.5rem;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
         }
 
-        .day-number {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+        .btn-secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
 
+        .btn-secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+            transform: translateY(-1px);
+        }
+
+        .btn-lg {
+            padding: var(--space-4) var(--space-8);
+            font-size: 1.1rem;
+        }
+
+        /* Stats Section */
         .stats {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
+            background: white;
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            margin: var(--space-16) auto;
+            max-width: 1280px;
+            margin-left: var(--space-6);
+            margin-right: var(--space-6);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-100);
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: var(--space-8);
         }
 
-        .stat-item h3 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .resources {
-            background: white;
-            padding: 80px 0;
-        }
-
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .resource-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            transition: all 0.3s ease;
-        }
-
-        .resource-card:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
-        }
-
-        footer {
-            background: #333;
-            color: white;
+        .stat-item {
             text-align: center;
-            padding: 2rem 0;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-600);
+            margin-bottom: var(--space-2);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--space-20) 0;
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-16);
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #333;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
         }
 
         .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-16);
+        }
+
+        .feature-card {
+            background: white;
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-6);
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+        }
+
+        .feature-description {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Curriculum Section */
+        .curriculum {
+            background: var(--gray-50);
+            padding: var(--space-20) 0;
+        }
+
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .day-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--gray-100);
+        }
+
+        .day-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+            color: white;
+            padding: var(--space-6);
+            text-align: center;
+            position: relative;
+        }
+
+        .day-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+            opacity: 0.9;
+        }
+
+        .day-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+
+        .day-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .day-content {
+            padding: var(--space-6);
+        }
+
+        .day-goals {
+            margin-bottom: var(--space-6);
+        }
+
+        .day-goals h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+        }
+
+        .goals-list {
+            list-style: none;
+        }
+
+        .goals-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        .goals-list li i {
+            color: var(--success-500);
+            margin-top: 2px;
+            font-size: 0.75rem;
+        }
+
+        .day-action {
+            text-align: center;
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--gray-100);
+        }
+
+        /* Impact Section */
+        .impact {
+            padding: var(--space-20) 0;
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .impact-container {
+            position: relative;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-12);
+        }
+
+        .impact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+        }
+
+        .impact-metric {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-400);
+            margin-bottom: var(--space-2);
+        }
+
+        .impact-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: var(--primary-50);
+            padding: var(--space-20) 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .cta-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            margin-bottom: var(--space-8);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: var(--gray-300);
+            padding: var(--space-16) 0 var(--space-8);
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-8);
+        }
+
+        .footer-section h3 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--space-2);
+        }
+
+        .footer-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-400);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--gray-800);
+            padding-top: var(--space-6);
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -255,267 +659,462 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
             }
-            
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
             
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+            }
+            
+            .stats {
+                margin-left: var(--space-4);
+                margin-right: var(--space-4);
+                padding: var(--space-6);
+            }
+            
             .features-grid,
-            .day-cards {
+            .curriculum-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles */
+        .btn:focus,
+        .nav-links a:focus {
+            outline: 2px solid var(--primary-500);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
             <a href="#" class="logo">
-                <i class="fas fa-brain"></i> AI Literacy Course
+                <i class="fas fa-brain"></i>
+                AI Literacy
             </a>
             <ul class="nav-links">
-                <li><a href="#overview">Overview</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
                 <li><a href="#curriculum">Curriculum</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="https://github.com/your-username/ai-literacy-course" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="course-materials/">Start Learning</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
             </ul>
-        </nav>
-    </header>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-    <section class="hero">
-        <div class="container">
-            <h1><i class="fas fa-robot"></i> 5-Day AI Literacy Course</h1>
-            <p>Transform your workforce from AI novices to confident AI users in just 5 days using 100% free resources</p>
-            <a href="#overview" class="cta-button">Start Learning <i class="fas fa-arrow-right"></i></a>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                100% Free • No Registration Required
+            </div>
+            <h1>Master AI in Just 5 Days</h1>
+            <p class="hero-subtitle">
+                Transform your organization with practical AI skills. A comprehensive literacy program designed for non-technical employees to harness AI's power in their daily work.
+            </p>
+            <div class="hero-cta">
+                <a href="course-materials/" class="btn btn-primary btn-lg">
+                    <i class="fas fa-rocket"></i>
+                    Start Learning Today
+                </a>
+                <a href="#curriculum" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-calendar-alt"></i>
+                    View Curriculum
+                </a>
+            </div>
         </div>
     </section>
 
-    <section class="features" id="overview">
-        <div class="container">
-            <h2 class="section-title">Why This Course?</h2>
-            <p class="section-subtitle">Practical AI education designed for real workplace application</p>
-            
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Days to Mastery</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2-3</div>
+                <div class="stat-label">Hours per Day</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Practical Tools</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">30%</div>
+                <div class="stat-label">Productivity Boost</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Why This Course Works</h2>
+                <p class="section-subtitle">
+                    Designed by AI experts for practical application in real workplace scenarios
+                </p>
+            </div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-dollar-sign"></i>
+                        <i class="fas fa-gift"></i>
                     </div>
-                    <h3>100% Free</h3>
-                    <p>Uses only free resources: YouTube, Coursera, ChatGPT, Claude, and other publicly available tools</p>
+                    <h3 class="feature-title">100% Free Access</h3>
+                    <p class="feature-description">
+                        Complete course materials, assessments, and resources at no cost. No hidden fees, no registration barriers.
+                    </p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>For Everyone</h3>
-                    <p>No technical background required. Designed for all employees regardless of their role or experience</p>
+                    <h3 class="feature-title">Universal Accessibility</h3>
+                    <p class="feature-description">
+                        Designed for employees at all technical levels. No prior AI or programming knowledge required.
+                    </p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-clock"></i>
                     </div>
-                    <h3>Just 5 Days</h3>
-                    <p>2 hours per day for 5 days. Intensive but manageable for working professionals</p>
+                    <h3 class="feature-title">Time Efficient</h3>
+                    <p class="feature-description">
+                        Just 2-3 hours per day for 5 days. Flexible scheduling to fit your work routine.
+                    </p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-tools"></i>
                     </div>
-                    <h3>Immediately Practical</h3>
-                    <p>Every lesson includes real workplace applications. Start using AI tools on day one</p>
+                    <h3 class="feature-title">Immediately Practical</h3>
+                    <p class="feature-description">
+                        Learn by doing with real workplace scenarios. Start applying AI tools from day one.
+                    </p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Measurable ROI</h3>
-                    <p>270-420% return on investment in the first year through productivity improvements</p>
+                    <h3 class="feature-title">Measurable ROI</h3>
+                    <p class="feature-description">
+                        Track productivity improvements and skill development with built-in assessment tools.
+                    </p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Infinitely Scalable</h3>
+                    <p class="feature-description">
+                        From individual learners to enterprise-wide deployment. Scales to any organization size.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section class="curriculum" id="curriculum">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">5-Day Learning Journey</h2>
+                <p class="section-subtitle">
+                    A carefully structured progression from AI awareness to practical mastery
+                </p>
+            </div>
+            <div class="curriculum-grid">
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">01</div>
+                        <h3 class="day-title">AI Basics & Recognition</h3>
+                        <p class="day-subtitle">Foundation & Awareness</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-goals">
+                            <h4>Learning Goals</h4>
+                            <ul class="goals-list">
+                                <li><i class="fas fa-check-circle"></i>Understand AI fundamentals</li>
+                                <li><i class="fas fa-check-circle"></i>Identify AI in daily life</li>
+                                <li><i class="fas fa-check-circle"></i>First ChatGPT experience</li>
+                                <li><i class="fas fa-check-circle"></i>AI detection skills</li>
+                            </ul>
+                        </div>
+                        <div class="day-action">
+                            <a href="course-materials/day1.html" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Start Day 1
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">02</div>
+                        <h3 class="day-title">Generative AI Mastery</h3>
+                        <p class="day-subtitle">Prompt Engineering</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-goals">
+                            <h4>Learning Goals</h4>
+                            <ul class="goals-list">
+                                <li><i class="fas fa-check-circle"></i>Advanced ChatGPT techniques</li>
+                                <li><i class="fas fa-check-circle"></i>CLEAR prompt methodology</li>
+                                <li><i class="fas fa-check-circle"></i>Content creation skills</li>
+                                <li><i class="fas fa-check-circle"></i>Personal prompt toolkit</li>
+                            </ul>
+                        </div>
+                        <div class="day-action">
+                            <a href="course-materials/day2.html" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Start Day 2
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">03</div>
+                        <h3 class="day-title">AI Tools Landscape</h3>
+                        <p class="day-subtitle">Tool Selection & Comparison</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-goals">
+                            <h4>Learning Goals</h4>
+                            <ul class="goals-list">
+                                <li><i class="fas fa-check-circle"></i>Compare major AI models</li>
+                                <li><i class="fas fa-check-circle"></i>Explore specialized tools</li>
+                                <li><i class="fas fa-check-circle"></i>Tool selection framework</li>
+                                <li><i class="fas fa-check-circle"></i>Hands-on tool testing</li>
+                            </ul>
+                        </div>
+                        <div class="day-action">
+                            <a href="course-materials/day3.html" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Start Day 3
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">04</div>
+                        <h3 class="day-title">Practical Applications</h3>
+                        <p class="day-subtitle">Workflow Integration</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-goals">
+                            <h4>Learning Goals</h4>
+                            <ul class="goals-list">
+                                <li><i class="fas fa-check-circle"></i>Real workflow examples</li>
+                                <li><i class="fas fa-check-circle"></i>AI-enhanced processes</li>
+                                <li><i class="fas fa-check-circle"></i>Productivity measurement</li>
+                                <li><i class="fas fa-check-circle"></i>Implementation planning</li>
+                            </ul>
+                        </div>
+                        <div class="day-action">
+                            <a href="course-materials/day4.html" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Start Day 4
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">05</div>
+                        <h3 class="day-title">Future & Integration</h3>
+                        <p class="day-subtitle">Strategic Planning</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-goals">
+                            <h4>Learning Goals</h4>
+                            <ul class="goals-list">
+                                <li><i class="fas fa-check-circle"></i>AI trend analysis</li>
+                                <li><i class="fas fa-check-circle"></i>90-day learning plan</li>
+                                <li><i class="fas fa-check-circle"></i>Organization strategy</li>
+                                <li><i class="fas fa-check-circle"></i>Continuous improvement</li>
+                            </ul>
+                        </div>
+                        <div class="day-action">
+                            <a href="course-materials/day5.html" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Start Day 5
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact" id="impact">
+        <div class="impact-container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">Expected Impact</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">
+                    Measurable improvements in productivity and efficiency
+                </p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-metric">30%</div>
+                    <div class="impact-label">Average productivity increase</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-metric">2-5x</div>
+                    <div class="impact-label">Faster content creation</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-metric">75%</div>
+                    <div class="impact-label">Reduction in routine tasks</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-metric">90%</div>
+                    <div class="impact-label">Employee satisfaction rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="section-container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Transform Your Team?</h2>
+                <p class="cta-subtitle">
+                    Join thousands of professionals who have already upgraded their skills with AI
+                </p>
+                <div class="hero-cta">
+                    <a href="course-materials/" class="btn btn-primary btn-lg">
                         <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Future-Ready</h3>
-                    <p>Build the foundation for ongoing AI learning and organizational transformation</p>
+                        Begin Your AI Journey
+                    </a>
+                    <a href="dashboard.html" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-chart-line"></i>
+                        Track Your Progress
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="course-overview" id="curriculum">
-        <div class="container">
-            <h2 class="section-title">5-Day Curriculum</h2>
-            <p class="section-subtitle">From AI basics to practical workplace application</p>
-            
-            <div class="day-cards">
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">Day 1</div>
-                        <h3>AI Basics & Recognition</h3>
-                    </div>
-                    <div class="day-content">
-                        <p><strong>Learning Goal:</strong> Understand what AI is and recognize AI in daily life</p>
-                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                            <li>Google's AI Course for Beginners</li>
-                            <li>First hands-on ChatGPT experience</li>
-                            <li>AI detection in everyday tools</li>
-                            <li>Create "AI Around Me" inventory</li>
-                        </ul>
-                        <a href="course-materials/day1.html" class="cta-button" style="margin-top: 1rem; display: inline-block; font-size: 0.9rem; padding: 10px 20px;">View Day 1</a>
-                    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI Literacy Course</h3>
+                    <p>Empowering organizations with practical AI skills for the modern workplace.</p>
                 </div>
-                
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">Day 2</div>
-                        <h3>Generative AI Mastery</h3>
-                    </div>
-                    <div class="day-content">
-                        <p><strong>Learning Goal:</strong> Master ChatGPT and prompt engineering techniques</p>
-                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                            <li>Advanced ChatGPT tutorial</li>
-                            <li>Prompt engineering best practices</li>
-                            <li>Content creation experiments</li>
-                            <li>Build personal prompt toolkit</li>
-                        </ul>
-                        <a href="course-materials/day2.html" class="cta-button" style="margin-top: 1rem; display: inline-block; font-size: 0.9rem; padding: 10px 20px;">View Day 2</a>
-                    </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="course-materials/">Course Materials</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="docs/implementation-guide.md">Implementation Guide</a></li>
+                        <li><a href="docs/assessment-framework.md">Assessment Framework</a></li>
+                    </ul>
                 </div>
-                
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">Day 3</div>
-                        <h3>AI Tools Landscape</h3>
-                    </div>
-                    <div class="day-content">
-                        <p><strong>Learning Goal:</strong> Understand different AI models and when to use each tool</p>
-                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                            <li>ChatGPT vs Claude vs Gemini</li>
-                            <li>Large Language Models explained</li>
-                            <li>AI tool safari and comparison</li>
-                            <li>Tool selection framework</li>
-                        </ul>
-                        <a href="course-materials/day3.html" class="cta-button" style="margin-top: 1rem; display: inline-block; font-size: 0.9rem; padding: 10px 20px;">View Day 3</a>
-                    </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="docs/facilitator-guide.md">Facilitator Guide</a></li>
+                        <li><a href="assets/downloads/">Download Templates</a></li>
+                        <li><a href="#impact">Impact Studies</a></li>
+                        <li><a href="https://github.com/madhusudhankonda/ai-for-everyone-in-five-days">GitHub Repository</a></li>
+                    </ul>
                 </div>
-                
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">Day 4</div>
-                        <h3>Practical Applications</h3>
-                    </div>
-                    <div class="day-content">
-                        <p><strong>Learning Goal:</strong> Apply AI tools to real work scenarios and workflows</p>
-                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                            <li>Email and document enhancement</li>
-                            <li>AI-powered research and analysis</li>
-                            <li>Workflow optimization</li>
-                            <li>Measure productivity improvements</li>
-                        </ul>
-                        <a href="course-materials/day4.html" class="cta-button" style="margin-top: 1rem; display: inline-block; font-size: 0.9rem; padding: 10px 20px;">View Day 4</a>
-                    </div>
-                </div>
-                
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">Day 5</div>
-                        <h3>Future & Integration</h3>
-                    </div>
-                    <div class="day-content">
-                        <p><strong>Learning Goal:</strong> Plan for continued learning and organizational AI adoption</p>
-                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                            <li>AI trends and future developments</li>
-                            <li>Personal 90-day learning plan</li>
-                            <li>Organizational implementation proposal</li>
-                            <li>Continued learning resources</li>
-                        </ul>
-                        <a href="course-materials/day5.html" class="cta-button" style="margin-top: 1rem; display: inline-block; font-size: 0.9rem; padding: 10px 20px;">View Day 5</a>
-                    </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/madhusudhankonda/ai-for-everyone-in-five-days/issues">Report Issues</a></li>
+                        <li><a href="https://github.com/madhusudhankonda/ai-for-everyone-in-five-days/discussions">Community Discussions</a></li>
+                        <li><a href="#features">FAQs</a></li>
+                        <li><a href="mailto:support@example.com">Contact Us</a></li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="stats">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Course Impact</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>90%+</h3>
-                    <p>Completion Rate</p>
-                </div>
-                <div class="stat-item">
-                    <h3>10 Hours</h3>
-                    <p>Total Time Investment</p>
-                </div>
-                <div class="stat-item">
-                    <h3>270%+</h3>
-                    <p>ROI in First Year</p>
-                </div>
-                <div class="stat-item">
-                    <h3>100%</h3>
-                    <p>Free Resources</p>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Literacy Course. Open source project under MIT License.</p>
             </div>
-        </div>
-    </section>
-
-    <section class="resources" id="resources">
-        <div class="container">
-            <h2 class="section-title">Implementation Resources</h2>
-            <p class="section-subtitle">Everything you need to deploy this course in your organization</p>
-            
-            <div class="resource-grid">
-                <div class="resource-card">
-                    <h3><i class="fas fa-book"></i> Course Materials</h3>
-                    <p>Complete daily lesson plans with specific free resources, assignments, and assessment criteria</p>
-                    <a href="course-materials/" style="color: #667eea; text-decoration: none;">View Materials →</a>
-                </div>
-                
-                <div class="resource-card">
-                    <h3><i class="fas fa-cogs"></i> Implementation Guide</h3>
-                    <p>Step-by-step deployment instructions, timeline, budget planning, and success metrics</p>
-                    <a href="docs/implementation-guide.html" style="color: #667eea; text-decoration: none;">View Guide →</a>
-                </div>
-                
-                <div class="resource-card">
-                    <h3><i class="fas fa-chart-bar"></i> Assessment Framework</h3>
-                    <p>Rubrics, tracking tools, and quality assurance systems for measuring learning outcomes</p>
-                    <a href="docs/assessment-framework.html" style="color: #667eea; text-decoration: none;">View Framework →</a>
-                </div>
-                
-                <div class="resource-card">
-                    <h3><i class="fab fa-github"></i> GitHub Repository</h3>
-                    <p>Complete source code, documentation, and collaboration tools for course development</p>
-                    <a href="https://github.com/your-username/ai-literacy-course" style="color: #667eea; text-decoration: none;">View Repository →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 5-Day AI Literacy Course. Open source and free for educational use.</p>
-            <p style="margin-top: 0.5rem;">
-                <a href="https://github.com/your-username/ai-literacy-course" style="color: #667eea; text-decoration: none;">
-                    <i class="fab fa-github"></i> Contribute on GitHub
-                </a>
-            </p>
         </div>
     </footer>
 
     <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -530,32 +1129,62 @@
             });
         });
 
-        // Header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
+        // Card hover animations
+        document.querySelectorAll('.feature-card, .day-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
         });
 
-        // Animate cards on scroll
+        // Loading animation for buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!this.href || this.href.includes('#')) return;
+                
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                this.style.pointerEvents = 'none';
+                
+                // Reset after navigation
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.pointerEvents = 'auto';
+                }, 2000);
+            });
+        });
+
+        // Progressive loading for better performance
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fade in content after load
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            window.addEventListener('load', function() {
+                document.body.style.opacity = '1';
+            });
+        });
+
+        // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .day-card, .resource-card').forEach(card => {
-            observer.observe(card);
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .day-card, .impact-card').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>

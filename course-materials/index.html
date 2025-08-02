@@ -3,549 +3,1019 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Materials - 5-Day AI Literacy Course</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Course Materials - AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Modern Color Palette */
+            --primary-50: #f0f4ff;
+            --primary-100: #e0edff;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --primary-900: #1e3a8a;
+            
+            --secondary-500: #8b5cf6;
+            --secondary-600: #7c3aed;
+            
+            --success-500: #10b981;
+            --warning-500: #f59e0b;
+            --error-500: #ef4444;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-sans);
             line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            color: var(--gray-900);
+            background: linear-gradient(135deg, var(--primary-50) 0%, #fafbff 50%, var(--gray-50) 100%);
+            min-height: 100vh;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
+            color: white;
+            padding: var(--space-20) 0 var(--space-16);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-2xl);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-6);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto var(--space-8);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .breadcrumb-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.875rem;
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--primary-700);
+        }
+
+        .breadcrumb-nav span {
+            color: var(--gray-500);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: var(--space-16) 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 var(--space-6);
         }
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .breadcrumb {
-            background: white;
-            padding: 1rem 0;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .breadcrumb a {
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-
+        /* Course Grid */
         .course-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-16);
         }
 
+        /* Day Cards */
         .day-card {
             background: white;
-            border-radius: 15px;
+            border-radius: var(--radius-2xl);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--gray-100);
             position: relative;
         }
 
         .day-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
         }
 
         .day-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
             color: white;
-            padding: 2rem;
+            padding: var(--space-8);
             text-align: center;
             position: relative;
         }
 
+        .day-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--warning-500), var(--success-500));
+        }
+
         .day-number {
             font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-2);
             opacity: 0.9;
         }
 
         .day-title {
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
         }
 
         .day-subtitle {
-            opacity: 0.9;
             font-size: 1rem;
+            opacity: 0.8;
         }
 
         .day-content {
-            padding: 2rem;
+            padding: var(--space-8);
         }
 
-        .day-description {
-            margin-bottom: 1.5rem;
-            color: #666;
+        .day-overview {
+            margin-bottom: var(--space-6);
+        }
+
+        .day-overview h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+        }
+
+        .day-overview p {
+            color: var(--gray-600);
+            line-height: 1.7;
         }
 
         .day-highlights {
-            margin-bottom: 2rem;
+            margin-bottom: var(--space-8);
         }
 
-        .day-highlights ul {
+        .day-highlights h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .highlights-list {
             list-style: none;
-            padding: 0;
         }
 
-        .day-highlights li {
-            padding: 0.5rem 0;
-            position: relative;
-            padding-left: 2rem;
+        .highlights-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            color: var(--gray-600);
+            font-size: 0.95rem;
         }
 
-        .day-highlights li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #28a745;
-            font-weight: bold;
+        .highlights-list li i {
+            color: var(--success-500);
+            margin-top: 2px;
+            font-size: 0.875rem;
         }
 
         .day-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
+            padding: var(--space-4) var(--space-8);
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-100);
         }
 
-        .time-info {
+        .day-duration {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            color: #666;
+            gap: var(--space-2);
+            color: var(--gray-600);
+            font-size: 0.875rem;
         }
 
-        .difficulty {
-            background: #ffc107;
-            color: #333;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
+        .day-status {
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-2xl);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .start-button {
-            display: block;
-            width: 100%;
-            background: #667eea;
+        .status-not-started {
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+
+        .status-in-progress {
+            background: var(--warning-500);
             color: white;
-            padding: 15px;
+        }
+
+        .status-completed {
+            background: var(--success-500);
+            color: white;
+        }
+
+        .day-action {
             text-align: center;
+            padding: var(--space-6) var(--space-8);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.95rem;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background 0.3s ease;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
         }
 
-        .start-button:hover {
-            background: #5a6fd8;
-        }
-
-        .progress-indicator {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(255, 255, 255, 0.2);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            box-shadow: var(--shadow-lg);
         }
 
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+            transform: translateY(-1px);
+        }
+
+        .btn-lg {
+            padding: var(--space-4) var(--space-8);
+            font-size: 1.1rem;
+        }
+
+        /* Course Overview Section */
         .course-overview {
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-100);
+            margin-bottom: var(--space-12);
+        }
+
+        .overview-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .overview-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .overview-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .overview-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
         }
 
-        .stat-item {
+        .stat-card {
+            background: var(--gray-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
             text-align: center;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
+            border: 1px solid var(--gray-100);
         }
 
         .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-600);
+            margin-bottom: var(--space-2);
         }
 
+        .stat-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .overview-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            justify-content: center;
+        }
+
+        /* Resources Section */
         .resources-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
+            color: white;
+            padding: var(--space-16) 0;
+            border-radius: var(--radius-2xl);
+            margin-bottom: var(--space-12);
+            position: relative;
+            overflow: hidden;
         }
 
-        .resource-links {
+        .resources-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .resources-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .resources-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .resources-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
         }
 
-        .resource-link {
-            display: block;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            border-left: 4px solid #667eea;
+        .resource-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
             transition: all 0.3s ease;
         }
 
-        .resource-link:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
+        .resource-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
         }
 
+        .resource-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-4);
+            font-size: 1.25rem;
+        }
+
+        .resource-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+
+        .resource-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: var(--space-4);
+        }
+
+        .resource-link {
+            color: var(--primary-400);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            transition: color 0.2s ease;
+        }
+
+        .resource-link:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .course-grid {
                 grid-template-columns: 1fr;
             }
             
+            .overview-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .day-meta {
                 flex-direction: column;
-                gap: 1rem;
+                gap: var(--space-2);
+                align-items: flex-start;
             }
+        }
+
+        @media (max-width: 480px) {
+            .overview-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .overview-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles */
+        .btn:focus,
+        .day-card:focus {
+            outline: 2px solid var(--primary-500);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1><i class="fas fa-book-open"></i> Course Materials</h1>
-            <p>Complete 5-day curriculum with daily lesson plans, resources, and assignments</p>
+    <!-- Hero Header -->
+    <header class="hero-header">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-graduation-cap"></i>
+                5-Day Learning Journey
+            </div>
+            <h1 class="hero-title">Course Materials</h1>
+            <p class="hero-subtitle">
+                Complete curriculum designed to transform you from an AI novice to a confident AI user in just 5 days
+            </p>
         </div>
     </header>
 
-    <div class="breadcrumb">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb-nav">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <span>Course Materials</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
         <div class="container">
-            <a href="../index.html"><i class="fas fa-home"></i> Course Home</a> / 
-            <span>Course Materials</span>
-        </div>
-    </div>
+            <!-- Course Overview -->
+            <section class="course-overview">
+                <div class="overview-header">
+                    <h2 class="overview-title">Your AI Learning Journey</h2>
+                    <p class="overview-subtitle">
+                        Structured learning path with practical activities, real-world applications, and measurable outcomes
+                    </p>
+                </div>
 
-    <div class="container">
-        <div class="course-overview">
-            <h2><i class="fas fa-info-circle"></i> Course Overview</h2>
-            <p>This 5-day intensive course transforms employees from AI novices to confident AI users through practical, hands-on learning. Each day builds upon the previous, creating a comprehensive foundation for AI literacy in the workplace.</p>
-            
-            <div class="overview-stats">
-                <div class="stat-item">
-                    <div class="stat-number">5</div>
-                    <div>Days</div>
+                <div class="overview-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Days</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2-3</div>
+                        <div class="stat-label">Hours/Day</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Activities</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Free</div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">10</div>
-                    <div>Total Hours</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div>Free Resources</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">0</div>
-                    <div>Prerequisites</div>
-                </div>
-            </div>
-        </div>
 
-        <div class="course-grid">
-            <div class="day-card">
-                <div class="day-header">
-                    <div class="progress-indicator">Day 1 of 5</div>
-                    <div class="day-number">01</div>
-                    <div class="day-title">AI Basics & Recognition</div>
-                    <div class="day-subtitle">Understanding what AI is and recognizing AI in daily life</div>
-                </div>
-                <div class="day-content">
-                    <div class="day-meta">
-                        <div class="time-info">
-                            <i class="fas fa-clock"></i>
-                            <span>2 hours</span>
-                        </div>
-                        <div class="difficulty">Beginner</div>
-                    </div>
-                    
-                    <div class="day-description">
-                        Start your AI journey by understanding what artificial intelligence really is and discovering how you already use AI in your daily life.
-                    </div>
-                    
-                    <div class="day-highlights">
-                        <h4>What You'll Learn:</h4>
-                        <ul>
-                            <li>Define AI in simple, practical terms</li>
-                            <li>Identify AI applications in everyday tools</li>
-                            <li>Get hands-on experience with ChatGPT</li>
-                            <li>Understand AI vs human intelligence</li>
-                            <li>Create your personal "AI Around Me" inventory</li>
-                        </ul>
-                    </div>
-                    
-                    <a href="day1.html" class="start-button">
-                        <i class="fas fa-play"></i> Start Day 1
+                <div class="overview-links">
+                    <a href="../dashboard.html" class="btn btn-primary">
+                        <i class="fas fa-chart-line"></i>
+                        View Progress
+                    </a>
+                    <a href="../docs/implementation-guide.md" class="btn btn-secondary">
+                        <i class="fas fa-book"></i>
+                        Implementation Guide
+                    </a>
+                    <a href="../docs/assessment-framework.md" class="btn btn-secondary">
+                        <i class="fas fa-clipboard-check"></i>
+                        Assessment Framework
                     </a>
                 </div>
-            </div>
+            </section>
 
-            <div class="day-card">
-                <div class="day-header">
-                    <div class="progress-indicator">Day 2 of 5</div>
-                    <div class="day-number">02</div>
-                    <div class="day-title">Generative AI Mastery</div>
-                    <div class="day-subtitle">Master ChatGPT and prompt engineering techniques</div>
-                </div>
-                <div class="day-content">
-                    <div class="day-meta">
-                        <div class="time-info">
-                            <i class="fas fa-clock"></i>
-                            <span>2 hours</span>
+            <!-- Course Grid -->
+            <section class="course-grid">
+                <!-- Day 1 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">01</div>
+                        <h3 class="day-title">AI Basics & Recognition</h3>
+                        <p class="day-subtitle">Foundation & Awareness</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-overview">
+                            <h4>Learning Goal</h4>
+                            <p>Understand what AI is and recognize AI in daily life. Build foundation knowledge and get hands-on experience with ChatGPT.</p>
                         </div>
-                        <div class="difficulty">Beginner</div>
+                        <div class="day-highlights">
+                            <h4>Key Activities</h4>
+                            <ul class="highlights-list">
+                                <li><i class="fas fa-check-circle"></i>Watch Google's AI Course for Beginners</li>
+                                <li><i class="fas fa-check-circle"></i>First hands-on ChatGPT experience</li>
+                                <li><i class="fas fa-check-circle"></i>AI detection in everyday tools</li>
+                                <li><i class="fas fa-check-circle"></i>Create "AI Around Me" inventory</li>
+                            </ul>
+                        </div>
                     </div>
-                    
-                    <div class="day-description">
-                        Dive deep into generative AI and learn how to write effective prompts that get you the results you want from AI tools.
+                    <div class="day-meta">
+                        <div class="day-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>2-3 hours</span>
+                        </div>
+                        <div class="day-status status-not-started" id="day1-status">Not Started</div>
                     </div>
-                    
-                    <div class="day-highlights">
-                        <h4>What You'll Learn:</h4>
-                        <ul>
-                            <li>Master advanced ChatGPT features</li>
-                            <li>Write effective prompts using best practices</li>
-                            <li>Create content for work scenarios</li>
-                            <li>Build your personal prompt toolkit</li>
-                            <li>Understand generative AI capabilities</li>
-                        </ul>
+                    <div class="day-action">
+                        <a href="day1.html" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play"></i>
+                            Start Day 1
+                        </a>
                     </div>
-                    
-                    <a href="day2.html" class="start-button">
-                        <i class="fas fa-play"></i> Start Day 2
-                    </a>
                 </div>
-            </div>
 
-            <div class="day-card">
-                <div class="day-header">
-                    <div class="progress-indicator">Day 3 of 5</div>
-                    <div class="day-number">03</div>
-                    <div class="day-title">AI Tools Landscape</div>
-                    <div class="day-subtitle">Understand different AI models and when to use each tool</div>
-                </div>
-                <div class="day-content">
-                    <div class="day-meta">
-                        <div class="time-info">
-                            <i class="fas fa-clock"></i>
-                            <span>2 hours</span>
+                <!-- Day 2 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">02</div>
+                        <h3 class="day-title">Generative AI Mastery</h3>
+                        <p class="day-subtitle">Prompt Engineering</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-overview">
+                            <h4>Learning Goal</h4>
+                            <p>Master ChatGPT and prompt engineering techniques. Learn the CLEAR methodology and build your personal prompt toolkit.</p>
                         </div>
-                        <div class="difficulty">Intermediate</div>
+                        <div class="day-highlights">
+                            <h4>Key Activities</h4>
+                            <ul class="highlights-list">
+                                <li><i class="fas fa-check-circle"></i>Advanced ChatGPT tutorial</li>
+                                <li><i class="fas fa-check-circle"></i>CLEAR prompt methodology</li>
+                                <li><i class="fas fa-check-circle"></i>Content creation experiments</li>
+                                <li><i class="fas fa-check-circle"></i>Build personal prompt toolkit</li>
+                            </ul>
+                        </div>
                     </div>
-                    
-                    <div class="day-description">
-                        Explore the broader AI ecosystem and learn how to choose the right AI tool for different tasks and scenarios.
+                    <div class="day-meta">
+                        <div class="day-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>2-3 hours</span>
+                        </div>
+                        <div class="day-status status-not-started" id="day2-status">Not Started</div>
                     </div>
-                    
-                    <div class="day-highlights">
-                        <h4>What You'll Learn:</h4>
-                        <ul>
-                            <li>Compare ChatGPT, Claude, and Gemini</li>
-                            <li>Understand Large Language Models (LLMs)</li>
-                            <li>Explore various AI tool categories</li>
-                            <li>Develop tool selection frameworks</li>
-                            <li>Test multiple AI platforms hands-on</li>
-                        </ul>
+                    <div class="day-action">
+                        <a href="day2.html" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play"></i>
+                            Start Day 2
+                        </a>
                     </div>
-                    
-                    <a href="day3.html" class="start-button">
-                        <i class="fas fa-play"></i> Start Day 3
-                    </a>
                 </div>
-            </div>
 
-            <div class="day-card">
-                <div class="day-header">
-                    <div class="progress-indicator">Day 4 of 5</div>
-                    <div class="day-number">04</div>
-                    <div class="day-title">Practical Applications</div>
-                    <div class="day-subtitle">Apply AI tools to real work scenarios and workflows</div>
-                </div>
-                <div class="day-content">
-                    <div class="day-meta">
-                        <div class="time-info">
-                            <i class="fas fa-clock"></i>
-                            <span>2 hours</span>
+                <!-- Day 3 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">03</div>
+                        <h3 class="day-title">AI Tools Landscape</h3>
+                        <p class="day-subtitle">Tool Selection & Comparison</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-overview">
+                            <h4>Learning Goal</h4>
+                            <p>Understand different AI models and when to use each tool. Compare ChatGPT, Claude, Gemini, and specialized AI tools.</p>
                         </div>
-                        <div class="difficulty">Intermediate</div>
+                        <div class="day-highlights">
+                            <h4>Key Activities</h4>
+                            <ul class="highlights-list">
+                                <li><i class="fas fa-check-circle"></i>ChatGPT vs Claude vs Gemini comparison</li>
+                                <li><i class="fas fa-check-circle"></i>Large Language Models explained</li>
+                                <li><i class="fas fa-check-circle"></i>AI tool safari and testing</li>
+                                <li><i class="fas fa-check-circle"></i>Tool selection framework</li>
+                            </ul>
+                        </div>
                     </div>
-                    
-                    <div class="day-description">
-                        Put your AI knowledge to work by solving real workplace challenges and optimizing your daily workflows.
+                    <div class="day-meta">
+                        <div class="day-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>2-3 hours</span>
+                        </div>
+                        <div class="day-status status-not-started" id="day3-status">Not Started</div>
                     </div>
-                    
-                    <div class="day-highlights">
-                        <h4>What You'll Learn:</h4>
-                        <ul>
-                            <li>Enhance emails and documents with AI</li>
-                            <li>Use AI for research and analysis</li>
-                            <li>Design AI-enhanced workflows</li>
-                            <li>Measure productivity improvements</li>
-                            <li>Implement AI solutions for work challenges</li>
-                        </ul>
+                    <div class="day-action">
+                        <a href="day3.html" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play"></i>
+                            Start Day 3
+                        </a>
                     </div>
-                    
-                    <a href="day4.html" class="start-button">
-                        <i class="fas fa-play"></i> Start Day 4
-                    </a>
                 </div>
-            </div>
 
-            <div class="day-card">
-                <div class="day-header">
-                    <div class="progress-indicator">Day 5 of 5</div>
-                    <div class="day-number">05</div>
-                    <div class="day-title">Future & Integration</div>
-                    <div class="day-subtitle">Plan for continued learning and organizational AI adoption</div>
-                </div>
-                <div class="day-content">
-                    <div class="day-meta">
-                        <div class="time-info">
-                            <i class="fas fa-clock"></i>
-                            <span>2 hours</span>
+                <!-- Day 4 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">04</div>
+                        <h3 class="day-title">Practical Applications</h3>
+                        <p class="day-subtitle">Workflow Integration</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-overview">
+                            <h4>Learning Goal</h4>
+                            <p>Apply AI tools to real work scenarios and workflows. Learn to measure productivity improvements and optimize processes.</p>
                         </div>
-                        <div class="difficulty">Advanced</div>
+                        <div class="day-highlights">
+                            <h4>Key Activities</h4>
+                            <ul class="highlights-list">
+                                <li><i class="fas fa-check-circle"></i>Email and document enhancement</li>
+                                <li><i class="fas fa-check-circle"></i>AI-powered research and analysis</li>
+                                <li><i class="fas fa-check-circle"></i>Workflow optimization examples</li>
+                                <li><i class="fas fa-check-circle"></i>Measure productivity improvements</li>
+                            </ul>
+                        </div>
                     </div>
-                    
-                    <div class="day-description">
-                        Look ahead to AI trends and create your personal plan for continued learning and organizational AI integration.
+                    <div class="day-meta">
+                        <div class="day-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>2-3 hours</span>
+                        </div>
+                        <div class="day-status status-not-started" id="day4-status">Not Started</div>
                     </div>
-                    
-                    <div class="day-highlights">
-                        <h4>What You'll Learn:</h4>
-                        <ul>
-                            <li>Understand AI trends and future developments</li>
-                            <li>Create personal 90-day learning plan</li>
-                            <li>Develop organizational implementation proposal</li>
-                            <li>Build continued learning strategies</li>
-                            <li>Become an AI champion in your organization</li>
-                        </ul>
+                    <div class="day-action">
+                        <a href="day4.html" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play"></i>
+                            Start Day 4
+                        </a>
                     </div>
-                    
-                    <a href="day5.html" class="start-button">
-                        <i class="fas fa-play"></i> Start Day 5
-                    </a>
                 </div>
-            </div>
+
+                <!-- Day 5 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">05</div>
+                        <h3 class="day-title">Future & Integration</h3>
+                        <p class="day-subtitle">Strategic Planning</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="day-overview">
+                            <h4>Learning Goal</h4>
+                            <p>Plan for continued learning and organizational AI adoption. Create your 90-day learning plan and integration strategy.</p>
+                        </div>
+                        <div class="day-highlights">
+                            <h4>Key Activities</h4>
+                            <ul class="highlights-list">
+                                <li><i class="fas fa-check-circle"></i>AI trends and future developments</li>
+                                <li><i class="fas fa-check-circle"></i>Personal 90-day learning plan</li>
+                                <li><i class="fas fa-check-circle"></i>Organizational implementation proposal</li>
+                                <li><i class="fas fa-check-circle"></i>Continued learning resources</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="day-meta">
+                        <div class="day-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>2-3 hours</span>
+                        </div>
+                        <div class="day-status status-not-started" id="day5-status">Not Started</div>
+                    </div>
+                    <div class="day-action">
+                        <a href="day5.html" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play"></i>
+                            Start Day 5
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources Section -->
+            <section class="resources-section">
+                <div class="container">
+                    <div class="resources-content">
+                        <h2 class="resources-title">Additional Resources</h2>
+                        <div class="resources-grid">
+                            <div class="resource-card">
+                                <div class="resource-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <h3 class="resource-title">Implementation Guide</h3>
+                                <p class="resource-description">
+                                    Complete guide for deploying this course in your organization with timelines and budgets.
+                                </p>
+                                <a href="../docs/implementation-guide.md" class="resource-link">
+                                    View Guide <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-icon">
+                                    <i class="fas fa-clipboard-check"></i>
+                                </div>
+                                <h3 class="resource-title">Assessment Framework</h3>
+                                <p class="resource-description">
+                                    Detailed rubrics and evaluation criteria for measuring learning outcomes and ROI.
+                                </p>
+                                <a href="../docs/assessment-framework.md" class="resource-link">
+                                    View Framework <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3 class="resource-title">Facilitator Guide</h3>
+                                <p class="resource-description">
+                                    Complete instructor manual with best practices, templates, and facilitation tips.
+                                </p>
+                                <a href="../docs/facilitator-guide.md" class="resource-link">
+                                    View Guide <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <h3 class="resource-title">Download Templates</h3>
+                                <p class="resource-description">
+                                    Ready-to-use templates for assignments, assessments, and progress tracking.
+                                </p>
+                                <a href="../assets/downloads/" class="resource-link">
+                                    Browse Downloads <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-
-        <div class="resources-section">
-            <h2><i class="fas fa-tools"></i> Additional Resources</h2>
-            <p>Supplementary materials to support your learning journey</p>
-            
-            <div class="resource-links">
-                <a href="../docs/implementation-guide.html" class="resource-link">
-                    <h4><i class="fas fa-cogs"></i> Implementation Guide</h4>
-                    <p>Step-by-step instructions for deploying this course in your organization</p>
-                </a>
-                
-                <a href="../docs/assessment-framework.html" class="resource-link">
-                    <h4><i class="fas fa-chart-bar"></i> Assessment Framework</h4>
-                    <p>Rubrics and tools for measuring learning outcomes and progress</p>
-                </a>
-                
-                <a href="../docs/facilitator-guide.html" class="resource-link">
-                    <h4><i class="fas fa-chalkboard-teacher"></i> Facilitator Guide</h4>
-                    <p>Instructions for instructors and course coordinators</p>
-                </a>
-                
-                <a href="../assets/downloads/" class="resource-link">
-                    <h4><i class="fas fa-download"></i> Downloadable Materials</h4>
-                    <p>Templates, worksheets, and printable resources</p>
-                </a>
-            </div>
-        </div>
-
-        <div class="course-overview">
-            <h2><i class="fas fa-graduation-cap"></i> Learning Path</h2>
-            <p>Follow this structured path to maximize your AI learning experience:</p>
-            
-            <ol style="margin: 1.5rem 0; padding-left: 2rem;">
-                <li><strong>Complete each day in sequence</strong> - Each lesson builds on the previous day's learning</li>
-                <li><strong>Allocate 2 hours per day</strong> - Don't rush; quality engagement is more important than speed</li>
-                <li><strong>Complete all assignments</strong> - Hands-on practice is essential for skill development</li>
-                <li><strong>Join discussions</strong> - Engage with other learners and share your experiences</li>
-                <li><strong>Apply immediately</strong> - Use AI tools in your real work as soon as you learn them</li>
-            </ol>
-        </div>
-    </div>
+    </main>
 
     <script>
-        // Add progress tracking functionality
-        const days = ['day1', 'day2', 'day3', 'day4', 'day5'];
-        
-        // Check for completed days in localStorage
-        days.forEach((day, index) => {
-            const completed = localStorage.getItem(`${day}_completed`);
-            if (completed) {
-                const dayCard = document.querySelectorAll('.day-card')[index];
-                const button = dayCard.querySelector('.start-button');
-                button.innerHTML = '<i class="fas fa-check"></i> Completed';
-                button.style.background = '#28a745';
-                
-                // Add completion indicator
-                const progressIndicator = dayCard.querySelector('.progress-indicator');
-                progressIndicator.innerHTML = '<i class="fas fa-check"></i> Completed';
-                progressIndicator.style.background = 'rgba(40, 167, 69, 0.8)';
+        // Check and display completion status for each day
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Storage !== "undefined" && window.courseTracker) {
+                updateDayStatuses();
             }
+            setupAnimations();
         });
 
-        // Add click tracking for analytics
-        document.querySelectorAll('.start-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const dayTitle = this.closest('.day-card').querySelector('.day-title').textContent;
-                console.log(`Started: ${dayTitle}`);
-                // Here you could add analytics tracking
+        function updateDayStatuses() {
+            const userData = window.courseTracker.loadUserData();
+            
+            for (let day = 1; day <= 5; day++) {
+                const dayData = userData.progress.days[day];
+                const statusElement = document.getElementById(`day${day}-status`);
+                
+                if (statusElement) {
+                    statusElement.classList.remove('status-not-started', 'status-in-progress', 'status-completed');
+                    
+                    if (dayData.completed) {
+                        statusElement.textContent = 'Completed';
+                        statusElement.classList.add('status-completed');
+                    } else if (dayData.started) {
+                        statusElement.textContent = 'In Progress';
+                        statusElement.classList.add('status-in-progress');
+                    } else {
+                        statusElement.textContent = 'Not Started';
+                        statusElement.classList.add('status-not-started');
+                    }
+                }
+            }
+        }
+
+        function setupAnimations() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe day cards for animation
+            document.querySelectorAll('.day-card').forEach(card => {
+                observer.observe(card);
             });
-        });
+
+            // Card hover animations
+            document.querySelectorAll('.day-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // Track page view
+        if (window.courseTracker) {
+            window.courseTracker.trackPageView('Course Materials Index');
+        }
     </script>
 </body>
 </html>
