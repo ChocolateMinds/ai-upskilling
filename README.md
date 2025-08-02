@@ -1,6 +1,6 @@
 # 5-Day AI Literacy Course
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://your-username.github.io/ai-literacy-course/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://madhusudhankonda.github.io/ai-for-everyone-in-five-days/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -60,7 +60,7 @@ This comprehensive 5-day AI literacy course is designed for employees at all lev
 
 ### For Learners
 
-1. **Visit the Course Website**: [https://your-username.github.io/ai-literacy-course/](https://your-username.github.io/ai-literacy-course/)
+1. **Visit the Course Website**: [https://madhusudhankonda.github.io/ai-for-everyone-in-five-days/](https://madhusudhankonda.github.io/ai-for-everyone-in-five-days/)
 2. **Start with Day 1**: Follow the structured daily lessons
 3. **Create Free Accounts**: Set up accounts for ChatGPT, Claude, and Gemini
 4. **Complete Daily Assignments**: Practice with real workplace scenarios
@@ -77,7 +77,7 @@ This comprehensive 5-day AI literacy course is designed for employees at all lev
 ## 📁 Repository Structure
 
 ```
-ai-literacy-course/
+ai-for-everyone-in-five-days/
 ├── index.html                 # Main GitHub Pages website
 ├── README.md                  # This file
 ├── course-materials/          # Daily lesson plans and resources
@@ -167,10 +167,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Course Website**: [https://your-username.github.io/ai-literacy-course/](https://your-username.github.io/ai-literacy-course/)
-- **Issues**: [GitHub Issues](https://github.com/your-username/ai-literacy-course/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/ai-literacy-course/discussions)
-- **Email**: course-support@your-domain.com
+- **Course Website**: [https://madhusudhankonda.github.io/ai-for-everyone-in-five-days/](https://madhusudhankonda.github.io/ai-for-everyone-in-five-days/)
+- **Repository**: [https://github.com/madhusudhankonda/ai-for-everyone-in-five-days](https://github.com/madhusudhankonda/ai-for-everyone-in-five-days)
+- **Issues**: [GitHub Issues](https://github.com/madhusudhankonda/ai-for-everyone-in-five-days/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/madhusudhankonda/ai-for-everyone-in-five-days/discussions)
 
 ## 🔄 Updates and Maintenance
 
@@ -185,5 +185,5 @@ This course is actively maintained and updated to reflect:
 
 **Ready to transform your organization's AI capabilities? Start with Day 1 and begin your AI literacy journey today!**
 
-[🚀 Start the Course](https://your-username.github.io/ai-literacy-course/) | [📖 Implementation Guide](docs/implementation-guide.md) | [🤝 Contribute](CONTRIBUTING.md)
+[🚀 Start the Course](https://madhusudhankonda.github.io/ai-for-everyone-in-five-days/) | [📖 Implementation Guide](docs/implementation-guide.md) | [🤝 Contribute](CONTRIBUTING.md)
 
