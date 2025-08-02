@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Learning Dashboard - 5-Day AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .profile-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .progress-card, .achievements-card, .daily-progress-card, .analytics-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .progress-card:hover, .achievements-card:hover, .daily-progress-card:hover, .analytics-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: #667eea;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .progress-circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 2rem auto;
+        }
+
+        .progress-circle svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 10;
+        }
+
+        .progress-bg {
+            stroke: #e9ecef;
+        }
+
+        .progress-fill {
+            stroke: #667eea;
+            stroke-linecap: round;
+            transition: stroke-dasharray 0.5s ease;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .progress-percentage {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .progress-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #28a745;
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .achievement-info h4 {
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .achievement-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .day-progress-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .day-item {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .day-item.completed {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .day-item.in-progress {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+            color: white;
+        }
+
+        .day-item.not-started {
+            background: #f8f9fa;
+            color: #666;
+            border: 2px dashed #dee2e6;
+        }
+
+        .day-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .day-status {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .certificates-section {
+            grid-column: span 2;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .certificate-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            color: white;
+            margin: 1rem 0;
+        }
+
+        .certificate-info h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .profile-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .close {
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .motivational-quote {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .quote-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .quote-author {
+            font-weight: bold;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .certificates-section {
+                grid-column: span 1;
+            }
+            
+            .day-progress-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .achievement-notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateX(400px);
+            transition: transform 0.5s ease;
+            z-index: 1500;
+        }
+
+        .achievement-notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-brain"></i> AI Literacy Course
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="course-materials/">Course Materials</a></li>
+                <li><a href="#" id="profile-link">Profile</a></li>
+                <li><div class="profile-avatar" id="avatar">
+                    <i class="fas fa-user"></i>
+                </div></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>My Learning Dashboard</h1>
+                <p id="welcome-message">Welcome back! Let's continue your AI learning journey.</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Overall Progress Card -->
+                <div class="progress-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-pie card-icon"></i>
+                        <h3 class="card-title">Overall Progress</h3>
+                    </div>
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="40" class="progress-bg"></circle>
+                            <circle cx="50" cy="50" r="40" class="progress-fill" id="progress-circle" 
+                                    stroke-dasharray="0 251.2" stroke-dashoffset="0"></circle>
+                        </svg>
+                        <div class="progress-text">
+                            <div class="progress-percentage" id="progress-percentage">0%</div>
+                            <div class="progress-label">Complete</div>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="completed-days">0</div>
+                            <div class="stat-label">Days Done</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-time">0h</div>
+                            <div class="stat-label">Time Spent</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="course-pace">On Track</div>
+                            <div class="stat-label">Pace</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements Card -->
+                <div class="achievements-card">
+                    <div class="card-header">
+                        <i class="fas fa-trophy card-icon"></i>
+                        <h3 class="card-title">Achievements</h3>
+                    </div>
+                    <div id="achievements-list">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Progress -->
+            <div class="daily-progress-card">
+                <div class="card-header">
+                    <i class="fas fa-calendar-check card-icon"></i>
+                    <h3 class="card-title">Daily Progress</h3>
+                </div>
+                <div class="day-progress-grid" id="day-progress-grid">
+                    <!-- Day items will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Certificates Section -->
+            <div class="certificates-section" id="certificates-section" style="display: none;">
+                <div class="card-header">
+                    <i class="fas fa-certificate card-icon"></i>
+                    <h3 class="card-title">Certificates</h3>
+                </div>
+                <div id="certificates-list">
+                    <!-- Certificates will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Motivational Quote -->
+            <div class="motivational-quote">
+                <div class="quote-text" id="motivational-text">
+                    "The future belongs to those who learn more skills and combine them in creative ways."
+                </div>
+                <div class="quote-author">- Robert Greene</div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="course-materials/" class="btn btn-primary">
+                    <i class="fas fa-play"></i> Continue Learning
+                </a>
+                <button class="btn btn-secondary" onclick="exportProgress()">
+                    <i class="fas fa-download"></i> Export Progress
+                </button>
+                <button class="btn btn-secondary" onclick="showProfile()">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Profile Modal -->
+    <div class="profile-modal" id="profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Profile & Settings</h3>
+                <span class="close" onclick="hideProfile()">&times;</span>
+            </div>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@company.com">
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" id="department" name="department" placeholder="Your department">
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input type="text" id="role" name="role" placeholder="Your job title">
+                </div>
+                <div class="form-group">
+                    <label for="experience">AI Experience Level</label>
+                    <select id="experience" name="experience">
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="goals">Learning Goals</label>
+                    <textarea id="goals" name="goals" rows="3" placeholder="What do you hope to achieve with this course?"></textarea>
+                </div>
+                <div class="action-buttons">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Profile
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="resetProgress()">
+                        <i class="fas fa-trash"></i> Reset Progress
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Achievement Notification -->
+    <div class="achievement-notification" id="achievement-notification">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="font-size: 2rem;" id="achievement-icon">🏆</div>
+            <div>
+                <div style="font-weight: bold;" id="achievement-title">Achievement Unlocked!</div>
+                <div style="font-size: 0.9rem; opacity: 0.9;" id="achievement-description">You've earned a new achievement</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/progress-tracker.js"></script>
+    <script>
+        // Global variables
+        let progressTracker = window.courseTracker;
+        
+        // Motivational quotes
+        const motivationalQuotes = [
+            { text: "The future belongs to those who learn more skills and combine them in creative ways.", author: "Robert Greene" },
+            { text: "Artificial intelligence is the new electricity.", author: "Andrew Ng" },
+            { text: "The question isn't whether AI will change your industry, it's how quickly you'll adapt.", author: "Unknown" },
+            { text: "Learning is not attained by chance, it must be sought for with ardor and diligence.", author: "Abigail Adams" },
+            { text: "The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice.", author: "Brian Herbert" }
+        ];
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+            setupEventListeners();
+            displayRandomQuote();
+        });
+
+        function initializeDashboard() {
+            const progressReport = progressTracker.getProgressReport();
+            
+            // Update welcome message
+            updateWelcomeMessage();
+            
+            // Update overall progress
+            updateProgressCircle(progressReport.overall.percentage);
+            updateProgressStats(progressReport.overall);
+            
+            // Update daily progress
+            updateDailyProgress(progressReport.daily);
+            
+            // Update achievements
+            updateAchievements(progressReport.achievements);
+            
+            // Update certificates
+            updateCertificates(progressReport.certificates);
+            
+            // Update profile avatar
+            updateProfileAvatar();
+        }
+
+        function updateWelcomeMessage() {
+            const profile = progressTracker.userData.profile;
+            const welcomeMsg = document.getElementById('welcome-message');
+            const name = profile.name || 'Learner';
+            const timeOfDay = getTimeOfDay();
+            welcomeMsg.textContent = `Good ${timeOfDay}, ${name}! Let's continue your AI learning journey.`;
+        }
+
+        function getTimeOfDay() {
+            const hour = new Date().getHours();
+            if (hour < 12) return 'morning';
+            if (hour < 17) return 'afternoon';
+            return 'evening';
+        }
+
+        function updateProgressCircle(percentage) {
+            const circle = document.getElementById('progress-circle');
+            const percentageElement = document.getElementById('progress-percentage');
+            const circumference = 2 * Math.PI * 40; // radius = 40
+            const offset = circumference - (percentage / 100) * circumference;
+            
+            circle.style.strokeDasharray = `${circumference} ${circumference}`;
+            circle.style.strokeDashoffset = offset;
+            percentageElement.textContent = `${Math.round(percentage)}%`;
+        }
+
+        function updateProgressStats(overall) {
+            document.getElementById('completed-days').textContent = overall.completedDays;
+            document.getElementById('total-time').textContent = `${Math.round(overall.totalTimeSpent / 60 * 10) / 10}h`;
+            document.getElementById('course-pace').textContent = formatPace(overall.pace);
+        }
+
+        function formatPace(pace) {
+            const paceMap = {
+                'ahead': 'Ahead',
+                'on-track': 'On Track',
+                'behind': 'Behind'
+            };
+            return paceMap[pace] || 'On Track';
+        }
+
+        function updateDailyProgress(dailyData) {
+            const container = document.getElementById('day-progress-grid');
+            container.innerHTML = '';
+            
+            dailyData.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = `day-item ${day.status}`;
+                dayElement.onclick = () => navigateToDay(day.day);
+                
+                dayElement.innerHTML = `
+                    <div class="day-number">Day ${day.day}</div>
+                    <div class="day-status">${formatStatus(day.status)}</div>
+                    ${day.status === 'completed' ? `<div style="margin-top: 0.5rem; font-size: 0.8rem;">Score: ${day.score}%</div>` : ''}
+                `;
+                
+                container.appendChild(dayElement);
+            });
+        }
+
+        function formatStatus(status) {
+            const statusMap = {
+                'not-started': 'Not Started',
+                'in-progress': 'In Progress',
+                'completed': 'Completed'
+            };
+            return statusMap[status] || status;
+        }
+
+        function updateAchievements(achievements) {
+            const container = document.getElementById('achievements-list');
+            
+            if (achievements.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; color: #666; padding: 2rem;">
+                        <i class="fas fa-trophy" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                        <p>Complete activities to earn achievements!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = achievements.map(achievement => `
+                <div class="achievement-item">
+                    <div class="achievement-icon">${achievement.icon}</div>
+                    <div class="achievement-info">
+                        <h4>${achievement.title}</h4>
+                        <p>${achievement.description}</p>
+                        <small>Earned: ${formatDate(achievement.earnedDate)}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateCertificates(certificates) {
+            const section = document.getElementById('certificates-section');
+            const container = document.getElementById('certificates-list');
+            
+            if (certificates.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            
+            section.style.display = 'block';
+            container.innerHTML = certificates.map(cert => `
+                <div class="certificate-item">
+                    <div class="certificate-info">
+                        <h4>${cert.title}</h4>
+                        <p>Issued: ${formatDate(cert.issuedDate)}</p>
+                        <p>Validation: ${cert.validationCode}</p>
+                    </div>
+                    <div class="certificate-actions">
+                        <button class="btn btn-secondary" onclick="downloadCertificate('${cert.id}')">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="btn btn-secondary" onclick="shareCertificate('${cert.id}')">
+                            <i class="fas fa-share"></i> Share
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateProfileAvatar() {
+            const profile = progressTracker.userData.profile;
+            const avatar = document.getElementById('avatar');
+            if (profile.name) {
+                avatar.innerHTML = profile.name.charAt(0).toUpperCase();
+                avatar.title = profile.name;
+            }
+        }
+
+        function setupEventListeners() {
+            // Achievement notifications
+            progressTracker.on('achievementEarned', showAchievementNotification);
+            
+            // Profile form submission
+            document.getElementById('profile-form').addEventListener('submit', handleProfileSubmit);
+            
+            // Profile avatar click
+            document.getElementById('avatar').addEventListener('click', showProfile);
+            document.getElementById('profile-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                showProfile();
+            });
+        }
+
+        function showAchievementNotification(achievement) {
+            const notification = document.getElementById('achievement-notification');
+            document.getElementById('achievement-icon').textContent = achievement.icon;
+            document.getElementById('achievement-title').textContent = achievement.title;
+            document.getElementById('achievement-description').textContent = achievement.description;
+            
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        function navigateToDay(dayNumber) {
+            window.location.href = `course-materials/day${dayNumber}.html`;
+        }
+
+        function displayRandomQuote() {
+            const quote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+            document.getElementById('motivational-text').textContent = quote.text;
+            document.querySelector('.quote-author').textContent = `- ${quote.author}`;
+        }
+
+        function showProfile() {
+            const modal = document.getElementById('profile-modal');
+            const profile = progressTracker.userData.profile;
+            
+            // Populate form with current data
+            document.getElementById('name').value = profile.name || '';
+            document.getElementById('email').value = profile.email || '';
+            document.getElementById('department').value = profile.department || '';
+            document.getElementById('role').value = profile.role || '';
+            document.getElementById('experience').value = profile.experience || 'beginner';
+            document.getElementById('goals').value = profile.goals.join('\n') || '';
+            
+            modal.style.display = 'block';
+        }
+
+        function hideProfile() {
+            document.getElementById('profile-modal').style.display = 'none';
+        }
+
+        function handleProfileSubmit(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const profileData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                department: formData.get('department'),
+                role: formData.get('role'),
+                experience: formData.get('experience'),
+                goals: formData.get('goals').split('\n').filter(g => g.trim())
+            };
+            
+            progressTracker.updateProfile(profileData);
+            hideProfile();
+            updateWelcomeMessage();
+            updateProfileAvatar();
+            
+            // Show success message
+            alert('Profile updated successfully!');
+        }
+
+        function exportProgress() {
+            const data = progressTracker.exportData();
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ai-course-progress-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function resetProgress() {
+            const confirmation = prompt('Are you sure? Type "RESET_ALL_PROGRESS" to confirm:');
+            if (progressTracker.resetProgress(confirmation)) {
+                alert('Progress reset successfully!');
+                location.reload();
+            } else {
+                alert('Reset cancelled or incorrect confirmation code.');
+            }
+        }
+
+        function downloadCertificate(certId) {
+            // In a real implementation, this would generate a PDF certificate
+            alert('Certificate download feature coming soon!');
+        }
+
+        function shareCertificate(certId) {
+            if (navigator.share) {
+                navigator.share({
+                    title: '5-Day AI Literacy Course Certificate',
+                    text: 'I just completed the 5-Day AI Literacy Course!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback to copying to clipboard
+                navigator.clipboard.writeText(`I just completed the 5-Day AI Literacy Course! ${window.location.href}`);
+                alert('Certificate link copied to clipboard!');
+            }
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('profile-modal');
+            if (event.target === modal) {
+                hideProfile();
+            }
+        }
+    </script>
+</body>
+</html> 
