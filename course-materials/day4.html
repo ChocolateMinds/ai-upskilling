@@ -3,615 +3,684 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 4: Practical Applications - 5-Day AI Literacy Course</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Day 4: Practical Applications - AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Modern Color Palette */
+            --primary-50: #f0f4ff;
+            --primary-100: #e0edff;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --primary-900: #1e3a8a;
+            
+            --secondary-500: #8b5cf6;
+            --secondary-600: #7c3aed;
+            
+            --success-500: #10b981;
+            --warning-500: #f59e0b;
+            --error-500: #ef4444;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-sans);
             line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            color: var(--gray-900);
+            background: linear-gradient(135deg, var(--primary-50) 0%, #fafbff 50%, var(--gray-50) 100%);
+            min-height: 100vh;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 var(--space-6);
         }
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Hero Header */
+        .hero-header {
+            background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
             color: white;
-            padding: 2rem 0;
+            padding: var(--space-16) 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .day-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-2xl);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--space-4);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Breadcrumb */
         .breadcrumb {
             background: white;
-            padding: 1rem 0;
-            border-bottom: 1px solid #e9ecef;
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
 
-        .breadcrumb a {
-            color: #667eea;
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.875rem;
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary-600);
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
         }
 
-        .breadcrumb a:hover {
-            text-decoration: underline;
+        .breadcrumb-nav a:hover {
+            color: var(--primary-700);
         }
 
-        .content {
+        .breadcrumb-nav span {
+            color: var(--gray-500);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: var(--space-12) 0;
+        }
+
+        .content-card {
             background: white;
-            margin: 2rem 0;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: var(--space-8) 0;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-100);
         }
 
+        .content-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-6);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .content-subtitle {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+        }
+
+        .learning-goals {
+            background: var(--primary-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--primary-500);
+            margin-bottom: var(--space-8);
+        }
+
+        .learning-goals h3 {
+            color: var(--primary-900);
+            margin-bottom: var(--space-4);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .goals-list {
+            list-style: none;
+        }
+
+        .goals-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            color: var(--gray-700);
+        }
+
+        .goals-list li i {
+            color: var(--success-500);
+            margin-top: 2px;
+            font-size: 0.875rem;
+        }
+
+        /* Session Styling */
         .session {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            border-left: 4px solid #667eea;
-            background: #f8f9fa;
-            border-radius: 0 8px 8px 0;
+            margin: var(--space-8) 0;
+            padding: var(--space-6);
+            border-left: 4px solid var(--primary-500);
+            background: var(--gray-50);
+            border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
         }
 
+        .session h3 {
+            color: var(--primary-900);
+            margin-bottom: var(--space-4);
+            font-size: 1.375rem;
+            font-weight: 600;
+        }
+
+        .session-time {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--primary-100);
+            color: var(--primary-900);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--space-4);
+        }
+
+        /* Activity Styling */
         .activity {
             background: white;
-            margin: 1rem 0;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
+            margin: var(--space-6) 0;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
         }
 
+        .activity:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .activity h4 {
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .activity p {
+            color: var(--gray-600);
+            margin-bottom: var(--space-4);
+            line-height: 1.7;
+        }
+
+        /* Resource Links */
         .resource-link {
-            display: inline-block;
-            background: #667eea;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
             color: white;
-            padding: 8px 16px;
+            padding: var(--space-2) var(--space-4);
             text-decoration: none;
-            border-radius: 5px;
-            margin: 5px 5px 5px 0;
-            transition: background 0.3s ease;
+            border-radius: var(--radius-lg);
+            margin: var(--space-1) var(--space-2) var(--space-1) 0;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
         }
 
         .resource-link:hover {
-            background: #5a6fd8;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
+        .resource-link.secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .resource-link.secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+        }
+
+        /* Workflow Box */
+        .workflow-box {
+            background: var(--success-50);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--success-500);
+            margin: var(--space-4) 0;
+        }
+
+        .workflow-box h4 {
+            color: var(--success-900);
+            margin-bottom: var(--space-2);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Metrics Box */
+        .metrics-box {
+            background: var(--secondary-50);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--secondary-500);
+            margin: var(--space-4) 0;
+        }
+
+        .metrics-box h4 {
+            color: var(--secondary-900);
+            margin-bottom: var(--space-2);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Assignment Section */
         .assignment {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            background: linear-gradient(135deg, var(--warning-500), #d97706);
             color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-        }
-
-        .checklist {
-            background: #e8f5e8;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #28a745;
-        }
-
-        .checklist ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .checklist li {
-            padding: 0.5rem 0;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            margin: var(--space-8) 0;
             position: relative;
-            padding-left: 2rem;
+            overflow: hidden;
         }
 
-        .checklist li:before {
-            content: '☐';
+        .assignment::before {
+            content: '';
             position: absolute;
-            left: 0;
-            font-size: 1.2rem;
-            color: #28a745;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: translate(50%, -50%);
         }
 
-        .time-badge {
-            background: #ffc107;
-            color: #333;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: bold;
+        .assignment-content {
+            position: relative;
+            z-index: 1;
         }
 
+        .assignment h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+        }
+
+        .assignment p {
+            margin-bottom: var(--space-4);
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
         .navigation {
             display: flex;
             justify-content: space-between;
-            margin: 2rem 0;
+            align-items: center;
+            margin-top: var(--space-12);
+            padding-top: var(--space-8);
+            border-top: 1px solid var(--gray-200);
         }
 
-        .nav-button {
-            background: #667eea;
-            color: white;
-            padding: 12px 24px;
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
         }
 
-        .nav-button:hover {
-            background: #5a6fd8;
+        .nav-btn.primary {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+            color: white;
+            box-shadow: var(--shadow-lg);
         }
 
-        .nav-button.disabled {
-            background: #ccc;
-            cursor: not-allowed;
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
         }
 
-        h1, h2, h3 {
-            margin-bottom: 1rem;
+        .nav-btn.secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
 
-        h2 {
-            color: #667eea;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 0.5rem;
+        .nav-btn.secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+            transform: translateY(-1px);
         }
 
-        ul, ol {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-
-        .highlight {
-            background: #fff3cd;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #ffc107;
-            margin: 1rem 0;
-        }
-
-        .workflow-example {
-            background: #e7f1ff;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #007bff;
-            margin: 1rem 0;
-        }
-
-        .productivity-tip {
-            background: #d1ecf1;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #17a2b8;
-            margin: 1rem 0;
-        }
-
-        .metrics-box {
-            background: #d4edda;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #28a745;
-            margin: 1rem 0;
-        }
-
-        .before-after {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .before, .after {
-            padding: 1rem;
-            border-radius: 5px;
-        }
-
-        .before {
-            background: #f8d7da;
-            border-left: 4px solid #dc3545;
-        }
-
-        .after {
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            .content {
-                margin: 1rem 0;
-                padding: 1rem;
-            }
-            
             .navigation {
                 flex-direction: column;
-                gap: 1rem;
+                gap: var(--space-4);
             }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .content-card {
+                padding: var(--space-6);
+                margin: var(--space-6) 0;
+            }
+        }
 
-            .before-after {
-                grid-template-columns: 1fr;
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
+        }
+
+        /* Focus styles */
+        .resource-link:focus,
+        .nav-btn:focus {
+            outline: 2px solid var(--primary-500);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Hero Header -->
+    <header class="hero-header">
         <div class="container">
-            <h1><i class="fas fa-cogs"></i> Day 4: Practical Applications</h1>
-            <p>Apply AI tools to real work scenarios and workflows</p>
+            <div class="hero-content">
+                <div class="day-badge">
+                    <i class="fas fa-calendar-day"></i>
+                    Day 4 of 5
+                </div>
+                <h1 class="hero-title">Practical Applications</h1>
+                <p class="hero-subtitle">Apply AI tools to real work scenarios and measure productivity improvements</p>
+            </div>
         </div>
     </header>
 
-    <div class="breadcrumb">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
         <div class="container">
-            <a href="../index.html"><i class="fas fa-home"></i> Course Home</a> / 
-            <a href="day1.html">Day 1</a> /
-            <a href="day2.html">Day 2</a> /
-            <a href="day3.html">Day 3</a> /
-            <span>Day 4: Practical Applications</span>
+            <div class="breadcrumb-nav">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <a href="index.html">Course Materials</a>
+                <span>/</span>
+                <span>Day 4</span>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="container">
-        <div class="content">
-            <div class="highlight">
-                <h3><i class="fas fa-target"></i> Learning Goal</h3>
-                <p>Apply AI tools to real workplace challenges, design AI-enhanced workflows, and measure productivity improvements. By the end of today, you'll have practical AI solutions implemented in your daily work and understand how to measure their impact.</p>
-            </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-card">
+                <div class="content-header">
+                    <h2 class="content-title">Real-World AI Integration</h2>
+                    <p class="content-subtitle">Transform your daily work processes with strategic AI implementation and measure the impact</p>
+                </div>
 
-            <div class="highlight">
-                <h3><i class="fas fa-clock"></i> Time Commitment</h3>
-                <p><strong>Total: 2 hours</strong> (Morning: 60 min, Afternoon: 60 min, Assignment: 30 min)</p>
-            </div>
-
-            <div class="session">
-                <h2><i class="fas fa-sun"></i> Morning Session <span class="time-badge">60 minutes</span></h2>
-                
-                <div class="activity">
-                    <h3><i class="fas fa-play-circle"></i> AI Workflow Design <span class="time-badge">30 minutes</span></h3>
-                    
-                    <h4>Primary Video (15 minutes)</h4>
-                    <p><strong>How to Use AI to 10x Your Productivity</strong></p>
-                    <a href="https://www.youtube.com/watch?v=WNW7yI-dJd4" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Real-world productivity workflows with AI</li>
-                        <li><strong>Key Takeaways:</strong> Workflow design, automation, time savings</li>
-                    </ul>
-
-                    <h4>Case Studies Video (10 minutes)</h4>
-                    <p><strong>AI in the Workplace: Real Business Applications</strong></p>
-                    <a href="https://www.youtube.com/watch?v=bEQlIFlmk8M" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Concrete examples of AI implementation</li>
-                        <li><strong>Key Takeaways:</strong> Success stories, measurable results, best practices</li>
-                    </ul>
-
-                    <h4>Quick Read (5 minutes)</h4>
-                    <p><strong>McKinsey AI Productivity Report</strong></p>
-                    <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier" class="resource-link" target="_blank">
-                        <i class="fas fa-external-link-alt"></i> Read Executive Summary
-                    </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Data-driven insights on AI productivity</li>
-                        <li><strong>Key Takeaways:</strong> ROI metrics, implementation strategies</li>
+                <!-- Learning Goals -->
+                <div class="learning-goals">
+                    <h3><i class="fas fa-target"></i> Learning Goals</h3>
+                    <ul class="goals-list">
+                        <li><i class="fas fa-check-circle"></i>Apply AI tools to solve real work challenges</li>
+                        <li><i class="fas fa-check-circle"></i>Design AI-enhanced workflows for common tasks</li>
+                        <li><i class="fas fa-check-circle"></i>Measure and track productivity improvements</li>
+                        <li><i class="fas fa-check-circle"></i>Identify opportunities for AI integration in your role</li>
+                        <li><i class="fas fa-check-circle"></i>Create implementation plans for your team or organization</li>
                     </ul>
                 </div>
 
-                <div class="activity">
-                    <h3><i class="fas fa-wrench"></i> Workflow Enhancement Exercise <span class="time-badge">30 minutes</span></h3>
+                <!-- Time Commitment -->
+                <div class="session-time">
+                    <i class="fas fa-clock"></i>
+                    <span>Time Commitment: 3-4 hours</span>
+                </div>
+
+                <!-- Morning Session -->
+                <div class="session">
+                    <h3><i class="fas fa-sun"></i> Morning Session: Workflow Design</h3>
                     
-                    <h4>Activity 1: Email & Communication Optimization (15 minutes)</h4>
-                    
-                    <div class="before-after">
-                        <div class="before">
-                            <h5>❌ Before AI</h5>
-                            <p>Writing email responses takes 10+ minutes each, struggling with tone and clarity, multiple drafts required</p>
-                        </div>
-                        <div class="after">
-                            <h5>✅ After AI</h5>
-                            <p>Draft responses in 2 minutes, perfect tone and structure, minimal editing needed</p>
+                    <div class="activity">
+                        <h4><i class="fas fa-sitemap"></i> Activity: Map Your Current Workflows</h4>
+                        <p>Document your existing work processes to identify AI integration opportunities.</p>
+                        
+                        <div class="workflow-box">
+                            <h4>Workflow Mapping Exercise</h4>
+                            <ol style="margin-left: var(--space-6); margin-top: var(--space-2);">
+                                <li><strong>Choose 3 regular tasks</strong> that take 30+ minutes each</li>
+                                <li><strong>Break down each task</strong> into specific steps</li>
+                                <li><strong>Identify time-consuming steps</strong> that could be AI-assisted</li>
+                                <li><strong>Note pain points</strong> where you get stuck or slow down</li>
+                                <li><strong>Estimate time spent</strong> on each step</li>
+                            </ol>
                         </div>
                     </div>
 
-                    <div class="workflow-example">
-                        <h5>AI Email Workflow:</h5>
-                        <ol>
-                            <li><strong>Prompt:</strong> "Help me write a professional response to [paste original email]. The tone should be [polite/urgent/collaborative]. Key points to address: [list points]"</li>
-                            <li><strong>Review:</strong> Check AI output for accuracy and tone</li>
-                            <li><strong>Customize:</strong> Add personal touches or specific details</li>
-                            <li><strong>Send:</strong> Final review and send with confidence</li>
-                        </ol>
+                    <div class="activity">
+                        <h4><i class="fas fa-magic"></i> Design: AI-Enhanced Workflows</h4>
+                        <p>Redesign your workflows to incorporate AI tools strategically for maximum efficiency.</p>
+                        
+                        <div class="workflow-box">
+                            <h4>Example: Email Management Workflow</h4>
+                            <p><strong>Before AI:</strong> Read → Think → Draft → Edit → Send (15 minutes average)</p>
+                            <p><strong>With AI:</strong> AI Summary → AI Draft → Human Review → AI Polish → Send (7 minutes average)</p>
+                            <p><strong>Result:</strong> 53% time savings with improved quality</p>
+                        </div>
+
+                        <a href="../assets/downloads/ai-workflow-assessment.md" class="resource-link">
+                            <i class="fas fa-download"></i>
+                            Download Workflow Template
+                        </a>
                     </div>
-
-                    <p><strong>Practice Exercise:</strong> Use AI to enhance these email scenarios:</p>
-                    <ul>
-                        <li>Declining a meeting request professionally</li>
-                        <li>Following up on a project with stakeholders</li>
-                        <li>Requesting information from a colleague</li>
-                        <li>Providing feedback on a proposal</li>
-                    </ul>
-
-                    <h4>Activity 2: Research & Analysis Enhancement (15 minutes)</h4>
-                    
-                    <div class="workflow-example">
-                        <h5>AI Research Workflow:</h5>
-                        <ol>
-                            <li><strong>Initial Research:</strong> Use AI to generate research questions and outline key topics</li>
-                            <li><strong>Information Gathering:</strong> AI helps synthesize information from multiple sources</li>
-                            <li><strong>Analysis:</strong> AI identifies patterns, trends, and insights</li>
-                            <li><strong>Report Creation:</strong> AI helps structure and write comprehensive reports</li>
-                        </ol>
-                    </div>
-
-                    <p><strong>Practice Exercise:</strong> Research these topics using AI assistance:</p>
-                    <ul>
-                        <li>Industry trends affecting your business</li>
-                        <li>Competitor analysis for a specific market</li>
-                        <li>Best practices for team collaboration</li>
-                        <li>Technology solutions for a business problem</li>
-                    </ul>
                 </div>
-            </div>
 
-            <div class="session">
-                <h2><i class="fas fa-moon"></i> Afternoon Session <span class="time-badge">60 minutes</span></h2>
-                
-                <div class="activity">
-                    <h3><i class="fas fa-chart-line"></i> Advanced Workplace Applications <span class="time-badge">30 minutes</span></h3>
+                <!-- Afternoon Session -->
+                <div class="session">
+                    <h3><i class="fas fa-laptop"></i> Afternoon Session: Implementation & Measurement</h3>
                     
-                    <h4>Video: AI for Professional Tasks (15 minutes)</h4>
-                    <p><strong>Advanced ChatGPT for Business Professionals</strong></p>
-                    <a href="https://www.youtube.com/watch?v=dTGgCdWRrZE" class="resource-link" target="_blank">
-                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    <div class="activity">
+                        <h4><i class="fas fa-play"></i> Implement: Test Your AI Workflows</h4>
+                        <p>Put your designed workflows into practice with real work tasks.</p>
+                        
+                        <div class="workflow-box">
+                            <h4>Implementation Strategy</h4>
+                            <ul style="margin-left: var(--space-6); margin-top: var(--space-2);">
+                                <li>Start with one workflow at a time</li>
+                                <li>Use your existing prompt toolkit from Day 2</li>
+                                <li>Track time before and after AI integration</li>
+                                <li>Note quality improvements or issues</li>
+                                <li>Adjust and refine based on results</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="activity">
+                        <h4><i class="fas fa-chart-line"></i> Measure: Productivity Impact</h4>
+                        <p>Quantify the effectiveness of your AI integration using simple metrics.</p>
+                        
+                        <div class="metrics-box">
+                            <h4>Key Metrics to Track</h4>
+                            <ul style="margin-left: var(--space-6); margin-top: var(--space-2);">
+                                <li><strong>Time savings:</strong> Before vs. after completion time</li>
+                                <li><strong>Quality improvement:</strong> Errors reduced, clarity enhanced</li>
+                                <li><strong>Task completion rate:</strong> More tasks completed per day</li>
+                                <li><strong>Stress reduction:</strong> Subjective ease of completing tasks</li>
+                                <li><strong>Learning curve:</strong> Time to become proficient with AI workflow</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="activity">
+                        <h4><i class="fas fa-users"></i> Scale: Team & Organization Impact</h4>
+                        <p>Consider how your AI workflows could benefit your team and organization.</p>
+                        
+                        <div class="workflow-box">
+                            <h4>Scaling Considerations</h4>
+                            <ul style="margin-left: var(--space-6); margin-top: var(--space-2);">
+                                <li>Which workflows would benefit the most people?</li>
+                                <li>What training would colleagues need?</li>
+                                <li>How could you share your prompt templates?</li>
+                                <li>What organizational policies might be needed?</li>
+                                <li>How would you measure team-wide impact?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Assignment -->
+                <div class="assignment">
+                    <div class="assignment-content">
+                        <h3><i class="fas fa-clipboard-list"></i> Daily Assignment: AI Workflow Implementation Project</h3>
+                        <p>Complete a comprehensive analysis of AI integration in your work processes and create an implementation plan.</p>
+                        
+                        <div style="background: rgba(255,255,255,0.1); padding: var(--space-4); border-radius: var(--radius-lg); margin-top: var(--space-4);">
+                            <h4 style="margin-bottom: var(--space-3);">Project Deliverables:</h4>
+                            <ol style="padding-left: var(--space-6);">
+                                <li><strong>Workflow analysis:</strong> Document 3 current workflows with pain points identified</li>
+                                <li><strong>AI-enhanced designs:</strong> Redesign workflows with specific AI tool integration</li>
+                                <li><strong>Implementation results:</strong> Test at least 2 workflows and record metrics</li>
+                                <li><strong>Impact assessment:</strong> Calculate time savings and quality improvements</li>
+                                <li><strong>Scaling plan:</strong> Propose how to expand successful workflows to your team</li>
+                            </ol>
+                        </div>
+                        
+                        <a href="../assets/downloads/ai-workflow-assessment.md" class="resource-link" style="background: rgba(255,255,255,0.2); margin-top: var(--space-4);">
+                            <i class="fas fa-download"></i>
+                            Download Assessment Template
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="navigation">
+                    <a href="day3.html" class="nav-btn secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Day 3: AI Tools Landscape
                     </a>
-                    <ul>
-                        <li><strong>Focus:</strong> Professional-level AI applications</li>
-                        <li><strong>Key Takeaways:</strong> Advanced prompting, complex tasks, quality control</li>
-                    </ul>
-
-                    <h4>Interactive Learning (15 minutes)</h4>
-                    <div class="productivity-tip">
-                        <h5><i class="fas fa-lightbulb"></i> Advanced AI Applications by Department</h5>
-                        
-                        <p><strong>Marketing & Sales:</strong></p>
-                        <ul>
-                            <li>Content creation and campaign planning</li>
-                            <li>Customer persona development</li>
-                            <li>Sales email personalization</li>
-                            <li>Market research and competitor analysis</li>
-                        </ul>
-
-                        <p><strong>Operations & Management:</strong></p>
-                        <ul>
-                            <li>Process documentation and improvement</li>
-                            <li>Meeting agenda and notes creation</li>
-                            <li>Project planning and risk assessment</li>
-                            <li>Performance review and feedback drafting</li>
-                        </ul>
-
-                        <p><strong>Human Resources:</strong></p>
-                        <ul>
-                            <li>Job description writing and optimization</li>
-                            <li>Training material development</li>
-                            <li>Policy documentation and updates</li>
-                            <li>Employee communication templates</li>
-                        </ul>
-
-                        <p><strong>Finance & Analytics:</strong></p>
-                        <ul>
-                            <li>Report summarization and insights</li>
-                            <li>Budget planning and analysis</li>
-                            <li>Data visualization suggestions</li>
-                            <li>Financial presentation creation</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="activity">
-                    <h3><i class="fas fa-tachometer-alt"></i> Measuring AI Impact <span class="time-badge">30 minutes</span></h3>
-                    
-                    <h4>Activity 3: Productivity Measurement Framework (20 minutes)</h4>
-                    
-                    <div class="metrics-box">
-                        <h5><i class="fas fa-chart-bar"></i> Key Metrics to Track</h5>
-                        
-                        <p><strong>Time-based Metrics:</strong></p>
-                        <ul>
-                            <li><strong>Task Completion Time:</strong> Before vs. after AI implementation</li>
-                            <li><strong>Daily Time Savings:</strong> Hours saved per day using AI tools</li>
-                            <li><strong>Response Speed:</strong> Email response time, project turnaround</li>
-                        </ul>
-
-                        <p><strong>Quality Metrics:</strong></p>
-                        <ul>
-                            <li><strong>Error Reduction:</strong> Fewer revisions needed</li>
-                            <li><strong>Consistency:</strong> Standardized communication and processes</li>
-                            <li><strong>Feedback Quality:</strong> Improved stakeholder satisfaction</li>
-                        </ul>
-
-                        <p><strong>Innovation Metrics:</strong></p>
-                        <ul>
-                            <li><strong>Idea Generation:</strong> More creative solutions and approaches</li>
-                            <li><strong>Problem Solving:</strong> Faster resolution of complex issues</li>
-                            <li><strong>Strategic Thinking:</strong> More time for high-value activities</li>
-                        </ul>
-                    </div>
-
-                    <div class="workflow-example">
-                        <h5>Weekly AI Impact Assessment:</h5>
-                        <ol>
-                            <li><strong>Track Time:</strong> Log time spent on key tasks with and without AI</li>
-                            <li><strong>Quality Check:</strong> Rate output quality and revision needs</li>
-                            <li><strong>Document Wins:</strong> Record specific improvements and successes</li>
-                            <li><strong>Identify Opportunities:</strong> Note areas for future AI integration</li>
-                        </ol>
-                    </div>
-
-                    <h4>Activity 4: Creating Your AI Optimization Plan (10 minutes)</h4>
-                    <p>Design a personalized plan for integrating AI into your workflow:</p>
-                    <ol>
-                        <li><strong>Identify 3 tasks</strong> that take the most time in your work week</li>
-                        <li><strong>Select appropriate AI tools</strong> for each task</li>
-                        <li><strong>Design specific workflows</strong> showing step-by-step AI integration</li>
-                        <li><strong>Set measurement criteria</strong> to track improvement</li>
-                        <li><strong>Plan implementation timeline</strong> for gradual adoption</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="assignment">
-                <h2><i class="fas fa-clipboard-check"></i> Daily Assignment <span class="time-badge">30 minutes</span></h2>
-                
-                <h3>Task: Implement 3 AI-Enhanced Work Processes</h3>
-                <ol>
-                    <li><strong>Choose 3 real work tasks</strong> from your current responsibilities</li>
-                    <li><strong>For each task, create:</strong>
-                        <ul>
-                            <li>Before: Current process and time required</li>
-                            <li>AI Enhancement: Specific AI tools and prompts to use</li>
-                            <li>After: New process with AI integration</li>
-                            <li>Expected Impact: Time savings and quality improvements</li>
-                        </ul>
-                    </li>
-                    <li><strong>Implement all 3 processes</strong> and document actual results</li>
-                    <li><strong>Create measurement plan</strong> for tracking ongoing improvement</li>
-                    <li><strong>Submit:</strong> Complete workflow documentation with before/after analysis</li>
-                </ol>
-
-                <h3>Suggested Work Processes to Optimize</h3>
-                <ul>
-                    <li>✅ <strong>Email Management:</strong> Drafting, responding, organizing</li>
-                    <li>✅ <strong>Report Writing:</strong> Research, analysis, presentation</li>
-                    <li>✅ <strong>Meeting Preparation:</strong> Agendas, materials, follow-up</li>
-                    <li>✅ <strong>Content Creation:</strong> Presentations, documents, proposals</li>
-                    <li>✅ <strong>Research & Analysis:</strong> Data gathering, insights, recommendations</li>
-                    <li>✅ <strong>Project Planning:</strong> Timelines, task breakdown, risk assessment</li>
-                    <li>✅ <strong>Customer Communication:</strong> Support, updates, relationship management</li>
-                    <li>✅ <strong>Training & Documentation:</strong> Process guides, onboarding materials</li>
-                </ul>
-
-                <h3>Assessment Criteria</h3>
-                <ul>
-                    <li>✅ Clear documentation of current vs. AI-enhanced processes</li>
-                    <li>✅ Practical implementation with real work tasks</li>
-                    <li>✅ Measurable productivity improvements demonstrated</li>
-                    <li>✅ Sustainable workflow design for ongoing use</li>
-                </ul>
-            </div>
-
-            <div class="checklist">
-                <h2><i class="fas fa-tasks"></i> Key Learning Outcomes for Day 4</h2>
-                <p>By the end of today, you should be able to:</p>
-                <ul>
-                    <li>Design AI-enhanced workflows for common workplace tasks</li>
-                    <li>Implement AI tools to improve email and communication efficiency</li>
-                    <li>Use AI for research, analysis, and report creation</li>
-                    <li>Measure and quantify productivity improvements from AI usage</li>
-                    <li>Create sustainable AI integration plans for ongoing work</li>
-                    <li>Optimize different types of work processes using appropriate AI tools</li>
-                    <li>Understand best practices for AI implementation in professional settings</li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-book"></i> Optional Evening Resources</h2>
-                <p>For deeper application (completely optional):</p>
-                
-                <h3>Advanced Workflow Design</h3>
-                <ul>
-                    <li><a href="https://www.youtube.com/watch?v=VGFpV3Qj4as" target="_blank">Building AI Workflows for Teams (20 minutes)</a></li>
-                    <li><a href="https://zapier.com/blog/ai-automation/" target="_blank">AI Automation Best Practices (15 minutes)</a></li>
-                </ul>
-
-                <h3>Industry-Specific Applications</h3>
-                <ul>
-                    <li><a href="https://hbr.org/2023/04/how-to-start-using-ai-at-work" target="_blank">Harvard Business Review: AI at Work (15 minutes)</a></li>
-                    <li><a href="https://www.microsoft.com/en-us/worklab/work-trend-index" target="_blank">Microsoft Work Trend Index on AI (20 minutes)</a></li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-arrow-right"></i> Preparation for Day 5</h2>
-                <p><strong>Tomorrow's Topic:</strong> "Future & Integration - Your AI Learning Path"</p>
-                <p><strong>What to expect:</strong> Plan for continued learning, organizational AI adoption, and becoming an AI champion in your workplace</p>
-                
-                <h3>Quick Prep</h3>
-                <ul>
-                    <li>Reflect on your AI learning journey over the past 4 days</li>
-                    <li>Think about how you could help others in your organization adopt AI</li>
-                    <li>Consider: What AI skills do you want to develop further?</li>
-                </ul>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-question-circle"></i> Common Questions & Quick Answers</h2>
-                
-                <h3>Q: How do I convince my team to adopt AI workflows?</h3>
-                <p><strong>A:</strong> Start by demonstrating personal success, share measurable results, and offer to help colleagues implement similar processes.</p>
-
-                <h3>Q: What if AI makes mistakes in important work tasks?</h3>
-                <p><strong>A:</strong> Always review AI output, use AI as a starting point not final product, and maintain human oversight for critical decisions.</p>
-
-                <h3>Q: How much time should I spend learning new AI tools?</h3>
-                <p><strong>A:</strong> Dedicate 30 minutes weekly to exploring new tools and optimizing existing workflows. Consistency beats intensity.</p>
-
-                <h3>Q: Should I tell clients/colleagues when I use AI?</h3>
-                <p><strong>A:</strong> Focus on results rather than tools used. If asked directly, be transparent about AI assistance while emphasizing human oversight.</p>
-            </div>
-
-            <div class="content">
-                <h2><i class="fas fa-chart-bar"></i> Day 4 Success Metrics</h2>
-                <ul>
-                    <li>✅ Successfully implemented 3 AI-enhanced work processes</li>
-                    <li>✅ Documented measurable productivity improvements</li>
-                    <li>✅ Created sustainable workflows for ongoing AI integration</li>
-                    <li>✅ Demonstrated real value creation through AI application</li>
-                    <li>✅ Developed framework for measuring AI impact</li>
-                </ul>
-                
-                <div class="highlight">
-                    <h3>🎉 You're now applying AI like a pro!</h3>
-                    <p>You've successfully integrated AI into real work processes and can measure the impact. Tomorrow, we'll plan your future AI learning journey and help you become an AI champion in your organization!</p>
+                    <a href="day5.html" class="nav-btn primary">
+                        Day 5: Future & Integration
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
-
-        <div class="navigation">
-            <a href="day3.html" class="nav-button">
-                <i class="fas fa-arrow-left"></i> Day 3: AI Tools
-            </a>
-            <a href="day5.html" class="nav-button">
-                Day 5: Future & Integration <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
+    </main>
 
     <script>
-        // Add interactive checklist functionality
-        document.querySelectorAll('.checklist li').forEach(item => {
-            item.addEventListener('click', function() {
-                if (this.style.textDecoration === 'line-through') {
-                    this.style.textDecoration = 'none';
-                    this.style.opacity = '1';
-                } else {
-                    this.style.textDecoration = 'line-through';
-                    this.style.opacity = '0.6';
-                }
-            });
-        });
+        // Track page view and interactions
+        if (window.courseTracker) {
+            window.courseTracker.trackPageView('Day 4: Practical Applications');
+            window.courseTracker.startDay(4);
+        }
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -620,18 +689,11 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
-        });
-
-        // Mark course as completed when user finishes
-        window.addEventListener('beforeunload', function() {
-            const completed = confirm('Mark Day 4 as completed?');
-            if (completed) {
-                localStorage.setItem('day4_completed', 'true');
-            }
         });
     </script>
 </body>
