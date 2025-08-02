@@ -640,66 +640,101 @@
 
                 <!-- Afternoon Session -->
                 <div class="session">
-                    <h3><i class="fas fa-tools"></i> Afternoon Session: Specialized AI Tools</h3>
+                    <div class="session-header">
+                        <h3><i class="fas fa-chart-line"></i> Session 2: AI Model Showdown - ChatGPT vs Claude vs Gemini</h3>
+                        <span class="session-time">50 minutes</span>
+                    </div>
                     
-                    <div class="activity">
-                        <h4><i class="fas fa-palette"></i> Explore: Creative AI Tools</h4>
-                        <p>Discover AI tools specialized for creative and visual tasks.</p>
+                    <div class="session-content">
+                        <p>Understand the strengths and weaknesses of the top 3 AI models to choose the right tool for each task.</p>
                         
-                        <div class="tool-card">
-                            <h4><i class="fas fa-image"></i> DALL-E / Midjourney</h4>
-                            <p>Create stunning images from text descriptions. Perfect for presentations, social media, and creative projects.</p>
+                        <div class="comparison-table">
+                            <h4><i class="fas fa-balance-scale"></i> Quick Comparison Guide</h4>
+                            <table style="width: 100%; border-collapse: collapse; margin: var(--space-4) 0;">
+                                <thead>
+                                    <tr style="background: var(--primary-100);">
+                                        <th style="padding: var(--space-3); border: 1px solid var(--gray-200);">Feature</th>
+                                        <th style="padding: var(--space-3); border: 1px solid var(--gray-200);">ChatGPT</th>
+                                        <th style="padding: var(--space-3); border: 1px solid var(--gray-200);">Claude</th>
+                                        <th style="padding: var(--space-3); border: 1px solid var(--gray-200);">Gemini</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200); font-weight: 600;">Creativity</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">🏆 Excellent</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">Good (but safe)</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">Good</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200); font-weight: 600;">Accuracy</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">Good (can hallucinate)</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">🏆 Very reliable</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">🏆 Excellent (Google data)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200); font-weight: 600;">Context Length</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">128K tokens</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">🏆 200K tokens</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">🏆 1M tokens</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200); font-weight: 600;">Best For</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">Creative writing, brainstorming</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">Document analysis, ethical tasks</td>
+                                        <td style="padding: var(--space-2); border: 1px solid var(--gray-200);">Research, data analysis</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
-                        <div class="tool-card">
-                            <h4><i class="fas fa-video"></i> Runway ML</h4>
-                            <p>AI-powered video editing and generation. Create professional videos with minimal technical skills.</p>
+                        <div class="activity">
+                            <h4><i class="fas fa-lightbulb"></i> Use Case Battle: When to Use Which AI</h4>
+                            
+                            <div class="tool-card">
+                                <h5>📝 Content Creation & Writing</h5>
+                                <p><strong>Winner: ChatGPT</strong></p>
+                                <ul>
+                                    <li>Best for creative brainstorming and engaging content</li>
+                                    <li>Excellent at generating catchy headlines and marketing copy</li>
+                                    <li>Most "human-like" conversational tone</li>
+                                </ul>
+                            </div>
+
+                            <div class="tool-card">
+                                <h5>📊 Research & Data Analysis</h5>
+                                <p><strong>Winner: Gemini</strong></p>
+                                <ul>
+                                    <li>Access to real-time Google Search data</li>
+                                    <li>Best factual accuracy and up-to-date information</li>
+                                    <li>Can handle massive documents (1M+ tokens)</li>
+                                </ul>
+                            </div>
+
+                            <div class="tool-card">
+                                <h5>📋 Document Analysis & Compliance</h5>
+                                <p><strong>Winner: Claude</strong></p>
+                                <ul>
+                                    <li>Most reliable for analyzing long documents</li>
+                                    <li>Built-in ethical guardrails for sensitive content</li>
+                                    <li>Excellent at maintaining context across lengthy conversations</li>
+                                </ul>
+                            </div>
+
+                            <div class="tool-card">
+                                <h5>💻 Coding & Technical Tasks</h5>
+                                <p><strong>Winner: Gemini (with Claude close second)</strong></p>
+                                <ul>
+                                    <li>Gemini: Fast, accurate code with fewer hallucinations</li>
+                                    <li>Claude: Excellent at explaining code step-by-step</li>
+                                    <li>ChatGPT: Good for quick prototypes and creative solutions</li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div class="tool-card">
-                            <h4><i class="fas fa-music"></i> Mubert / AIVA</h4>
-                            <p>Generate background music and soundtracks for presentations, videos, or ambient work environments.</p>
-                        </div>
-                    </div>
-
-                    <div class="activity">
-                        <h4><i class="fas fa-briefcase"></i> Business & Productivity AI Tools</h4>
-                        <p>Specialized tools for common business tasks and workflow optimization.</p>
-                        
-                        <div class="tool-card">
-                            <h4><i class="fas fa-chart-line"></i> Jasper AI</h4>
-                            <p>Marketing copy and content creation. Specialized for sales pages, ads, and marketing materials.</p>
-                        </div>
-
-                        <div class="tool-card">
-                            <h4><i class="fas fa-microphone"></i> Otter.ai</h4>
-                            <p>Meeting transcription and summarization. Turn recordings into actionable notes automatically.</p>
-                        </div>
-
-                        <div class="tool-card">
-                            <h4><i class="fas fa-search"></i> Perplexity AI</h4>
-                            <p>Research and fact-checking with real-time web search capabilities and source citations.</p>
-                        </div>
-
-                        <div class="tool-card">
-                            <h4><i class="fas fa-code"></i> GitHub Copilot</h4>
-                            <p>Code writing assistant for developers. Suggests code completions and functions based on context.</p>
-                        </div>
-                    </div>
-
-                    <div class="activity">
-                        <h4><i class="fas fa-decision"></i> Framework: Choosing the Right AI Tool</h4>
-                        <p>Develop a systematic approach to selecting the best AI tool for any given task.</p>
-                        
-                        <div class="framework-box">
-                            <h4>AI Tool Selection Framework</h4>
-                            <ol style="margin-left: var(--space-6); margin-top: var(--space-2);">
-                                <li><strong>Define the task:</strong> What exactly do you need to accomplish?</li>
-                                <li><strong>Identify requirements:</strong> Speed, accuracy, creativity, integration needs</li>
-                                <li><strong>Consider constraints:</strong> Budget, privacy, learning curve</li>
-                                <li><strong>Test and compare:</strong> Try 2-3 tools with the same task</li>
-                                <li><strong>Evaluate results:</strong> Quality, efficiency, ease of use</li>
-                            </ol>
+                        <div class="tip-box">
+                            <i class="fas fa-star"></i>
+                            <strong>Pro Strategy:</strong> Use multiple AIs! Many professionals use ChatGPT for initial brainstorming, Claude for detailed analysis, and Gemini for fact-checking and research.
                         </div>
                     </div>
                 </div>

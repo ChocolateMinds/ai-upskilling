@@ -535,6 +535,81 @@
             outline: 2px solid var(--primary-500);
             outline-offset: 2px;
         }
+
+        /* New styles for Anthropic Framework */
+        .session-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-4);
+            padding-bottom: var(--space-3);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .session-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-900);
+        }
+
+        .session-header .session-time {
+            background: var(--primary-100);
+            color: var(--primary-900);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .session-content {
+            margin-top: var(--space-6);
+        }
+
+        .prompt-example {
+            background: var(--primary-50);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .prompt-example h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-900);
+            margin-bottom: var(--space-2);
+        }
+
+        .prompt-example ul {
+            padding-left: var(--space-6);
+            list-style: disc;
+        }
+
+        .prompt-example li {
+            margin-bottom: var(--space-2);
+            color: var(--gray-700);
+        }
+
+        .tip-box {
+            background: var(--gray-50);
+            padding: var(--space-3);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--gray-200);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .tip-box i {
+            color: var(--primary-500);
+            font-size: 1rem;
+        }
+
+        .tip-box strong {
+            color: var(--gray-800);
+        }
     </style>
 </head>
 <body>
@@ -621,65 +696,118 @@
 
                 <!-- Afternoon Session -->
                 <div class="session">
-                    <h3><i class="fas fa-laptop"></i> Afternoon Session: Hands-on AI Experience</h3>
+                    <div class="session-header">
+                        <h3><i class="fas fa-compass"></i> Session 2: The AI Fluency Framework - Mastering the 4Ds</h3>
+                        <span class="session-time">45 minutes</span>
+                    </div>
                     
-                    <div class="activity">
-                        <h4><i class="fas fa-comments"></i> Hands-on: Your First ChatGPT Experience</h4>
-                        <p>Create a free ChatGPT account and try these beginner-friendly prompts to understand how AI responds to human input.</p>
-                        <a href="https://chat.openai.com" target="_blank" class="resource-link">
-                            <i class="fas fa-external-link-alt"></i>
-                            Open ChatGPT
-                        </a>
+                    <div class="session-content">
+                        <p>Learn the proven framework from Anthropic for collaborating with AI systems effectively, efficiently, ethically, and safely.</p>
                         
-                        <div class="checklist">
-                            <h4>Try These Prompts:</h4>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="prompt1">
-                                <label for="prompt1">"Explain artificial intelligence in simple terms for a 10-year-old"</label>
+                        <div class="learning-goals">
+                            <h4><i class="fas fa-target"></i> The Four Core Competencies</h4>
+                            <p>Master these essential skills for effective AI collaboration:</p>
+                            <ul class="goals-list">
+                                <li><i class="fas fa-check"></i> <strong>Delegation:</strong> Knowing what to ask AI to do</li>
+                                <li><i class="fas fa-check"></i> <strong>Description:</strong> Communicating your needs clearly</li>
+                                <li><i class="fas fa-check"></i> <strong>Discernment:</strong> Evaluating AI outputs critically</li>
+                                <li><i class="fas fa-check"></i> <strong>Diligence:</strong> Using AI responsibly and ethically</li>
+                            </ul>
+                        </div>
+
+                        <div class="activity">
+                            <h4><i class="fas fa-hand-point-right"></i> Competency 1: Delegation</h4>
+                            <p>The art of knowing what to delegate to AI and what to keep for humans.</p>
+                            
+                            <div class="prompt-example">
+                                <h5>✅ Good for AI Delegation:</h5>
+                                <ul>
+                                    <li>Drafting initial content and outlines</li>
+                                    <li>Summarizing large documents</li>
+                                    <li>Generating multiple options or ideas</li>
+                                    <li>Translating or reformatting content</li>
+                                    <li>Research and data compilation</li>
+                                </ul>
                             </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="prompt2">
-                                <label for="prompt2">"Write a professional email declining a meeting invitation"</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="prompt3">
-                                <label for="prompt3">"Help me brainstorm 5 ways to improve team communication"</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="prompt4">
-                                <label for="prompt4">"Summarize the main benefits of renewable energy in 3 bullet points"</label>
+                            
+                            <div class="prompt-example">
+                                <h5>❌ Keep Human-Led:</h5>
+                                <ul>
+                                    <li>Final decision-making on sensitive topics</li>
+                                    <li>Creative strategy and vision setting</li>
+                                    <li>Personal relationship management</li>
+                                    <li>Quality assurance and fact-checking</li>
+                                    <li>Ethical judgment calls</li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="activity">
-                        <h4><i class="fas fa-search"></i> Explore: AI Detection in Everyday Tools</h4>
-                        <p>Discover the AI that's already part of your daily routine. Most people use AI without realizing it!</p>
-                        <div class="checklist">
-                            <h4>Check These Common AI Applications:</h4>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="detect1">
-                                <label for="detect1">Email spam filtering (Gmail, Outlook)</label>
+                        <div class="activity">
+                            <h4><i class="fas fa-comments"></i> Competency 2: Description</h4>
+                            <p>Communicating your needs to AI with clarity and precision.</p>
+                            
+                            <div class="prompt-example">
+                                <h5>Description Checklist:</h5>
+                                <ul>
+                                    <li><strong>Context:</strong> What's the background situation?</li>
+                                    <li><strong>Objective:</strong> What specific outcome do you want?</li>
+                                    <li><strong>Audience:</strong> Who is this for?</li>
+                                    <li><strong>Format:</strong> How should the output be structured?</li>
+                                    <li><strong>Constraints:</strong> Any limitations or requirements?</li>
+                                </ul>
                             </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="detect2">
-                                <label for="detect2">Search autocomplete (Google, Bing)</label>
+                            
+                            <div class="tip-box">
+                                <i class="fas fa-lightbulb"></i>
+                                <strong>Pro Tip:</strong> Be specific about what you DON'T want as much as what you DO want. This prevents unwanted outputs.
                             </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="detect3">
-                                <label for="detect3">Social media feed algorithms (LinkedIn, Facebook)</label>
+                        </div>
+
+                        <div class="activity">
+                            <h4><i class="fas fa-search"></i> Competency 3: Discernment</h4>
+                            <p>Critically evaluating AI outputs for accuracy, bias, and appropriateness.</p>
+                            
+                            <div class="prompt-example">
+                                <h5>Discernment Questions:</h5>
+                                <ul>
+                                    <li>Does this answer make logical sense?</li>
+                                    <li>Are there any factual claims that need verification?</li>
+                                    <li>Could this content be biased or one-sided?</li>
+                                    <li>Is the tone and style appropriate for my audience?</li>
+                                    <li>What might be missing from this response?</li>
+                                </ul>
                             </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="detect4">
-                                <label for="detect4">Voice assistants (Siri, Alexa, Google Assistant)</label>
+                            
+                            <div class="prompt-example">
+                                <h5>Red Flags to Watch For:</h5>
+                                <ul>
+                                    <li>Confident statements about recent events</li>
+                                    <li>Specific statistics without sources</li>
+                                    <li>Legal or medical advice</li>
+                                    <li>Personal information about individuals</li>
+                                    <li>Content that seems too good to be true</li>
+                                </ul>
                             </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="detect5">
-                                <label for="detect5">Navigation apps (Google Maps, Waze)</label>
+                        </div>
+
+                        <div class="activity">
+                            <h4><i class="fas fa-shield-alt"></i> Competency 4: Diligence</h4>
+                            <p>Using AI responsibly while maintaining ethical standards and data security.</p>
+                            
+                            <div class="prompt-example">
+                                <h5>Diligence Best Practices:</h5>
+                                <ul>
+                                    <li><strong>Privacy:</strong> Never share confidential or personal data</li>
+                                    <li><strong>Attribution:</strong> Acknowledge AI assistance when appropriate</li>
+                                    <li><strong>Verification:</strong> Always fact-check important information</li>
+                                    <li><strong>Transparency:</strong> Be honest about AI involvement with stakeholders</li>
+                                    <li><strong>Continuous Learning:</strong> Stay updated on AI capabilities and limitations</li>
+                                </ul>
                             </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="detect6">
-                                <label for="detect6">Photo organization (Google Photos, iPhone Photos)</label>
+                            
+                            <div class="tip-box">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Remember:</strong> AI is a powerful assistant, not a replacement for human judgment, creativity, and accountability.
                             </div>
                         </div>
                     </div>
