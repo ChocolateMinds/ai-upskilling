@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: AI Tools Landscape - 5-Day AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .session {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .activity {
+            background: white;
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .resource-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px 5px 5px 0;
+            transition: background 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background: #5a6fd8;
+        }
+
+        .assignment {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .checklist {
+            background: #e8f5e8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .checklist li:before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            color: #28a745;
+        }
+
+        .time-badge {
+            background: #ffc107;
+            color: #333;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+
+        .nav-button {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #5a6fd8;
+        }
+
+        .nav-button.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin: 1rem 0;
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .tool-card {
+            background: #e7f1ff;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+            margin: 1rem 0;
+        }
+
+        .framework-box {
+            background: #d1ecf1;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .content {
+                margin: 1rem 0;
+                padding: 1rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-tools"></i> Day 3: AI Tools Landscape</h1>
+            <p>Understanding different AI models and when to use each tool</p>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../index.html"><i class="fas fa-home"></i> Course Home</a> / 
+            <a href="day1.html">Day 1</a> /
+            <a href="day2.html">Day 2</a> /
+            <span>Day 3: AI Tools Landscape</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="highlight">
+                <h3><i class="fas fa-target"></i> Learning Goal</h3>
+                <p>Understand the landscape of AI tools beyond ChatGPT, learn when to use different models, and develop frameworks for selecting the right AI tool for specific tasks. By the end of today, you'll be able to choose optimal AI tools for different workplace scenarios.</p>
+            </div>
+
+            <div class="highlight">
+                <h3><i class="fas fa-clock"></i> Time Commitment</h3>
+                <p><strong>Total: 2 hours</strong> (Morning: 60 min, Afternoon: 60 min, Assignment: 30 min)</p>
+            </div>
+
+            <div class="session">
+                <h2><i class="fas fa-sun"></i> Morning Session <span class="time-badge">60 minutes</span></h2>
+                
+                <div class="activity">
+                    <h3><i class="fas fa-play-circle"></i> Understanding Large Language Models <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Primary Video (15 minutes)</h4>
+                    <p><strong>Large Language Models Explained Simply</strong></p>
+                    <a href="https://www.youtube.com/watch?v=5sLYAQS9sWQ" class="resource-link" target="_blank">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> How LLMs work without technical complexity</li>
+                        <li><strong>Key Takeaways:</strong> Training process, capabilities, limitations</li>
+                    </ul>
+
+                    <h4>AI Models Comparison (10 minutes)</h4>
+                    <p><strong>ChatGPT vs Claude vs Gemini: Which is Best?</strong></p>
+                    <a href="https://www.youtube.com/watch?v=VGFpV3Qj4as" class="resource-link" target="_blank">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Direct comparison of major AI models</li>
+                        <li><strong>Key Takeaways:</strong> Strengths, weaknesses, use cases</li>
+                    </ul>
+
+                    <h4>Quick Read (5 minutes)</h4>
+                    <p><strong>AI Model Comparison Guide - Anthropic</strong></p>
+                    <a href="https://www.anthropic.com/claude" class="resource-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Read About Claude
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Understanding Claude's unique features</li>
+                        <li><strong>Key Takeaways:</strong> Safety focus, longer context, different training</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3><i class="fas fa-microscope"></i> AI Tool Safari <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Activity 1: Major AI Model Testing (20 minutes)</h4>
+                    <p>Test the same prompts across different platforms:</p>
+                    
+                    <div class="tool-card">
+                        <h5>Test Prompt Set:</h5>
+                        <ol>
+                            <li>"Explain blockchain technology in simple terms"</li>
+                            <li>"Write a creative story about a time-traveling coffee shop"</li>
+                            <li>"Analyze the pros and cons of remote work"</li>
+                            <li>"Help me plan a team building event for 20 people"</li>
+                        </ol>
+                    </div>
+
+                    <p><strong>Platforms to Test:</strong></p>
+                    <ul>
+                        <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a> (OpenAI)</li>
+                        <li><a href="https://claude.ai" target="_blank">Claude</a> (Anthropic)</li>
+                        <li><a href="https://gemini.google.com" target="_blank">Google Gemini</a></li>
+                        <li><a href="https://www.bing.com/chat" target="_blank">Microsoft Copilot</a></li>
+                    </ul>
+
+                    <h4>Activity 2: Specialized AI Tools Exploration (10 minutes)</h4>
+                    <p>Discover AI tools for specific tasks:</p>
+                    <ul>
+                        <li><strong>Writing:</strong> <a href="https://www.grammarly.com" target="_blank">Grammarly</a>, <a href="https://app.writesonic.com" target="_blank">Writesonic</a></li>
+                        <li><strong>Images:</strong> <a href="https://www.canva.com" target="_blank">Canva AI</a>, <a href="https://www.remove.bg" target="_blank">Remove.bg</a></li>
+                        <li><strong>Presentations:</strong> <a href="https://www.beautiful.ai" target="_blank">Beautiful.AI</a>, <a href="https://tome.app" target="_blank">Tome</a></li>
+                        <li><strong>Video:</strong> <a href="https://www.descript.com" target="_blank">Descript</a>, <a href="https://www.synthesia.io" target="_blank">Synthesia</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="session">
+                <h2><i class="fas fa-moon"></i> Afternoon Session <span class="time-badge">60 minutes</span></h2>
+                
+                <div class="activity">
+                    <h3><i class="fas fa-chart-line"></i> AI Tool Categories & Use Cases <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Video: AI Tools for Business (15 minutes)</h4>
+                    <p><strong>Top AI Tools Every Professional Should Know</strong></p>
+                    <a href="https://www.youtube.com/watch?v=hTKer_MsDuw" class="resource-link" target="_blank">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Practical AI tools for workplace productivity</li>
+                        <li><strong>Key Takeaways:</strong> Tool categories, integration, workflow enhancement</li>
+                    </ul>
+
+                    <h4>Interactive Learning (15 minutes)</h4>
+                    <div class="comparison-table">
+                        <table>
+                            <tr>
+                                <th>Category</th>
+                                <th>Primary Use</th>
+                                <th>Best Tools</th>
+                                <th>When to Use</th>
+                            </tr>
+                            <tr>
+                                <td>General Chat AI</td>
+                                <td>Text generation, Q&A, brainstorming</td>
+                                <td>ChatGPT, Claude, Gemini</td>
+                                <td>Complex reasoning, creative tasks</td>
+                            </tr>
+                            <tr>
+                                <td>Writing Assistants</td>
+                                <td>Grammar, style, content improvement</td>
+                                <td>Grammarly, Jasper, Copy.ai</td>
+                                <td>Professional writing, marketing content</td>
+                            </tr>
+                            <tr>
+                                <td>Image Generation</td>
+                                <td>Creating visuals from text</td>
+                                <td>DALL-E, Midjourney, Stable Diffusion</td>
+                                <td>Marketing materials, presentations</td>
+                            </tr>
+                            <tr>
+                                <td>Code Assistants</td>
+                                <td>Programming help, debugging</td>
+                                <td>GitHub Copilot, CodeWhisperer</td>
+                                <td>Software development, automation</td>
+                            </tr>
+                            <tr>
+                                <td>Voice AI</td>
+                                <td>Speech-to-text, voice synthesis</td>
+                                <td>Otter.ai, Eleven Labs</td>
+                                <td>Meeting transcription, content creation</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <h3><i class="fas fa-compass"></i> Building Selection Frameworks <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Activity 3: Decision Framework Development (20 minutes)</h4>
+                    <div class="framework-box">
+                        <h5><i class="fas fa-lightbulb"></i> AI Tool Selection Framework</h5>
+                        <p><strong>Step 1: Define Your Task</strong></p>
+                        <ul>
+                            <li>What exactly do you need to accomplish?</li>
+                            <li>What type of output do you need?</li>
+                            <li>How complex is the task?</li>
+                        </ul>
+                        
+                        <p><strong>Step 2: Consider Context Requirements</strong></p>
+                        <ul>
+                            <li>How much background information is needed?</li>
+                            <li>Do you need real-time information?</li>
+                            <li>What's the desired response length?</li>
+                        </ul>
+                        
+                        <p><strong>Step 3: Evaluate Tool Capabilities</strong></p>
+                        <ul>
+                            <li>Does the tool excel at this type of task?</li>
+                            <li>Can it handle your context requirements?</li>
+                            <li>Does it have the features you need?</li>
+                        </ul>
+                        
+                        <p><strong>Step 4: Consider Practical Factors</strong></p>
+                        <ul>
+                            <li>Is the tool free or paid?</li>
+                            <li>How easy is it to use?</li>
+                            <li>Does it integrate with your workflow?</li>
+                        </ul>
+                    </div>
+
+                    <h4>Activity 4: Scenario-Based Tool Selection (10 minutes)</h4>
+                    <p>Practice choosing tools for these scenarios:</p>
+                    <ol>
+                        <li><strong>Scenario:</strong> Write a detailed technical report</li>
+                        <li><strong>Scenario:</strong> Create social media content for a campaign</li>
+                        <li><strong>Scenario:</strong> Analyze customer feedback data</li>
+                        <li><strong>Scenario:</strong> Generate ideas for a new product</li>
+                        <li><strong>Scenario:</strong> Translate documents to multiple languages</li>
+                    </ol>
+                    <p><strong>For each scenario:</strong> Which tool would you choose and why?</p>
+                </div>
+            </div>
+
+            <div class="assignment">
+                <h2><i class="fas fa-clipboard-check"></i> Daily Assignment <span class="time-badge">30 minutes</span></h2>
+                
+                <h3>Task: Create an AI Tool Selection Guide</h3>
+                <ol>
+                    <li><strong>Test 5 different AI tools</strong> for various tasks</li>
+                    <li><strong>For each tool, document:</strong>
+                        <ul>
+                            <li>Tool name and primary purpose</li>
+                            <li>Specific task you tested</li>
+                            <li>Quality of results (rate 1-5)</li>
+                            <li>Ease of use (rate 1-5)</li>
+                            <li>Best use cases you identified</li>
+                            <li>Limitations or drawbacks</li>
+                        </ul>
+                    </li>
+                    <li><strong>Create a decision matrix</strong> comparing tools for different task types</li>
+                    <li><strong>Develop 3 workflow scenarios</strong> showing when to use which tools</li>
+                    <li><strong>Submit:</strong> Comprehensive AI tool guide with recommendations</li>
+                </ol>
+
+                <h3>Suggested Tools to Test</h3>
+                <ul>
+                    <li>✅ <strong>ChatGPT:</strong> General conversation and complex reasoning</li>
+                    <li>✅ <strong>Claude:</strong> Long-form content and analysis</li>
+                    <li>✅ <strong>Google Gemini:</strong> Research and real-time information</li>
+                    <li>✅ <strong>Grammarly:</strong> Writing enhancement and editing</li>
+                    <li>✅ <strong>Canva AI:</strong> Design and visual content creation</li>
+                    <li>✅ <strong>Otter.ai:</strong> Meeting transcription and notes</li>
+                    <li>✅ <strong>Copy.ai or Jasper:</strong> Marketing content generation</li>
+                </ul>
+
+                <h3>Assessment Criteria</h3>
+                <ul>
+                    <li>✅ Thorough testing of diverse AI tools</li>
+                    <li>✅ Clear analysis of tool strengths and limitations</li>
+                    <li>✅ Practical decision framework development</li>
+                    <li>✅ Real-world workflow scenarios and recommendations</li>
+                </ul>
+            </div>
+
+            <div class="checklist">
+                <h2><i class="fas fa-tasks"></i> Key Learning Outcomes for Day 3</h2>
+                <p>By the end of today, you should be able to:</p>
+                <ul>
+                    <li>Understand the differences between major AI models (ChatGPT, Claude, Gemini)</li>
+                    <li>Identify specialized AI tools for specific task categories</li>
+                    <li>Apply a systematic framework for selecting AI tools</li>
+                    <li>Recognize when to use generalist vs. specialist AI tools</li>
+                    <li>Evaluate AI tools based on task requirements and context</li>
+                    <li>Create efficient workflows combining multiple AI tools</li>
+                    <li>Understand the landscape of emerging AI technologies</li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-book"></i> Optional Evening Resources</h2>
+                <p>For deeper exploration (completely optional):</p>
+                
+                <h3>AI Tool Discovery</h3>
+                <ul>
+                    <li><a href="https://theresanaiforthat.com/" target="_blank">There's An AI For That - Tool Directory (15 minutes)</a></li>
+                    <li><a href="https://aitools.fyi/" target="_blank">AI Tools Database (20 minutes)</a></li>
+                </ul>
+
+                <h3>Advanced AI Concepts</h3>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=wjZofJX0v4M" target="_blank">How AI Models Are Trained (15 minutes)</a></li>
+                    <li><a href="https://www.anthropic.com/research" target="_blank">Anthropic Research Papers - Simplified (20 minutes)</a></li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-arrow-right"></i> Preparation for Day 4</h2>
+                <p><strong>Tomorrow's Topic:</strong> "Practical Applications - AI in Your Workflow"</p>
+                <p><strong>What to expect:</strong> Apply AI tools to real work scenarios, design AI-enhanced workflows, and measure productivity improvements</p>
+                
+                <h3>Quick Prep</h3>
+                <ul>
+                    <li>Identify 3 repetitive tasks in your current work</li>
+                    <li>Think about workflow bottlenecks or time-consuming processes</li>
+                    <li>Consider: What would you want AI to help you do faster or better?</li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-question-circle"></i> Common Questions & Quick Answers</h2>
+                
+                <h3>Q: Which AI tool should I use for most tasks?</h3>
+                <p><strong>A:</strong> Start with ChatGPT for general tasks, then explore specialized tools as you identify specific needs.</p>
+
+                <h3>Q: Are paid AI tools worth it?</h3>
+                <p><strong>A:</strong> Start with free versions to understand your needs, then upgrade if you hit limitations or need premium features.</p>
+
+                <h3>Q: How do I stay updated on new AI tools?</h3>
+                <p><strong>A:</strong> Follow AI newsletters, Twitter accounts, and tool directories. Set aside time monthly to explore new options.</p>
+
+                <h3>Q: Can I use multiple AI tools together?</h3>
+                <p><strong>A:</strong> Yes! Many professionals use different tools for different parts of their workflow for optimal results.</p>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-chart-bar"></i> Day 3 Success Metrics</h2>
+                <ul>
+                    <li>✅ Successfully tested and compared 5+ different AI tools</li>
+                    <li>✅ Created practical tool selection framework</li>
+                    <li>✅ Developed understanding of AI tool categories and use cases</li>
+                    <li>✅ Can recommend appropriate tools for different scenarios</li>
+                    <li>✅ Completed comprehensive AI tool guide</li>
+                </ul>
+                
+                <div class="highlight">
+                    <h3>🎉 You're now an AI tool expert! </h3>
+                    <p>You understand the AI landscape and can choose the right tools for any task. Tomorrow, we'll put this knowledge to work by designing AI-enhanced workflows for real workplace challenges.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="day2.html" class="nav-button">
+                <i class="fas fa-arrow-left"></i> Day 2: Generative AI
+            </a>
+            <a href="day4.html" class="nav-button">
+                Day 4: Practical Applications <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive checklist functionality
+        document.querySelectorAll('.checklist li').forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.style.textDecoration === 'line-through') {
+                    this.style.textDecoration = 'none';
+                    this.style.opacity = '1';
+                } else {
+                    this.style.textDecoration = 'line-through';
+                    this.style.opacity = '0.6';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mark course as completed when user finishes
+        window.addEventListener('beforeunload', function() {
+            const completed = confirm('Mark Day 3 as completed?');
+            if (completed) {
+                localStorage.setItem('day3_completed', 'true');
+            }
+        });
+    </script>
+</body>
+</html> 

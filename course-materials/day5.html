@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5: Future & Integration - 5-Day AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .breadcrumb {
+            background: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .session {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .activity {
+            background: white;
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .resource-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px 5px 5px 0;
+            transition: background 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background: #5a6fd8;
+        }
+
+        .assignment {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .checklist {
+            background: #e8f5e8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .checklist li:before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            color: #28a745;
+        }
+
+        .time-badge {
+            background: #ffc107;
+            color: #333;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+
+        .nav-button {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #5a6fd8;
+        }
+
+        .nav-button.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+            margin: 1rem 0;
+        }
+
+        .future-trends {
+            background: #e7f1ff;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+            margin: 1rem 0;
+        }
+
+        .learning-plan {
+            background: #d1ecf1;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #17a2b8;
+            margin: 1rem 0;
+        }
+
+        .celebration {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .timeline-item {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .action-plan {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .content {
+                margin: 1rem 0;
+                padding: 1rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-rocket"></i> Day 5: Future & Integration</h1>
+            <p>Plan for continued learning and organizational integration</p>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../index.html"><i class="fas fa-home"></i> Course Home</a> / 
+            <a href="day1.html">Day 1</a> /
+            <a href="day2.html">Day 2</a> /
+            <a href="day3.html">Day 3</a> /
+            <a href="day4.html">Day 4</a> /
+            <span>Day 5: Future & Integration</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="highlight">
+                <h3><i class="fas fa-target"></i> Learning Goal</h3>
+                <p>Understand AI trends and future developments, create a personal 90-day learning plan, and develop strategies for organizational AI adoption. By the end of today, you'll be prepared to continue your AI journey and help others in your organization embrace AI technologies.</p>
+            </div>
+
+            <div class="highlight">
+                <h3><i class="fas fa-clock"></i> Time Commitment</h3>
+                <p><strong>Total: 2 hours</strong> (Morning: 60 min, Afternoon: 60 min, Assignment: 30 min)</p>
+            </div>
+
+            <div class="session">
+                <h2><i class="fas fa-sun"></i> Morning Session <span class="time-badge">60 minutes</span></h2>
+                
+                <div class="activity">
+                    <h3><i class="fas fa-play-circle"></i> AI Trends & Future Outlook <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Primary Video (15 minutes)</h4>
+                    <p><strong>The Future of AI: What's Coming Next</strong></p>
+                    <a href="https://www.youtube.com/watch?v=Yq0QkCxoTHM" class="resource-link" target="_blank">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Emerging AI technologies and future capabilities</li>
+                        <li><strong>Key Takeaways:</strong> Multimodal AI, agents, workplace integration</li>
+                    </ul>
+
+                    <h4>Industry Insights (10 minutes)</h4>
+                    <p><strong>AI in the Workplace: 2024 and Beyond</strong></p>
+                    <a href="https://www.youtube.com/watch?v=VGFpV3Qj4as" class="resource-link" target="_blank">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Business transformation and workforce changes</li>
+                        <li><strong>Key Takeaways:</strong> Skills evolution, job market impact, opportunities</li>
+                    </ul>
+
+                    <h4>Quick Read (5 minutes)</h4>
+                    <p><strong>World Economic Forum: Future of Work Report</strong></p>
+                    <a href="https://www.weforum.org/reports/the-future-of-jobs-report-2023" class="resource-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Read Executive Summary
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Global workforce transformation trends</li>
+                        <li><strong>Key Takeaways:</strong> Skills requirements, adaptation strategies</li>
+                    </ul>
+                </div>
+
+                <div class="activity">
+                    <h3><i class="fas fa-crystal-ball"></i> Future AI Capabilities <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Activity 1: AI Trend Analysis (15 minutes)</h4>
+                    
+                    <div class="future-trends">
+                        <h5><i class="fas fa-chart-line"></i> Key AI Trends to Watch</h5>
+                        
+                        <p><strong>Multimodal AI:</strong></p>
+                        <ul>
+                            <li>AI that understands text, images, audio, and video together</li>
+                            <li>Examples: Visual document analysis, voice-to-image generation</li>
+                            <li>Impact: More natural and comprehensive AI interactions</li>
+                        </ul>
+
+                        <p><strong>AI Agents:</strong></p>
+                        <ul>
+                            <li>AI systems that can complete complex, multi-step tasks</li>
+                            <li>Examples: Automated research, project management, customer service</li>
+                            <li>Impact: Higher-level task automation and decision-making</li>
+                        </ul>
+
+                        <p><strong>Specialized AI:</strong></p>
+                        <ul>
+                            <li>Industry-specific AI tools and models</li>
+                            <li>Examples: Legal AI, medical AI, financial AI</li>
+                            <li>Impact: Domain expertise and specialized knowledge</li>
+                        </ul>
+
+                        <p><strong>AI Integration:</strong></p>
+                        <ul>
+                            <li>AI built into existing software and workflows</li>
+                            <li>Examples: Office 365 Copilot, Google Workspace AI</li>
+                            <li>Impact: Seamless AI assistance in daily tools</li>
+                        </ul>
+                    </div>
+
+                    <h4>Activity 2: Personal Impact Assessment (15 minutes)</h4>
+                    <p>Evaluate how these trends might affect your work:</p>
+                    <ol>
+                        <li><strong>Current Role Analysis:</strong> How might AI change your job in the next 2-5 years?</li>
+                        <li><strong>Skill Gap Identification:</strong> What new skills will you need to develop?</li>
+                        <li><strong>Opportunity Mapping:</strong> What new opportunities might AI create in your field?</li>
+                        <li><strong>Preparation Strategy:</strong> How can you prepare for these changes now?</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="session">
+                <h2><i class="fas fa-moon"></i> Afternoon Session <span class="time-badge">60 minutes</span></h2>
+                
+                <div class="activity">
+                    <h3><i class="fas fa-route"></i> Personal Learning Roadmap <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Video: Continuous AI Learning (15 minutes)</h4>
+                    <p><strong>How to Stay Updated with AI: Learning Strategy</strong></p>
+                    <a href="https://www.youtube.com/watch?v=dTGgCdWRrZE" class="resource-link" target="_blank">
+                        <i class="fab fa-youtube"></i> Watch on YouTube
+                    </a>
+                    <ul>
+                        <li><strong>Focus:</strong> Strategies for ongoing AI education</li>
+                        <li><strong>Key Takeaways:</strong> Learning resources, practice methods, community engagement</li>
+                    </ul>
+
+                    <h4>Interactive Planning (15 minutes)</h4>
+                    <div class="learning-plan">
+                        <h5><i class="fas fa-graduation-cap"></i> 90-Day Learning Plan Template</h5>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h6><strong>Days 1-30: Foundation Strengthening</strong></h6>
+                                <ul>
+                                    <li>Daily AI tool practice (15 minutes)</li>
+                                    <li>Complete one advanced online course</li>
+                                    <li>Join AI communities and forums</li>
+                                    <li>Implement 2 new AI workflows at work</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6><strong>Days 31-60: Skill Expansion</strong></h6>
+                                <ul>
+                                    <li>Explore specialized AI tools for your industry</li>
+                                    <li>Start mentoring colleagues on AI basics</li>
+                                    <li>Attend AI webinars and conferences</li>
+                                    <li>Create AI resource collection for your team</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <h6><strong>Days 61-90: Leadership & Innovation</strong></h6>
+                                <ul>
+                                    <li>Propose AI initiatives in your organization</li>
+                                    <li>Lead AI adoption projects</li>
+                                    <li>Speak about AI at team meetings</li>
+                                    <li>Evaluate advanced AI certifications</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <h3><i class="fas fa-users-cog"></i> Organizational AI Integration <span class="time-badge">30 minutes</span></h3>
+                    
+                    <h4>Activity 3: Becoming an AI Champion (20 minutes)</h4>
+                    
+                    <div class="action-plan">
+                        <h5><i class="fas fa-star"></i> AI Champion Action Plan</h5>
+                        
+                        <p><strong>Phase 1: Demonstrate Value (Weeks 1-4)</strong></p>
+                        <ul>
+                            <li>Share your own AI success stories and time savings</li>
+                            <li>Offer to help 2-3 colleagues implement AI workflows</li>
+                            <li>Create simple "how-to" guides for common AI tasks</li>
+                            <li>Document and share measurable productivity improvements</li>
+                        </ul>
+
+                        <p><strong>Phase 2: Build Community (Weeks 5-8)</strong></p>
+                        <ul>
+                            <li>Start an informal AI learning group or lunch-and-learn sessions</li>
+                            <li>Share interesting AI tools and tips regularly</li>
+                            <li>Create a shared repository of prompts and workflows</li>
+                            <li>Encourage experimentation and knowledge sharing</li>
+                        </ul>
+
+                        <p><strong>Phase 3: Scale Impact (Weeks 9-12)</strong></p>
+                        <ul>
+                            <li>Propose formal AI training for your department</li>
+                            <li>Develop AI guidelines and best practices</li>
+                            <li>Pilot AI tools for team or departmental processes</li>
+                            <li>Present AI adoption proposal to leadership</li>
+                        </ul>
+                    </div>
+
+                    <h4>Activity 4: Implementation Strategy Development (10 minutes)</h4>
+                    <p>Create a plan for introducing AI to your organization:</p>
+                    <ol>
+                        <li><strong>Stakeholder Mapping:</strong> Identify key supporters and potential resistance</li>
+                        <li><strong>Quick Wins:</strong> Choose 3 easy-to-implement AI solutions</li>
+                        <li><strong>Communication Plan:</strong> How will you share AI benefits and address concerns?</li>
+                        <li><strong>Resource Requirements:</strong> What support, training, or tools are needed?</li>
+                        <li><strong>Success Metrics:</strong> How will you measure and report on AI adoption success?</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="assignment">
+                <h2><i class="fas fa-clipboard-check"></i> Final Assignment <span class="time-badge">30 minutes</span></h2>
+                
+                <h3>Task: Create Your AI Integration & Learning Plan</h3>
+                <ol>
+                    <li><strong>Personal 90-Day Learning Plan:</strong>
+                        <ul>
+                            <li>Specific AI skills to develop</li>
+                            <li>Learning resources and timeline</li>
+                            <li>Practice goals and milestones</li>
+                            <li>Success metrics and checkpoints</li>
+                        </ul>
+                    </li>
+                    <li><strong>Organizational AI Proposal:</strong>
+                        <ul>
+                            <li>3 specific AI initiatives for your team/department</li>
+                            <li>Expected benefits and ROI estimates</li>
+                            <li>Implementation timeline and resource needs</li>
+                            <li>Risk mitigation and change management strategy</li>
+                        </ul>
+                    </li>
+                    <li><strong>AI Champion Action Plan:</strong>
+                        <ul>
+                            <li>Steps to share AI knowledge with colleagues</li>
+                            <li>Methods for building AI adoption momentum</li>
+                            <li>Leadership engagement and communication strategy</li>
+                        </ul>
+                    </li>
+                    <li><strong>Submit:</strong> Comprehensive plan with specific timelines and actionable steps</li>
+                </ol>
+
+                <h3>Key Components to Include</h3>
+                <ul>
+                    <li>✅ <strong>Personal Development:</strong> Specific skills and learning goals</li>
+                    <li>✅ <strong>Professional Application:</strong> Work-specific AI implementation plans</li>
+                    <li>✅ <strong>Team Leadership:</strong> Strategies for helping others adopt AI</li>
+                    <li>✅ <strong>Organizational Impact:</strong> Proposals for broader AI integration</li>
+                    <li>✅ <strong>Future Readiness:</strong> Preparation for emerging AI trends</li>
+                </ul>
+
+                <h3>Assessment Criteria</h3>
+                <ul>
+                    <li>✅ Realistic and actionable learning plan with specific timelines</li>
+                    <li>✅ Well-researched organizational AI proposals with clear value</li>
+                    <li>✅ Practical strategies for knowledge sharing and team leadership</li>
+                    <li>✅ Demonstrated understanding of AI trends and future implications</li>
+                </ul>
+            </div>
+
+            <div class="checklist">
+                <h2><i class="fas fa-tasks"></i> Key Learning Outcomes for Day 5</h2>
+                <p>By the end of today, you should be able to:</p>
+                <ul>
+                    <li>Understand current AI trends and future development directions</li>
+                    <li>Assess the potential impact of AI on your role and industry</li>
+                    <li>Create a structured 90-day plan for continued AI learning</li>
+                    <li>Develop strategies for becoming an AI champion in your organization</li>
+                    <li>Design proposals for organizational AI adoption and integration</li>
+                    <li>Plan for knowledge sharing and team education on AI topics</li>
+                    <li>Prepare for the evolving landscape of AI in the workplace</li>
+                </ul>
+            </div>
+
+            <div class="celebration">
+                <h2><i class="fas fa-trophy"></i> Congratulations! You've Completed the 5-Day AI Literacy Course!</h2>
+                <p><strong>🎉 You've transformed from an AI novice to a confident AI user in just 5 days!</strong></p>
+                
+                <h3>What You've Accomplished:</h3>
+                <ul style="text-align: left; display: inline-block; margin: 1rem 0;">
+                    <li>✅ Mastered AI basics and prompt engineering</li>
+                    <li>✅ Learned to use multiple AI tools effectively</li>
+                    <li>✅ Implemented AI workflows in real work scenarios</li>
+                    <li>✅ Created measurable productivity improvements</li>
+                    <li>✅ Developed a plan for continued learning and growth</li>
+                </ul>
+
+                <p><strong>You're now ready to lead AI adoption in your organization and continue your AI learning journey!</strong></p>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-book"></i> Continued Learning Resources</h2>
+                <p>Keep growing your AI expertise with these ongoing resources:</p>
+                
+                <h3>Regular Learning</h3>
+                <ul>
+                    <li><a href="https://www.deeplearning.ai/" target="_blank">DeepLearning.AI Courses (Ongoing)</a></li>
+                    <li><a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank">AI For Everyone - Advanced Modules</a></li>
+                    <li><a href="https://www.edx.org/learn/artificial-intelligence" target="_blank">edX AI Courses</a></li>
+                </ul>
+
+                <h3>Stay Updated</h3>
+                <ul>
+                    <li><a href="https://openai.com/blog/" target="_blank">OpenAI Blog - Latest developments</a></li>
+                    <li><a href="https://www.anthropic.com/research" target="_blank">Anthropic Research Updates</a></li>
+                    <li><a href="https://ai.googleblog.com/" target="_blank">Google AI Blog</a></li>
+                    <li><a href="https://www.technologyreview.com/topic/artificial-intelligence/" target="_blank">MIT Technology Review - AI Section</a></li>
+                </ul>
+
+                <h3>Community & Networking</h3>
+                <ul>
+                    <li><a href="https://www.reddit.com/r/artificial/" target="_blank">Reddit AI Communities</a></li>
+                    <li><a href="https://www.linkedin.com/groups/25785/" target="_blank">LinkedIn AI Groups</a></li>
+                    <li><a href="https://twitter.com/search?q=%23AI" target="_blank">AI Twitter Communities</a></li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-envelope"></i> Stay Connected</h2>
+                <p>Continue your AI journey with our community:</p>
+                
+                <ul>
+                    <li><strong>Course Updates:</strong> We'll notify you of new content and advanced courses</li>
+                    <li><strong>Monthly AI Newsletter:</strong> Latest tools, trends, and best practices</li>
+                    <li><strong>Exclusive Webinars:</strong> Deep dives into advanced AI topics</li>
+                    <li><strong>Peer Network:</strong> Connect with other course graduates</li>
+                </ul>
+                
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+                    <p><strong>📧 Want to stay updated?</strong> Contact us at: course-support@ai-literacy.com</p>
+                    <p><strong>🌐 Visit our website:</strong> <a href="#" style="color: #667eea;">www.ai-literacy-course.com</a></p>
+                </div>
+            </div>
+
+            <div class="content">
+                <h2><i class="fas fa-star"></i> Course Completion</h2>
+                <p>You've successfully completed all 5 days of the AI Literacy Course!</p>
+                
+                <div style="background: #e8f5e8; padding: 1rem; border-radius: 5px; border-left: 4px solid #28a745; margin: 1rem 0;">
+                    <h4>🏆 Certificate of Completion</h4>
+                    <p>You've earned a certificate demonstrating your AI literacy skills. This course has equipped you with:</p>
+                    <ul>
+                        <li>Foundational AI knowledge and practical skills</li>
+                        <li>Hands-on experience with multiple AI tools</li>
+                        <li>Proven ability to implement AI workflows</li>
+                        <li>Leadership readiness for organizational AI adoption</li>
+                    </ul>
+                </div>
+
+                <p><strong>Share your achievement!</strong> Let your network know about your new AI skills and help others discover this course.</p>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="day4.html" class="nav-button">
+                <i class="fas fa-arrow-left"></i> Day 4: Practical Applications
+            </a>
+            <a href="../index.html" class="nav-button">
+                <i class="fas fa-home"></i> Course Home
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive checklist functionality
+        document.querySelectorAll('.checklist li').forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.style.textDecoration === 'line-through') {
+                    this.style.textDecoration = 'none';
+                    this.style.opacity = '1';
+                } else {
+                    this.style.textDecoration = 'line-through';
+                    this.style.opacity = '0.6';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mark course as completed when user finishes
+        window.addEventListener('beforeunload', function() {
+            const completed = confirm('Mark Day 5 as completed?');
+            if (completed) {
+                localStorage.setItem('day5_completed', 'true');
+                localStorage.setItem('course_completed', 'true');
+            }
+        });
+
+        // Celebration animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const celebration = document.querySelector('.celebration');
+            if (celebration) {
+                celebration.style.animation = 'fadeInUp 1s ease';
+            }
+        });
+    </script>
+</body>
+</html> 
