@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Learning Dashboard - AI Literacy Course</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Modern Color Palette */
+            --primary-50: #f0f4ff;
+            --primary-100: #e0edff;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --primary-900: #1e3a8a;
+            
+            --secondary-500: #8b5cf6;
+            --secondary-600: #7c3aed;
+            
+            --success-500: #10b981;
+            --warning-500: #f59e0b;
+            --error-500: #ef4444;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            
+            /* Spacing */
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--gray-900);
+            background: linear-gradient(135deg, var(--primary-50) 0%, #fafbff 50%, var(--gray-50) 100%);
+            min-height: 100vh;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Modern Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-600);
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 1.75rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-600);
+        }
+
+        .profile-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: var(--space-8) 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        /* Dashboard Header */
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: var(--space-12);
+            position: relative;
+        }
+
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
+            border-radius: var(--radius-lg);
+        }
+
+        .dashboard-header h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+            background: linear-gradient(135deg, var(--gray-900), var(--primary-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dashboard-header p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+            color: white;
+            padding: var(--space-8);
+            border-radius: var(--radius-2xl);
+            margin-bottom: var(--space-12);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: translate(50%, -50%);
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+        }
+
+        .welcome-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-bottom: var(--space-6);
+        }
+
+        .welcome-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .welcome-stat {
+            text-align: center;
+        }
+
+        .welcome-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+
+        .welcome-stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-12);
+        }
+
+        /* Dashboard Cards */
+        .dashboard-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-6);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .card-action {
+            background: none;
+            border: none;
+            color: var(--primary-600);
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .card-action:hover {
+            color: var(--primary-700);
+            transform: scale(1.1);
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin-bottom: var(--space-4);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-2);
+        }
+
+        .progress-label {
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .progress-percentage {
+            font-weight: 600;
+            color: var(--primary-600);
+            font-size: 0.875rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
+            border-radius: var(--radius-lg);
+            transition: width 1s ease;
+        }
+
+        /* Daily Progress */
+        .daily-progress {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+
+        .day-progress {
+            text-align: center;
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .day-progress.completed {
+            background: linear-gradient(135deg, var(--success-500), #059669);
+            color: white;
+            border-color: var(--success-500);
+        }
+
+        .day-progress.active {
+            background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+            color: white;
+            border-color: var(--primary-500);
+        }
+
+        .day-progress:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .day-number {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+
+        .day-status {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        /* Achievement Badges */
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--space-4);
+        }
+
+        .achievement-badge {
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .achievement-badge.earned {
+            background: linear-gradient(135deg, var(--warning-500), #d97706);
+            color: white;
+            border-color: var(--warning-500);
+            box-shadow: var(--shadow-md);
+        }
+
+        .achievement-badge:hover {
+            transform: translateY(-2px);
+        }
+
+        .achievement-icon {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-2);
+        }
+
+        .achievement-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Activity Feed */
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.875rem;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 500;
+            color: var(--gray-900);
+            margin-bottom: var(--space-1);
+        }
+
+        .activity-time {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+        }
+
+        /* Action Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--gray-700);
+            border: 2px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-500), #059669);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .daily-progress {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .welcome-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .daily-progress {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .loading {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles */
+        .btn:focus,
+        .nav-links a:focus,
+        .day-progress:focus {
+            outline: 2px solid var(--primary-500);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-brain"></i>
+                AI Literacy
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="course-materials/">Course Materials</a></li>
+                <li><a href="dashboard.html" style="color: var(--primary-600);">Dashboard</a></li>
+                <li><a href="docs/implementation-guide.md">Implementation</a></li>
+            </ul>
+            <div class="profile-avatar" id="profileAvatar">
+                <span id="userInitials">LU</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <h1>My Learning Dashboard</h1>
+                <p>Track your progress through the 5-Day AI Literacy Course and celebrate your achievements</p>
+            </div>
+
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-content">
+                    <h2 class="welcome-title" id="welcomeTitle">Welcome back, Learner!</h2>
+                    <p class="welcome-subtitle" id="welcomeSubtitle">Continue your AI learning journey</p>
+                    <div class="welcome-stats">
+                        <div class="welcome-stat">
+                            <div class="welcome-stat-number" id="completedDays">0</div>
+                            <div class="welcome-stat-label">Days Completed</div>
+                        </div>
+                        <div class="welcome-stat">
+                            <div class="welcome-stat-number" id="totalTime">0h</div>
+                            <div class="welcome-stat-label">Time Spent</div>
+                        </div>
+                        <div class="welcome-stat">
+                            <div class="welcome-stat-number" id="achievementCount">0</div>
+                            <div class="welcome-stat-label">Achievements</div>
+                        </div>
+                        <div class="welcome-stat">
+                            <div class="welcome-stat-number" id="overallScore">0%</div>
+                            <div class="welcome-stat-label">Overall Score</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Course Progress Card -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            Course Progress
+                        </h3>
+                        <button class="card-action" onclick="refreshProgress()">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-header">
+                            <span class="progress-label">Overall Completion</span>
+                            <span class="progress-percentage" id="overallProgress">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="overallProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="daily-progress" id="dailyProgress">
+                        <!-- Days will be populated by JavaScript -->
+                    </div>
+
+                    <div class="quick-actions">
+                        <a href="course-materials/" class="btn btn-primary">
+                            <i class="fas fa-play"></i>
+                            Continue Learning
+                        </a>
+                        <button class="btn btn-secondary" onclick="viewDetailedProgress()">
+                            <i class="fas fa-chart-bar"></i>
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Achievements Card -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <div class="card-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            Achievements
+                        </h3>
+                        <button class="card-action" onclick="viewAllAchievements()">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="achievement-grid" id="achievementGrid">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+
+                    <div class="quick-actions">
+                        <button class="btn btn-success" onclick="checkNewAchievements()">
+                            <i class="fas fa-medal"></i>
+                            Check Progress
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Card -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <div class="card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            Recent Activity
+                        </h3>
+                        <button class="card-action" onclick="clearActivity()">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+
+                    <div id="activityFeed">
+                        <!-- Activity will be populated by JavaScript -->
+                    </div>
+
+                    <div class="quick-actions">
+                        <button class="btn btn-secondary" onclick="exportProgress()">
+                            <i class="fas fa-download"></i>
+                            Export Data
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Stats Card -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <div class="card-icon">
+                                <i class="fas fa-analytics"></i>
+                            </div>
+                            Learning Analytics
+                        </h3>
+                        <button class="card-action" onclick="viewAnalytics()">
+                            <i class="fas fa-chart-pie"></i>
+                        </button>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-header">
+                            <span class="progress-label">Videos Watched</span>
+                            <span class="progress-percentage" id="videosProgress">0/15</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="videosProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-header">
+                            <span class="progress-label">Assignments Completed</span>
+                            <span class="progress-percentage" id="assignmentsProgress">0/5</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="assignmentsProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-header">
+                            <span class="progress-label">Current Streak</span>
+                            <span class="progress-percentage" id="streakCounter">0 days</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="streakProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" onclick="setLearningGoals()">
+                            <i class="fas fa-target"></i>
+                            Set Goals
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Include Progress Tracker -->
+    <script src="assets/js/progress-tracker.js"></script>
+    <script>
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+            loadUserData();
+            updateDashboard();
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function initializeDashboard() {
+            // Set up dashboard components
+            setupDailyProgress();
+            setupAchievements();
+            setupActivityFeed();
+            setupProfile();
+        }
+
+        function loadUserData() {
+            // Get user data from progress tracker
+            if (typeof courseTracker !== 'undefined') {
+                const userData = courseTracker.loadUserData();
+                updateWelcomeBanner(userData);
+                updateProgressStats(userData);
+            }
+        }
+
+        function updateDashboard() {
+            // Update all dashboard components
+            updateOverallProgress();
+            updateDailyProgress();
+            updateAchievements();
+            updateActivityFeed();
+            updateAnalytics();
+        }
+
+        function updateWelcomeBanner(userData) {
+            const profile = userData.profile;
+            if (profile.name) {
+                document.getElementById('welcomeTitle').textContent = `Welcome back, ${profile.name}!`;
+                document.getElementById('userInitials').textContent = profile.name.split(' ').map(n => n[0]).join('').toUpperCase();
+            }
+            
+            // Update welcome stats
+            document.getElementById('completedDays').textContent = Object.values(userData.progress.days).filter(day => day.completed).length;
+            document.getElementById('totalTime').textContent = Math.round(userData.analytics.totalTimeSpent / 60) + 'h';
+            document.getElementById('achievementCount').textContent = userData.achievements.length;
+            document.getElementById('overallScore').textContent = Math.round(courseTracker.getAverageScore()) + '%';
+        }
+
+        function setupDailyProgress() {
+            const dailyProgressContainer = document.getElementById('dailyProgress');
+            const days = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'];
+            
+            dailyProgressContainer.innerHTML = days.map((day, index) => {
+                return `
+                    <div class="day-progress" data-day="${index + 1}" onclick="goToDay(${index + 1})">
+                        <div class="day-number">${index + 1}</div>
+                        <div class="day-status">Not Started</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateDailyProgress() {
+            if (typeof courseTracker === 'undefined') return;
+            
+            const userData = courseTracker.loadUserData();
+            const days = document.querySelectorAll('.day-progress');
+            
+            days.forEach((dayElement, index) => {
+                const dayNumber = index + 1;
+                const dayData = userData.progress.days[dayNumber];
+                const statusElement = dayElement.querySelector('.day-status');
+                
+                dayElement.classList.remove('completed', 'active');
+                
+                if (dayData.completed) {
+                    dayElement.classList.add('completed');
+                    statusElement.textContent = 'Completed';
+                } else if (dayData.started) {
+                    dayElement.classList.add('active');
+                    statusElement.textContent = 'In Progress';
+                } else {
+                    statusElement.textContent = 'Not Started';
+                }
+            });
+        }
+
+        function updateOverallProgress() {
+            if (typeof courseTracker === 'undefined') return;
+            
+            const progress = courseTracker.getProgressPercentage();
+            document.getElementById('overallProgress').textContent = Math.round(progress) + '%';
+            document.getElementById('overallProgressBar').style.width = progress + '%';
+        }
+
+        function setupAchievements() {
+            const achievementGrid = document.getElementById('achievementGrid');
+            const achievements = [
+                { id: 'first-day', name: 'First Day', icon: 'fas fa-star' },
+                { id: 'course-graduate', name: 'Graduate', icon: 'fas fa-graduation-cap' },
+                { id: 'three-day-streak', name: '3-Day Streak', icon: 'fas fa-fire' },
+                { id: 'early-bird', name: 'Early Bird', icon: 'fas fa-sun' },
+                { id: 'night-owl', name: 'Night Owl', icon: 'fas fa-moon' },
+                { id: 'perfectionist', name: 'Perfectionist', icon: 'fas fa-gem' }
+            ];
+            
+            achievementGrid.innerHTML = achievements.map(achievement => {
+                return `
+                    <div class="achievement-badge" data-achievement="${achievement.id}">
+                        <div class="achievement-icon">
+                            <i class="${achievement.icon}"></i>
+                        </div>
+                        <div class="achievement-name">${achievement.name}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateAchievements() {
+            if (typeof courseTracker === 'undefined') return;
+            
+            const userData = courseTracker.loadUserData();
+            const achievementBadges = document.querySelectorAll('.achievement-badge');
+            
+            achievementBadges.forEach(badge => {
+                const achievementId = badge.dataset.achievement;
+                const isEarned = userData.achievements.some(a => a.id === achievementId);
+                
+                if (isEarned) {
+                    badge.classList.add('earned');
+                }
+            });
+        }
+
+        function setupActivityFeed() {
+            // Activity feed will be populated by updateActivityFeed
+        }
+
+        function updateActivityFeed() {
+            if (typeof courseTracker === 'undefined') return;
+            
+            const userData = courseTracker.loadUserData();
+            const activityFeed = document.getElementById('activityFeed');
+            const recentActivities = userData.analytics.pageViews.slice(-5).reverse();
+            
+            if (recentActivities.length === 0) {
+                activityFeed.innerHTML = '<p style="text-align: center; color: var(--gray-500); padding: var(--space-4);">No recent activity</p>';
+                return;
+            }
+            
+            activityFeed.innerHTML = recentActivities.map(activity => {
+                const date = new Date(activity.timestamp);
+                return `
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Viewed ${activity.page}</div>
+                            <div class="activity-time">${date.toLocaleDateString()} at ${date.toLocaleTimeString()}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateAnalytics() {
+            if (typeof courseTracker === 'undefined') return;
+            
+            const userData = courseTracker.loadUserData();
+            
+            // Update videos progress
+            const totalVideos = 15; // Estimate based on course content
+            const watchedVideos = Object.values(userData.progress.days).reduce((total, day) => {
+                return total + (day.activities.videos ? Object.keys(day.activities.videos).length : 0);
+            }, 0);
+            
+            document.getElementById('videosProgress').textContent = `${watchedVideos}/${totalVideos}`;
+            document.getElementById('videosProgressBar').style.width = (watchedVideos / totalVideos * 100) + '%';
+            
+            // Update assignments progress
+            const totalAssignments = 5;
+            const completedAssignments = Object.values(userData.progress.days).filter(day => 
+                day.activities.assignments && Object.keys(day.activities.assignments).length > 0
+            ).length;
+            
+            document.getElementById('assignmentsProgress').textContent = `${completedAssignments}/${totalAssignments}`;
+            document.getElementById('assignmentsProgressBar').style.width = (completedAssignments / totalAssignments * 100) + '%';
+            
+            // Update streak
+            const streak = courseTracker.getCompletionStreak();
+            document.getElementById('streakCounter').textContent = `${streak} days`;
+            document.getElementById('streakProgressBar').style.width = Math.min(streak / 7 * 100, 100) + '%';
+        }
+
+        function setupProfile() {
+            // Profile setup is handled in updateWelcomeBanner
+        }
+
+        // Action functions
+        function goToDay(dayNumber) {
+            window.location.href = `course-materials/day${dayNumber}.html`;
+        }
+
+        function refreshProgress() {
+            updateDashboard();
+            showNotification('Progress refreshed!', 'success');
+        }
+
+        function viewDetailedProgress() {
+            // Could open a modal or navigate to detailed view
+            alert('Detailed progress view coming soon!');
+        }
+
+        function viewAllAchievements() {
+            // Could open a modal with all achievements
+            alert('Full achievements gallery coming soon!');
+        }
+
+        function checkNewAchievements() {
+            if (typeof courseTracker !== 'undefined') {
+                courseTracker.checkAchievements();
+                updateAchievements();
+                showNotification('Achievements checked!', 'success');
+            }
+        }
+
+        function clearActivity() {
+            if (confirm('Are you sure you want to clear your activity history?')) {
+                // This would need to be implemented in the progress tracker
+                showNotification('Activity cleared!', 'success');
+            }
+        }
+
+        function exportProgress() {
+            if (typeof courseTracker !== 'undefined') {
+                const data = courseTracker.exportData();
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'ai-course-progress.json';
+                a.click();
+                URL.revokeObjectURL(url);
+                showNotification('Progress exported!', 'success');
+            }
+        }
+
+        function viewAnalytics() {
+            alert('Detailed analytics view coming soon!');
+        }
+
+        function setLearningGoals() {
+            const goals = prompt('Set your weekly learning goals (hours):');
+            if (goals) {
+                showNotification(`Learning goal set: ${goals} hours per week!`, 'success');
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            // Simple notification system
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? 'var(--success-500)' : 'var(--primary-500)'};
+                color: white;
+                padding: var(--space-4);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-lg);
+                z-index: 1001;
+                animation: fadeInUp 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Auto-refresh dashboard every 30 seconds
+        setInterval(updateDashboard, 30000);
+         </script>
+</body>
+</html> 

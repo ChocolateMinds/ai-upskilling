@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5-Day AI Literacy Course - Transform Your Organization with AI</title>
+    <title>AI Upskilling Platform - Choose Your Learning Path</title>
+    <meta name="description" content="Transform your career with role-specific AI courses. Product Owners, Engineers, C-Suite Leaders, QA, and General Professionals - find your perfect AI learning path.">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="shared/assets/favicon.ico">
+    
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Main Styles -->
+    <link href="shared/css/platform-styles.css" rel="stylesheet">
+    
     <style>
         :root {
             /* Modern Color Palette */
@@ -19,7 +31,9 @@
             --secondary-500: #8b5cf6;
             --secondary-600: #7c3aed;
             
-            --success-500: #10b981;
+            --accent-500: #10b981;
+            --accent-600: #059669;
+            
             --warning-500: #f59e0b;
             --error-500: #ef4444;
             
@@ -50,6 +64,7 @@
             --space-12: 3rem;
             --space-16: 4rem;
             --space-20: 5rem;
+            --space-24: 6rem;
             
             /* Border Radius */
             --radius-sm: 0.375rem;
@@ -57,6 +72,7 @@
             --radius-lg: 0.75rem;
             --radius-xl: 1rem;
             --radius-2xl: 1.5rem;
+            --radius-3xl: 2rem;
             
             /* Shadows */
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -87,12 +103,12 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Modern Navigation */
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--gray-200);
@@ -101,7 +117,7 @@
         }
 
         .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             box-shadow: var(--shadow-lg);
         }
 
@@ -118,15 +134,19 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: var(--space-3);
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--primary-600);
             text-decoration: none;
         }
 
         .logo i {
-            font-size: 1.75rem;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
@@ -147,31 +167,6 @@
 
         .nav-links a:hover {
             color: var(--primary-600);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-600);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Mobile Navigation */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--gray-700);
-            cursor: pointer;
         }
 
         /* Hero Section */
@@ -209,17 +204,17 @@
             gap: var(--space-2);
             background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
             color: white;
-            padding: var(--space-2) var(--space-4);
-            border-radius: var(--radius-2xl);
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: var(--space-6);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-3xl);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: var(--space-8);
             animation: fadeInUp 0.8s ease;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
             line-height: 1.1;
             margin-bottom: var(--space-6);
             background: linear-gradient(135deg, var(--gray-900), var(--primary-600));
@@ -230,26 +225,225 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
             color: var(--gray-600);
-            margin-bottom: var(--space-8);
-            max-width: 600px;
+            margin-bottom: var(--space-10);
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             animation: fadeInUp 0.8s ease 0.2s both;
         }
 
-        .hero-cta {
+        .hero-stats {
             display: flex;
-            flex-direction: column;
-            sm:flex-direction: row;
-            gap: var(--space-4);
             justify-content: center;
-            align-items: center;
+            gap: var(--space-8);
+            margin-bottom: var(--space-10);
             animation: fadeInUp 0.8s ease 0.3s both;
         }
 
-        /* Modern Buttons */
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-600);
+            margin-bottom: var(--space-2);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Course Selection Section */
+        .course-selection {
+            padding: var(--space-20) 0;
+            background: white;
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-16);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: var(--space-4);
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-16);
+        }
+
+        /* Course Cards */
+        .course-card {
+            background: white;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .course-card.available {
+            border-top: 4px solid var(--accent-500);
+        }
+
+        .course-card.coming-soon {
+            border-top: 4px solid var(--warning-500);
+        }
+
+        .course-card.planned {
+            border-top: 4px solid var(--gray-300);
+        }
+
+        .course-header {
+            padding: var(--space-8);
+            background: linear-gradient(135deg, var(--gray-50), var(--primary-50));
+            position: relative;
+        }
+
+        .course-status {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-2xl);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-available {
+            background: var(--accent-500);
+            color: white;
+        }
+
+        .status-coming-soon {
+            background: var(--warning-500);
+            color: white;
+        }
+
+        .status-planned {
+            background: var(--gray-300);
+            color: var(--gray-700);
+        }
+
+        .course-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            border-radius: var(--radius-2xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-6);
+            color: white;
+            font-size: 2rem;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+        }
+
+        .course-audience {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .course-content {
+            padding: var(--space-8);
+        }
+
+        .course-description {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: var(--space-6);
+        }
+
+        .course-highlights {
+            list-style: none;
+            margin-bottom: var(--space-8);
+        }
+
+        .course-highlights li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        .course-highlights li i {
+            color: var(--primary-500);
+            margin-top: 2px;
+            font-size: 0.875rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-4) var(--space-8);
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .course-duration {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        .course-participants {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .course-action {
+            text-align: center;
+            padding: var(--space-6) var(--space-8);
+        }
+
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -290,84 +484,62 @@
             transform: translateY(-1px);
         }
 
+        .btn-disabled {
+            background: var(--gray-200);
+            color: var(--gray-500);
+            cursor: not-allowed;
+        }
+
         .btn-lg {
             padding: var(--space-4) var(--space-8);
             font-size: 1.1rem;
         }
 
-        /* Stats Section */
-        .stats {
-            background: white;
+        /* General Course Card */
+        .general-course {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+            color: white;
+            text-align: center;
+            padding: var(--space-10);
             border-radius: var(--radius-2xl);
-            padding: var(--space-8);
-            margin: var(--space-16) auto;
-            max-width: 1280px;
-            margin-left: var(--space-6);
-            margin-right: var(--space-6);
             box-shadow: var(--shadow-xl);
-            border: 1px solid var(--gray-100);
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-8);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
+        .general-course h3 {
+            font-size: 1.75rem;
             font-weight: 700;
-            color: var(--primary-600);
-            margin-bottom: var(--space-2);
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--gray-600);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Features Section */
-        .features {
-            padding: var(--space-20) 0;
-        }
-
-        .section-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 var(--space-6);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: var(--space-16);
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            color: var(--gray-900);
             margin-bottom: var(--space-4);
         }
 
-        .section-subtitle {
-            font-size: 1.25rem;
-            color: var(--gray-600);
+        .general-course p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-bottom: var(--space-6);
             max-width: 600px;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .general-course .btn {
+            background: white;
+            color: var(--primary-600);
+        }
+
+        .general-course .btn:hover {
+            background: var(--gray-100);
+        }
+
+        /* Platform Features */
+        .platform-features {
+            padding: var(--space-20) 0;
+            background: var(--gray-50);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: var(--space-8);
-            margin-bottom: var(--space-16);
         }
 
         .feature-card {
@@ -376,24 +548,13 @@
             border-radius: var(--radius-xl);
             box-shadow: var(--shadow-md);
             border: 1px solid var(--gray-100);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-lg);
         }
 
         .feature-icon {
@@ -404,7 +565,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: var(--space-6);
+            margin: 0 auto var(--space-6);
             color: white;
             font-size: 1.5rem;
         }
@@ -421,108 +582,17 @@
             line-height: 1.7;
         }
 
-        /* Curriculum Section */
-        .curriculum {
-            background: var(--gray-50);
-            padding: var(--space-20) 0;
-        }
-
-        .curriculum-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-6);
-        }
-
-        .day-card {
-            background: white;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--gray-100);
-        }
-
-        .day-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-2xl);
-        }
-
-        .day-header {
-            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
-            color: white;
-            padding: var(--space-6);
-            text-align: center;
-            position: relative;
-        }
-
-        .day-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: var(--space-2);
-            opacity: 0.9;
-        }
-
-        .day-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: var(--space-2);
-        }
-
-        .day-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .day-content {
-            padding: var(--space-6);
-        }
-
-        .day-goals {
-            margin-bottom: var(--space-6);
-        }
-
-        .day-goals h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: var(--space-3);
-        }
-
-        .goals-list {
-            list-style: none;
-        }
-
-        .goals-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-2);
-            margin-bottom: var(--space-2);
-            color: var(--gray-600);
-            font-size: 0.9rem;
-        }
-
-        .goals-list li i {
-            color: var(--success-500);
-            margin-top: 2px;
-            font-size: 0.75rem;
-        }
-
-        .day-action {
-            text-align: center;
-            padding-top: var(--space-4);
-            border-top: 1px solid var(--gray-100);
-        }
-
-        /* Impact Section */
-        .impact {
-            padding: var(--space-20) 0;
+        /* Call to Action */
+        .final-cta {
             background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
             color: white;
+            padding: var(--space-20) 0;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .impact::before {
+        .final-cta::before {
             content: '';
             position: absolute;
             top: 0;
@@ -535,116 +605,29 @@
             pointer-events: none;
         }
 
-        .impact-container {
-            position: relative;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 var(--space-6);
-        }
-
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-8);
-            margin-bottom: var(--space-12);
-        }
-
-        .impact-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: var(--space-6);
-            border-radius: var(--radius-xl);
-            text-align: center;
-        }
-
-        .impact-metric {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-400);
-            margin-bottom: var(--space-2);
-        }
-
-        .impact-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* CTA Section */
-        .final-cta {
-            background: var(--primary-50);
-            padding: var(--space-20) 0;
-            text-align: center;
-        }
-
         .cta-content {
+            position: relative;
             max-width: 800px;
             margin: 0 auto;
         }
 
         .cta-title {
             font-size: clamp(2rem, 4vw, 2.75rem);
-            font-weight: 700;
-            color: var(--gray-900);
+            font-weight: 800;
             margin-bottom: var(--space-4);
         }
 
         .cta-subtitle {
             font-size: 1.25rem;
-            color: var(--gray-600);
+            opacity: 0.9;
             margin-bottom: var(--space-8);
         }
 
-        /* Footer */
-        .footer {
-            background: var(--gray-900);
-            color: var(--gray-300);
-            padding: var(--space-16) 0 var(--space-8);
-        }
-
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 var(--space-6);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-8);
-            margin-bottom: var(--space-8);
-        }
-
-        .footer-section h3 {
-            color: white;
-            font-weight: 600;
-            margin-bottom: var(--space-4);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: var(--space-2);
-        }
-
-        .footer-links a {
-            color: var(--gray-400);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-400);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--gray-800);
-            padding-top: var(--space-6);
-            text-align: center;
-            color: var(--gray-500);
-            font-size: 0.875rem;
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         /* Animations */
@@ -659,76 +642,36 @@
             }
         }
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
             
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-cta {
+            .hero-stats {
                 flex-direction: column;
+                gap: var(--space-4);
             }
             
-            .stats {
-                margin-left: var(--space-4);
-                margin-right: var(--space-4);
-                padding: var(--space-6);
-            }
-            
-            .features-grid,
-            .curriculum-grid {
+            .courses-grid {
                 grid-template-columns: 1fr;
             }
             
-            .impact-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .general-course {
+                grid-column: 1;
             }
-        }
-
-        @media (max-width: 480px) {
-            .impact-grid {
+            
+            .features-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        /* Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
-        /* Focus styles */
+        /* Focus styles for accessibility */
         .btn:focus,
         .nav-links a:focus {
             outline: 2px solid var(--primary-500);
@@ -740,301 +683,295 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">
+            <a href="/" class="logo">
                 <i class="fas fa-brain"></i>
-                AI Literacy
+                AI Upskilling
             </a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#curriculum">Curriculum</a></li>
-                <li><a href="#impact">Impact</a></li>
-                <li><a href="course-materials/">Start Learning</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="platform/about/">About</a></li>
+                <li><a href="platform/dashboard/">Dashboard</a></li>
             </ul>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero">
         <div class="hero-container">
             <div class="hero-badge">
-                <i class="fas fa-star"></i>
-                100% Free • No Registration Required
+                <i class="fas fa-graduation-cap"></i>
+                Role-Specific AI Education
             </div>
-            <h1>Master AI in Just 5 Days</h1>
+            <h1>Choose Your AI Learning Path</h1>
             <p class="hero-subtitle">
-                Transform your organization with practical AI skills. A comprehensive literacy program designed for non-technical employees to harness AI's power in their daily work.
+                Transform your career with AI skills tailored to your profession. From product strategy to software engineering - master the AI tools that matter most to your role.
             </p>
-            <div class="hero-cta">
-                <a href="course-materials/" class="btn btn-primary btn-lg">
-                    <i class="fas fa-rocket"></i>
-                    Start Learning Today
-                </a>
-                <a href="#curriculum" class="btn btn-secondary btn-lg">
-                    <i class="fas fa-calendar-alt"></i>
-                    View Curriculum
-                </a>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Course Tracks</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Days Each</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Free Access</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2-3</div>
+                    <div class="stat-label">Hours/Day</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">5</div>
-                <div class="stat-label">Days to Mastery</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">2-3</div>
-                <div class="stat-label">Hours per Day</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Practical Tools</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">30%</div>
-                <div class="stat-label">Productivity Boost</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- Course Selection -->
+    <section class="course-selection" id="courses">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-title">Why This Course Works</h2>
+                <h2 class="section-title">Find Your Perfect Course</h2>
                 <p class="section-subtitle">
-                    Designed by AI experts for practical application in real workplace scenarios
+                    Each course is designed specifically for your professional role, delivering immediately applicable AI skills
                 </p>
             </div>
+
+            <div class="courses-grid">
+                <!-- AI for Product Owners & Business Analysts -->
+                <div class="course-card coming-soon">
+                    <div class="course-header">
+                        <div class="course-status status-coming-soon">Coming Soon</div>
+                        <div class="course-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="course-title">AI for Product Owners & BAs</h3>
+                        <p class="course-audience">Product Managers • Business Analysts • Product Strategy</p>
+                    </div>
+                    <div class="course-content">
+                        <p class="course-description">
+                            Transform product strategy with AI-powered user research, competitive analysis, and data-driven roadmap planning. Master the tools that give product teams a competitive edge.
+                        </p>
+                        <ul class="course-highlights">
+                            <li><i class="fas fa-users"></i>AI-Enhanced User Research & Persona Development</li>
+                            <li><i class="fas fa-chart-bar"></i>Competitive Intelligence & Market Analysis</li>
+                            <li><i class="fas fa-road"></i>Smart Roadmap Planning & Feature Prioritization</li>
+                            <li><i class="fas fa-database"></i>Data-Driven Product Decisions & Metrics</li>
+                        </ul>
+                    </div>
+                    <div class="course-meta">
+                        <div class="course-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>5 days • 2-3 hours/day</span>
+                        </div>
+                        <div class="course-participants">Launch: Q1 2024</div>
+                    </div>
+                    <div class="course-action">
+                        <button class="btn btn-disabled btn-lg" disabled>
+                            <i class="fas fa-bell"></i>
+                            Notify Me When Ready
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI for Software Engineers -->
+                <div class="course-card coming-soon">
+                    <div class="course-header">
+                        <div class="course-status status-coming-soon">Enhanced Version</div>
+                        <div class="course-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="course-title">AI for Software Engineers</h3>
+                        <p class="course-audience">Developers • DevOps • Software Engineers</p>
+                    </div>
+                    <div class="course-content">
+                        <p class="course-description">
+                            Revolutionize your development workflow with AI coding assistants, automated testing, and intelligent debugging. Master GitHub Copilot and advanced AI development tools.
+                        </p>
+                        <ul class="course-highlights">
+                            <li><i class="fas fa-robot"></i>GitHub Copilot & AI Coding Assistant Mastery</li>
+                            <li><i class="fas fa-bug"></i>Intelligent Debugging & Error Resolution</li>
+                            <li><i class="fas fa-vial"></i>Automated Testing & Code Review</li>
+                            <li><i class="fas fa-file-code"></i>AI-Powered Documentation Generation</li>
+                        </ul>
+                    </div>
+                    <div class="course-meta">
+                        <div class="course-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>5 days • 2-3 hours/day</span>
+                        </div>
+                        <div class="course-participants">Enhanced: Q2 2024</div>
+                    </div>
+                    <div class="course-action">
+                        <a href="courses/ai-for-engineers/" class="btn btn-secondary btn-lg">
+                            <i class="fas fa-eye"></i>
+                            Preview Current Version
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AI for C-Suite Leaders -->
+                <div class="course-card planned">
+                    <div class="course-header">
+                        <div class="course-status status-planned">Planned</div>
+                        <div class="course-icon">
+                            <i class="fas fa-chess-king"></i>
+                        </div>
+                        <h3 class="course-title">AI for C-Suite Leaders</h3>
+                        <p class="course-audience">CEOs • CTOs • VPs • Senior Leadership</p>
+                    </div>
+                    <div class="course-content">
+                        <p class="course-description">
+                            Strategic AI adoption for organizational transformation. Learn to lead AI initiatives, make investment decisions, and drive cultural change in the age of artificial intelligence.
+                        </p>
+                        <ul class="course-highlights">
+                            <li><i class="fas fa-chart-line"></i>Strategic AI Investment & ROI Planning</li>
+                            <li><i class="fas fa-shield-alt"></i>AI Governance, Ethics & Risk Management</li>
+                            <li><i class="fas fa-users-cog"></i>Organizational Change & AI Culture</li>
+                            <li><i class="fas fa-handshake"></i>AI Vendor Selection & Partnership Strategy</li>
+                        </ul>
+                    </div>
+                    <div class="course-meta">
+                        <div class="course-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>5 days • 2-3 hours/day</span>
+                        </div>
+                        <div class="course-participants">Launch: Q2 2024</div>
+                    </div>
+                    <div class="course-action">
+                        <button class="btn btn-disabled btn-lg" disabled>
+                            <i class="fas fa-calendar"></i>
+                            Coming Q2 2024
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI for QA Engineers -->
+                <div class="course-card planned">
+                    <div class="course-header">
+                        <div class="course-status status-planned">Planned</div>
+                        <div class="course-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="course-title">AI for QA Engineers</h3>
+                        <p class="course-audience">QA Engineers • Test Automation • Quality Assurance</p>
+                    </div>
+                    <div class="course-content">
+                        <p class="course-description">
+                            Transform quality assurance with AI-powered testing, intelligent bug detection, and automated test generation. Master the future of software quality.
+                        </p>
+                        <ul class="course-highlights">
+                            <li><i class="fas fa-cogs"></i>AI-Powered Test Automation & Generation</li>
+                            <li><i class="fas fa-microscope"></i>Intelligent Bug Detection & Analysis</li>
+                            <li><i class="fas fa-tachometer-alt"></i>Performance Testing with AI</li>
+                            <li><i class="fas fa-clipboard-check"></i>Quality Metrics & Predictive Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="course-meta">
+                        <div class="course-duration">
+                            <i class="fas fa-clock"></i>
+                            <span>5 days • 2-3 hours/day</span>
+                        </div>
+                        <div class="course-participants">Launch: Q3 2024</div>
+                    </div>
+                    <div class="course-action">
+                        <button class="btn btn-disabled btn-lg" disabled>
+                            <i class="fas fa-calendar"></i>
+                            Coming Q3 2024
+                        </button>
+                    </div>
+                </div>
+
+                <!-- General Course -->
+                <div class="general-course">
+                    <div class="course-status status-available">Available Now</div>
+                    <h3>
+                        <i class="fas fa-graduation-cap"></i>
+                        AI for Everyone - Universal Course
+                    </h3>
+                    <p>
+                        Perfect for mixed teams or individuals exploring AI across multiple functions. 
+                        Get comprehensive AI literacy applicable to any role or profession.
+                    </p>
+                    <a href="courses/ai-for-everyone/" class="btn btn-lg">
+                        <i class="fas fa-rocket"></i>
+                        Start Universal Course
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features -->
+    <section class="platform-features" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Our Platform</h2>
+                <p class="section-subtitle">
+                    Built for professionals who need practical AI skills they can apply immediately
+                </p>
+            </div>
+
             <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="feature-title">Role-Specific Content</h3>
+                    <p class="feature-description">
+                        Each course is tailored to your specific profession with relevant tools, examples, and use cases that you can apply immediately.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title">Time-Efficient Learning</h3>
+                    <p class="feature-description">
+                        Just 2-3 hours per day for 5 days. Designed for busy professionals with flexible, self-paced learning options.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="feature-title">Hands-On Practice</h3>
+                    <p class="feature-description">
+                        Learn by doing with real AI tools and practical exercises. Build confidence through guided, hands-on experience.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Progress Tracking</h3>
+                    <p class="feature-description">
+                        Monitor your advancement with built-in progress tracking, assessments, and skill validation tools.
+                    </p>
+                </div>
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-gift"></i>
                     </div>
                     <h3 class="feature-title">100% Free Access</h3>
                     <p class="feature-description">
-                        Complete course materials, assessments, and resources at no cost. No hidden fees, no registration barriers.
+                        All courses and resources are completely free. No hidden costs, premium tiers, or subscription requirements.
                     </p>
                 </div>
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3 class="feature-title">Universal Accessibility</h3>
+                    <h3 class="feature-title">Community Support</h3>
                     <p class="feature-description">
-                        Designed for employees at all technical levels. No prior AI or programming knowledge required.
+                        Join a community of learners and practitioners. Share experiences, ask questions, and learn from peers.
                     </p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3 class="feature-title">Time Efficient</h3>
-                    <p class="feature-description">
-                        Just 2-3 hours per day for 5 days. Flexible scheduling to fit your work routine.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3 class="feature-title">Immediately Practical</h3>
-                    <p class="feature-description">
-                        Learn by doing with real workplace scenarios. Start applying AI tools from day one.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="feature-title">Measurable ROI</h3>
-                    <p class="feature-description">
-                        Track productivity improvements and skill development with built-in assessment tools.
-                    </p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </div>
-                    <h3 class="feature-title">Infinitely Scalable</h3>
-                    <p class="feature-description">
-                        From individual learners to enterprise-wide deployment. Scales to any organization size.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Curriculum Section -->
-    <section class="curriculum" id="curriculum">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">5-Day Learning Journey</h2>
-                <p class="section-subtitle">
-                    A carefully structured progression from AI awareness to practical mastery
-                </p>
-            </div>
-            <div class="curriculum-grid">
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">01</div>
-                        <h3 class="day-title">AI Basics & Recognition</h3>
-                        <p class="day-subtitle">Foundation & Awareness</p>
-                    </div>
-                    <div class="day-content">
-                        <div class="day-goals">
-                            <h4>Learning Goals</h4>
-                            <ul class="goals-list">
-                                <li><i class="fas fa-check-circle"></i>Understand AI fundamentals</li>
-                                <li><i class="fas fa-check-circle"></i>Identify AI in daily life</li>
-                                <li><i class="fas fa-check-circle"></i>First ChatGPT experience</li>
-                                <li><i class="fas fa-check-circle"></i>AI detection skills</li>
-                            </ul>
-                        </div>
-                        <div class="day-action">
-                            <a href="course-materials/day1.html" class="btn btn-primary">
-                                <i class="fas fa-play"></i>
-                                Start Day 1
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">02</div>
-                        <h3 class="day-title">Generative AI Mastery</h3>
-                        <p class="day-subtitle">Prompt Engineering</p>
-                    </div>
-                    <div class="day-content">
-                        <div class="day-goals">
-                            <h4>Learning Goals</h4>
-                            <ul class="goals-list">
-                                <li><i class="fas fa-check-circle"></i>Advanced ChatGPT techniques</li>
-                                <li><i class="fas fa-check-circle"></i>CLEAR prompt methodology</li>
-                                <li><i class="fas fa-check-circle"></i>Content creation skills</li>
-                                <li><i class="fas fa-check-circle"></i>Personal prompt toolkit</li>
-                            </ul>
-                        </div>
-                        <div class="day-action">
-                            <a href="course-materials/day2.html" class="btn btn-primary">
-                                <i class="fas fa-play"></i>
-                                Start Day 2
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">03</div>
-                        <h3 class="day-title">AI Tools Landscape</h3>
-                        <p class="day-subtitle">Tool Selection & Comparison</p>
-                    </div>
-                    <div class="day-content">
-                        <div class="day-goals">
-                            <h4>Learning Goals</h4>
-                            <ul class="goals-list">
-                                <li><i class="fas fa-check-circle"></i>Compare major AI models</li>
-                                <li><i class="fas fa-check-circle"></i>Explore specialized tools</li>
-                                <li><i class="fas fa-check-circle"></i>Tool selection framework</li>
-                                <li><i class="fas fa-check-circle"></i>Hands-on tool testing</li>
-                            </ul>
-                        </div>
-                        <div class="day-action">
-                            <a href="course-materials/day3.html" class="btn btn-primary">
-                                <i class="fas fa-play"></i>
-                                Start Day 3
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">04</div>
-                        <h3 class="day-title">Practical Applications</h3>
-                        <p class="day-subtitle">Workflow Integration</p>
-                    </div>
-                    <div class="day-content">
-                        <div class="day-goals">
-                            <h4>Learning Goals</h4>
-                            <ul class="goals-list">
-                                <li><i class="fas fa-check-circle"></i>Real workflow examples</li>
-                                <li><i class="fas fa-check-circle"></i>AI-enhanced processes</li>
-                                <li><i class="fas fa-check-circle"></i>Productivity measurement</li>
-                                <li><i class="fas fa-check-circle"></i>Implementation planning</li>
-                            </ul>
-                        </div>
-                        <div class="day-action">
-                            <a href="course-materials/day4.html" class="btn btn-primary">
-                                <i class="fas fa-play"></i>
-                                Start Day 4
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">05</div>
-                        <h3 class="day-title">Future & Integration</h3>
-                        <p class="day-subtitle">Strategic Planning</p>
-                    </div>
-                    <div class="day-content">
-                        <div class="day-goals">
-                            <h4>Learning Goals</h4>
-                            <ul class="goals-list">
-                                <li><i class="fas fa-check-circle"></i>AI trend analysis</li>
-                                <li><i class="fas fa-check-circle"></i>90-day learning plan</li>
-                                <li><i class="fas fa-check-circle"></i>Organization strategy</li>
-                                <li><i class="fas fa-check-circle"></i>Continuous improvement</li>
-                            </ul>
-                        </div>
-                        <div class="day-action">
-                            <a href="course-materials/day5.html" class="btn btn-primary">
-                                <i class="fas fa-play"></i>
-                                Start Day 5
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impact Section -->
-    <section class="impact" id="impact">
-        <div class="impact-container">
-            <div class="section-header">
-                <h2 class="section-title" style="color: white;">Expected Impact</h2>
-                <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">
-                    Measurable improvements in productivity and efficiency
-                </p>
-            </div>
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <div class="impact-metric">30%</div>
-                    <div class="impact-label">Average productivity increase</div>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-metric">2-5x</div>
-                    <div class="impact-label">Faster content creation</div>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-metric">75%</div>
-                    <div class="impact-label">Reduction in routine tasks</div>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-metric">90%</div>
-                    <div class="impact-label">Employee satisfaction rate</div>
                 </div>
             </div>
         </div>
@@ -1044,66 +981,26 @@
     <section class="final-cta">
         <div class="section-container">
             <div class="cta-content">
-                <h2 class="cta-title">Ready to Transform Your Team?</h2>
+                <h2 class="cta-title">Ready to Transform Your Career?</h2>
                 <p class="cta-subtitle">
                     Join thousands of professionals who have already upgraded their skills with AI
                 </p>
-                <div class="hero-cta">
-                    <a href="course-materials/" class="btn btn-primary btn-lg">
+                <div class="cta-buttons">
+                    <a href="courses/ai-for-everyone/" class="btn btn-primary btn-lg">
                         <i class="fas fa-rocket"></i>
-                        Begin Your AI Journey
+                        Start with Universal Course
                     </a>
-                    <a href="dashboard.html" class="btn btn-secondary btn-lg">
-                        <i class="fas fa-chart-line"></i>
-                        Track Your Progress
+                    <a href="#courses" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-compass"></i>
+                        Explore All Courses
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>AI Literacy Course</h3>
-                    <p>Empowering organizations with practical AI skills for the modern workplace.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="course-materials/">Course Materials</a></li>
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="docs/implementation-guide.md">Implementation Guide</a></li>
-                        <li><a href="docs/assessment-framework.md">Assessment Framework</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="docs/facilitator-guide.md">Facilitator Guide</a></li>
-                        <li><a href="assets/downloads/">Download Templates</a></li>
-                        <li><a href="#impact">Impact Studies</a></li>
-                        <li><a href="https://github.com/madhusudhankonda/ai-for-everyone-in-five-days">GitHub Repository</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="https://github.com/madhusudhankonda/ai-for-everyone-in-five-days/issues">Report Issues</a></li>
-                        <li><a href="https://github.com/madhusudhankonda/ai-for-everyone-in-five-days/discussions">Community Discussions</a></li>
-                        <li><a href="#features">FAQs</a></li>
-                        <li><a href="mailto:support@example.com">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 AI Literacy Course. Open source project under MIT License.</p>
-            </div>
-        </div>
-    </footer>
-
+    <!-- JavaScript -->
+    <script src="shared/js/platform-core.js"></script>
     <script>
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
@@ -1129,42 +1026,21 @@
             });
         });
 
-        // Card hover animations
-        document.querySelectorAll('.feature-card, .day-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Loading animation for buttons
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (!this.href || this.href.includes('#')) return;
+        // Track course selection
+        document.querySelectorAll('.course-card .btn:not([disabled])').forEach(button => {
+            button.addEventListener('click', function() {
+                // Track which course was selected
+                const courseCard = this.closest('.course-card');
+                const courseTitle = courseCard.querySelector('.course-title').textContent;
+                console.log(`Course selected: ${courseTitle}`);
                 
-                const originalText = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
-                this.style.pointerEvents = 'none';
-                
-                // Reset after navigation
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.style.pointerEvents = 'auto';
-                }, 2000);
-            });
-        });
-
-        // Progressive loading for better performance
-        document.addEventListener('DOMContentLoaded', function() {
-            // Fade in content after load
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            
-            window.addEventListener('load', function() {
-                document.body.style.opacity = '1';
+                // You can add analytics tracking here
+                if (window.gtag) {
+                    gtag('event', 'course_selection', {
+                        'course_name': courseTitle,
+                        'event_category': 'engagement'
+                    });
+                }
             });
         });
 
@@ -1183,10 +1059,19 @@
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.feature-card, .day-card, .impact-card').forEach(el => {
+        document.querySelectorAll('.course-card, .feature-card').forEach(el => {
             observer.observe(el);
+        });
+
+        // Load notification preferences for coming soon courses
+        document.querySelectorAll('.btn-disabled').forEach(button => {
+            if (button.textContent.includes('Notify Me')) {
+                button.addEventListener('click', function() {
+                    // Handle notification signup
+                    alert('Notification feature coming soon! Follow us on social media for updates.');
+                });
+            }
         });
     </script>
 </body>
 </html>
-
