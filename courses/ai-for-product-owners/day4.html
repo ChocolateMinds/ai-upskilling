@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: Data-Driven Product Decisions - AI for Product Owners</title>
+    <meta name="description" content="Master AI-powered product analytics, predictive modeling, and intelligent prioritization for data-driven product decisions.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Platform Styles -->
+    <link href="../../shared/css/platform-styles.css" rel="stylesheet">
+    
+    <style>
+        /* Product Owner Theme */
+        :root {
+            --po-primary: #7c3aed;
+            --po-secondary: #a855f7;
+            --po-accent: #06b6d4;
+            --po-success: #10b981;
+            --po-warning: #f59e0b;
+            
+            --po-gradient: linear-gradient(135deg, var(--po-primary), var(--po-secondary));
+            --po-gradient-light: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.1));
+        }
+        
+        .day-header {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-16) 0;
+            text-align: center;
+        }
+        
+        .progress-fill {
+            background: white;
+            height: 100%;
+            width: 80%;
+            border-radius: var(--radius-sm);
+            transition: width 0.3s ease;
+        }
+        
+        .analytics-dashboard {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .metric-card {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--po-primary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .prioritization-framework {
+            background: var(--gray-900);
+            color: white;
+            padding: var(--space-16) 0;
+        }
+        
+        .framework-matrix {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-8);
+            margin-top: var(--space-8);
+        }
+        
+        .matrix-quadrant {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 2px solid;
+        }
+        
+        .quadrant-1 { border-color: var(--po-success); }
+        .quadrant-2 { border-color: var(--po-warning); }
+        .quadrant-3 { border-color: var(--error-500); }
+        .quadrant-4 { border-color: var(--po-accent); }
+        
+        .learning-objectives {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .objective-card {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .tool-card {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--po-accent);
+        }
+        
+        .hands-on-workshop {
+            background: var(--gray-900);
+            color: white;
+            padding: var(--space-16) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .workshop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--space-8);
+            position: relative;
+        }
+        
+        .workshop-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .workshop-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+        
+        .workshop-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--po-gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .prompt-example {
+            background: rgba(0, 0, 0, 0.3);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin: var(--space-4) 0;
+            border-left: 4px solid var(--po-accent);
+        }
+        
+        .requirements-section {
+            background: var(--gray-50);
+            padding: var(--space-12) 0;
+        }
+        
+        .requirements-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--space-8);
+        }
+        
+        .requirement-card {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .case-study-section {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .case-study-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-8);
+            align-items: start;
+        }
+        
+        .case-study-visual {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .navigation-section {
+            background: white;
+            padding: var(--space-12) 0;
+            text-align: center;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 768px) {
+            .framework-matrix {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-study-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .requirements-examples {
+                grid-template-columns: 1fr;
+            }
+            
+            .workshop-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="../../" class="logo">
+                    <i class="fas fa-brain"></i>
+                    AI Upskilling
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Course Overview</a></li>
+                    <li><a href="day3.html">Day 3</a></li>
+                    <li><a href="../../platform/dashboard/">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Day Header -->
+    <section class="day-header">
+        <div class="container">
+            <div class="day-number">Day 4</div>
+            <h1 class="day-title">Data-Driven Product Decisions</h1>
+            <p class="day-subtitle">Master AI-powered analytics, predictive modeling, and intelligent prioritization</p>
+            
+            <div class="progress-indicator">
+                <div class="progress-fill"></div>
+            </div>
+            <p>Progress: Day 4 of 5 (80% Complete)</p>
+        </div>
+    </section>
+
+    <!-- Learning Objectives -->
+    <section class="learning-objectives">
+        <div class="container">
+            <div class="section-header">
+                <h2>Today's Learning Objectives</h2>
+                <p class="section-subtitle">Master AI-powered analytics and data-driven product decisions</p>
+            </div>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <h4><i class="fas fa-chart-bar"></i> AI Analytics Mastery</h4>
+                    <p>Learn to leverage AI for advanced product analytics and automated insight generation.</p>
+                </div>
+                <div class="objective-card">
+                    <h4><i class="fas fa-crystal-ball"></i> Predictive Modeling</h4>
+                    <p>Build AI models that predict user behavior, churn risk, and feature success.</p>
+                </div>
+                <div class="objective-card">
+                    <h4><i class="fas fa-sort-amount-up"></i> Smart Prioritization</h4>
+                    <p>Implement AI-powered feature prioritization and resource allocation frameworks.</p>
+                </div>
+                <div class="objective-card">
+                    <h4><i class="fas fa-file-alt"></i> AI-Generated Requirements</h4>
+                    <p>Use AI to create detailed user stories, PRDs, and technical specifications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Dashboard -->
+    <section class="analytics-dashboard">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI-Powered Product Analytics</h2>
+                <p class="section-subtitle">Transform raw data into actionable product insights</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="metric-card">
+                    <div class="metric-value">94.2%</div>
+                    <h4>User Satisfaction</h4>
+                    <p>AI sentiment analysis of user feedback shows strong positive trend (+5.2% vs last month)</p>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">127%</div>
+                    <h4>Feature Adoption</h4>
+                    <p>AI-recommended features show 127% higher adoption than traditionally prioritized features</p>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">3.7x</div>
+                    <h4>Insight Speed</h4>
+                    <p>AI analytics deliver insights 3.7x faster than manual analysis processes</p>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value">68%</div>
+                    <h4>Prediction Accuracy</h4>
+                    <p>AI models accurately predict user behavior and feature success with 68% precision</p>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <h3>AI Analytics Tools for Product Managers</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h4><i class="fas fa-chart-line"></i> Mixpanel AI</h4>
+                        <p>Automated insights, anomaly detection, and predictive analytics for user behavior</p>
+                        <ul>
+                            <li>• Automatic insight generation</li>
+                            <li>• Cohort analysis with AI clustering</li>
+                            <li>• Predictive funnel optimization</li>
+                        </ul>
+                    </div>
+                    <div class="tool-card">
+                        <h4><i class="fas fa-brain"></i> Amplitude AI</h4>
+                        <p>AI-powered user journey analysis and behavioral prediction</p>
+                        <ul>
+                            <li>• Behavioral pattern recognition</li>
+                            <li>• Automated retention analysis</li>
+                            <li>• Predictive user scoring</li>
+                        </ul>
+                    </div>
+                    <div class="tool-card">
+                        <h4><i class="fas fa-robot"></i> Tableau AI</h4>
+                        <p>Natural language queries and automated data storytelling</p>
+                        <ul>
+                            <li>• Ask Data feature</li>
+                            <li>• Automated dashboard creation</li>
+                            <li>• AI-generated explanations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Predictive Modeling Workshop -->
+    <section class="hands-on-workshop">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hands-On: Predictive Product Modeling</h2>
+                <p class="section-subtitle">Build AI models to predict user behavior and feature success</p>
+            </div>
+            
+            <div class="workshop-grid">
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div class="workshop-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Exercise 1: Churn Prediction Model</h3>
+                    </div>
+                    <p><strong>Goal:</strong> Build an AI model to predict user churn risk</p>
+                    <p><strong>Time:</strong> 25 minutes</p>
+                    
+                    <h4>Claude Prompt for Churn Analysis:</h4>
+                    <div class="prompt-example">
+Analyze this user behavior data to predict churn risk:
+[Insert user activity data: login frequency, feature usage, support tickets, etc.]
+
+Create a churn prediction model that:
+1. Identifies high-risk user characteristics
+2. Calculates churn probability scores
+3. Suggests intervention strategies
+4. Provides early warning indicators
+5. Recommends retention tactics
+
+Format as a comprehensive churn analysis report.
+                    </div>
+                    
+                    <a href="https://claude.ai/" target="_blank" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-external-link-alt"></i>
+                        Try in Claude
+                    </a>
+                </div>
+                
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div class="workshop-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Exercise 2: Feature Success Prediction</h3>
+                    </div>
+                    <p><strong>Goal:</strong> Predict which features will succeed before launch</p>
+                    <p><strong>Time:</strong> 20 minutes</p>
+                    
+                    <h4>GPT-4 Analysis Prompt:</h4>
+                    <div class="prompt-example">
+Predict the success probability of these product features:
+[List features with descriptions, target users, effort estimates]
+
+For each feature, analyze:
+1. Market demand indicators
+2. User value proposition strength
+3. Implementation complexity vs benefit
+4. Competitive advantage potential
+5. Success probability score (1-100)
+6. Risk factors and mitigation strategies
+
+Rank features by predicted ROI and provide strategic recommendations.
+                    </div>
+                    
+                    <a href="https://chat.openai.com/" target="_blank" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-external-link-alt"></i>
+                        Try in ChatGPT
+                    </a>
+                </div>
+                
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div class="workshop-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Exercise 3: User Lifetime Value Prediction</h3>
+                    </div>
+                    <p><strong>Goal:</strong> Calculate and predict customer lifetime value using AI</p>
+                    <p><strong>Time:</strong> 30 minutes</p>
+                    
+                    <h4>Advanced LTV Modeling:</h4>
+                    <div class="prompt-example">
+Calculate Customer Lifetime Value (LTV) using this data:
+[User acquisition data, subscription patterns, usage metrics, churn data]
+
+Provide:
+1. Current LTV calculation by user segment
+2. Predictive LTV model for new users
+3. Factors that increase/decrease LTV
+4. Strategies to optimize LTV
+5. LTV:CAC ratio analysis
+6. Revenue forecasting model
+
+Include statistical confidence levels and assumptions.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prioritization Framework -->
+    <section class="prioritization-framework">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI-Enhanced Prioritization Matrix</h2>
+                <p class="section-subtitle">Smart feature prioritization using AI impact analysis</p>
+            </div>
+            
+            <div class="framework-matrix">
+                <div class="matrix-quadrant quadrant-1">
+                    <h3>High Impact, Low Effort</h3>
+                    <p><strong>Quick Wins</strong> - Execute immediately</p>
+                    <ul>
+                        <li>• AI-powered search improvements</li>
+                        <li>• Automated user onboarding</li>
+                        <li>• Smart notifications</li>
+                        <li>• Personalized recommendations</li>
+                    </ul>
+                </div>
+                
+                <div class="matrix-quadrant quadrant-2">
+                    <h3>High Impact, High Effort</h3>
+                    <p><strong>Major Projects</strong> - Plan carefully</p>
+                    <ul>
+                        <li>• AI recommendation engine</li>
+                        <li>• Predictive analytics dashboard</li>
+                        <li>• Intelligent automation platform</li>
+                        <li>• ML-powered personalization</li>
+                    </ul>
+                </div>
+                
+                <div class="matrix-quadrant quadrant-3">
+                    <h3>Low Impact, High Effort</h3>
+                    <p><strong>Avoid</strong> - Question necessity</p>
+                    <ul>
+                        <li>• Complex integrations with low ROI</li>
+                        <li>• Over-engineered features</li>
+                        <li>• Vanity metrics implementations</li>
+                        <li>• Unnecessary AI complexity</li>
+                    </ul>
+                </div>
+                
+                <div class="matrix-quadrant quadrant-4">
+                    <h3>Low Impact, Low Effort</h3>
+                    <p><strong>Fill-ins</strong> - Use spare capacity</p>
+                    <ul>
+                        <li>• UI polish and refinements</li>
+                        <li>• Minor bug fixes</li>
+                        <li>• Documentation updates</li>
+                        <li>• Small UX improvements</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <h3>AI Prioritization Tools</h3>
+                <p>Use these prompts to enhance your prioritization decisions:</p>
+                <div class="prompt-example">
+Prioritize these product features using data-driven analysis:
+[List features with user research data, effort estimates, business goals]
+
+For each feature:
+1. Calculate impact score based on user value and business metrics
+2. Estimate effort and resource requirements
+3. Assess strategic alignment and competitive advantage
+4. Consider technical dependencies and risks
+5. Provide final priority ranking with rationale
+
+Format as a prioritized roadmap with timeline recommendations.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI-Generated Requirements -->
+    <section class="requirements-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI-Generated Product Requirements</h2>
+                <p class="section-subtitle">Accelerate documentation with AI-powered requirement generation</p>
+            </div>
+            
+            <div class="requirements-examples">
+                <div class="requirement-card">
+                    <h3>AI User Story Generation</h3>
+                    <div class="prompt-example">
+Generate detailed user stories for this feature:
+Feature: AI-powered search improvement
+
+Create user stories including:
+- Primary user persona and context
+- User goals and motivations
+- Acceptance criteria (Given/When/Then format)
+- Edge cases and error scenarios
+- Definition of done
+- Success metrics
+
+Format in standard Agile user story format.
+                    </div>
+                </div>
+                
+                <div class="requirement-card">
+                    <h3>PRD Template Generation</h3>
+                    <div class="prompt-example">
+Create a comprehensive Product Requirements Document (PRD) for:
+[Feature/product description]
+
+Include:
+1. Executive Summary
+2. Problem Statement & User Needs
+3. Success Metrics & KPIs
+4. Functional Requirements
+5. Non-functional Requirements
+6. User Experience Requirements
+7. Technical Considerations
+8. Timeline & Milestones
+9. Risk Assessment
+10. Success Criteria
+
+Use professional PRD format with clear sections and actionable details.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Case Study: Spotify's AI-Driven Product Decisions</h2>
+            </div>
+            <div class="case-study-content">
+                <div>
+                    <h3>The Challenge</h3>
+                    <p>Spotify needed to make data-driven decisions about which audio features to prioritize across their 400M+ users while maximizing engagement and retention.</p>
+                    
+                    <h3>The AI Solution</h3>
+                    <ul>
+                        <li><strong>Predictive Analytics:</strong> AI models predict which features will drive engagement</li>
+                        <li><strong>A/B Testing AI:</strong> Automated experiment design and statistical analysis</li>
+                        <li><strong>User Behavior Modeling:</strong> AI segments users and predicts feature adoption</li>
+                        <li><strong>Dynamic Prioritization:</strong> Real-time feature ranking based on performance data</li>
+                    </ul>
+                    
+                    <h3>Key Metrics</h3>
+                    <ul>
+                        <li>40% faster feature development cycle</li>
+                        <li>65% improvement in feature adoption rates</li>
+                        <li>30% reduction in failed feature launches</li>
+                        <li>25% increase in user engagement</li>
+                    </ul>
+                </div>
+                <div class="case-study-visual">
+                    <h3>AI-Driven Features</h3>
+                    <ul>
+                        <li><strong>Discover Weekly:</strong> 90M+ weekly active users</li>
+                        <li><strong>AI DJ:</strong> Personalized music curation</li>
+                        <li><strong>Podcast Recommendations:</strong> 3x engagement boost</li>
+                        <li><strong>Blend Playlists:</strong> Social music discovery</li>
+                    </ul>
+                    
+                    <h4>Success Framework</h4>
+                    <ol>
+                        <li>Data-driven hypothesis generation</li>
+                        <li>AI-powered user segmentation</li>
+                        <li>Predictive feature scoring</li>
+                        <li>Automated A/B testing</li>
+                        <li>Real-time optimization</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="navigation-section">
+        <div class="container">
+            <h2>Ready for Day 5?</h2>
+            <p>Excellent progress! Tomorrow we'll complete your transformation with AI roadmap planning and strategic implementation.</p>
+            
+            <div class="nav-buttons">
+                <a href="day3.html" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Day 3
+                </a>
+                <button class="btn btn-primary btn-lg" onclick="completeDay(4)">
+                    <i class="fas fa-check"></i>
+                    Mark Day 4 Complete
+                </button>
+                <a href="day5.html" class="btn btn-primary btn-lg">
+                    Complete the Journey
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="../../shared/js/platform-core.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.aiUpskillPlatform) {
+                window.aiUpskillPlatform.startDay('ai-for-product-owners', 4);
+                window.aiUpskillPlatform.trackPageView('product-owner-day4');
+            }
+        });
+
+        function completeDay(dayNumber) {
+            if (window.aiUpskillPlatform) {
+                const timeSpent = Date.now() - window.aiUpskillPlatform.pageStartTime;
+                window.aiUpskillPlatform.completeDay('ai-for-product-owners', dayNumber, timeSpent, 100);
+                
+                alert('Fantastic! You\'re almost there. One final day to complete your AI transformation!');
+                document.querySelector('.progress-fill').style.width = '80%';
+            }
+        }
+    </script>
+</body>
+</html>
+

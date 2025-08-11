@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2: AI-Enhanced User Research - AI for Product Owners</title>
+    <meta name="description" content="Master AI-powered user research techniques. Learn automated survey analysis, AI persona generation, and behavioral analytics for deeper customer insights.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Platform Styles -->
+    <link href="../../shared/css/platform-styles.css" rel="stylesheet">
+    
+    <style>
+        /* Product Owner Theme */
+        :root {
+            --po-primary: #7c3aed;
+            --po-secondary: #a855f7;
+            --po-accent: #06b6d4;
+            --po-success: #10b981;
+            --po-warning: #f59e0b;
+            
+            --po-gradient: linear-gradient(135deg, var(--po-primary), var(--po-secondary));
+            --po-gradient-light: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.1));
+        }
+        
+        /* Day-specific styling */
+        .day-header {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-16) 0;
+            text-align: center;
+        }
+        
+        .day-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: var(--space-4);
+            opacity: 0.9;
+        }
+        
+        .day-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+        }
+        
+        .day-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+        
+        .progress-indicator {
+            background: rgba(255, 255, 255, 0.2);
+            height: 8px;
+            border-radius: var(--radius-sm);
+            margin: var(--space-6) auto var(--space-4);
+            max-width: 400px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: white;
+            height: 100%;
+            width: 40%;
+            border-radius: var(--radius-sm);
+            transition: width 0.3s ease;
+        }
+        
+        .research-methodology {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .methodology-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-6);
+            position: relative;
+        }
+        
+        .methodology-flow::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: var(--po-gradient);
+            z-index: 1;
+        }
+        
+        .methodology-step {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--po-primary);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--po-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0 auto var(--space-4);
+        }
+        
+        .tool-spotlight {
+            background: var(--po-gradient-light);
+            padding: var(--space-12) 0;
+        }
+        
+        .tools-carousel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-8);
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+        }
+        
+        .tool-header {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-6);
+            text-align: center;
+        }
+        
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            font-size: 1.5rem;
+        }
+        
+        .tool-content {
+            padding: var(--space-6);
+        }
+        
+        .tool-features {
+            list-style: none;
+            margin: var(--space-4) 0;
+        }
+        
+        .tool-features li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-2);
+            color: var(--gray-600);
+        }
+        
+        .tool-features li i {
+            color: var(--po-success);
+            font-size: 0.875rem;
+        }
+        
+        .hands-on-workshop {
+            background: var(--gray-900);
+            color: white;
+            padding: var(--space-16) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hands-on-workshop::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .workshop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--space-8);
+            position: relative;
+        }
+        
+        .workshop-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .workshop-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+        
+        .workshop-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--po-gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .prompt-example {
+            background: rgba(0, 0, 0, 0.3);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin: var(--space-4) 0;
+            border-left: 4px solid var(--po-accent);
+        }
+        
+        .case-study-section {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            align-items: start;
+        }
+        
+        .case-study-content {
+            padding: var(--space-6);
+        }
+        
+        .case-study-visual {
+            background: var(--po-gradient-light);
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .metrics-highlight {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+        
+        .metric-item {
+            background: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            border-left: 4px solid var(--po-accent);
+        }
+        
+        .metric-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--po-primary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .persona-builder {
+            background: var(--gray-50);
+            padding: var(--space-12) 0;
+        }
+        
+        .persona-template {
+            background: white;
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .persona-section {
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .persona-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .persona-field {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: var(--space-4);
+            margin-bottom: var(--space-3);
+        }
+        
+        .field-label {
+            font-weight: 600;
+            color: var(--po-primary);
+        }
+        
+        .field-value {
+            color: var(--gray-700);
+        }
+        
+        @media (max-width: 768px) {
+            .methodology-flow {
+                grid-template-columns: 1fr;
+            }
+            
+            .methodology-flow::before {
+                display: none;
+            }
+            
+            .case-study-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .persona-field {
+                grid-template-columns: 1fr;
+                gap: var(--space-2);
+            }
+            
+            .workshop-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="../../" class="logo">
+                    <i class="fas fa-brain"></i>
+                    AI Upskilling
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Course Overview</a></li>
+                    <li><a href="day1.html">Day 1</a></li>
+                    <li><a href="../../platform/dashboard/">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Day Header -->
+    <section class="day-header">
+        <div class="container">
+            <div class="day-number">Day 2</div>
+            <h1 class="day-title">AI-Enhanced User Research</h1>
+            <p class="day-subtitle">Transform customer insights with AI-powered research techniques</p>
+            
+            <div class="progress-indicator">
+                <div class="progress-fill"></div>
+            </div>
+            <p>Progress: Day 2 of 5 (40% Complete)</p>
+        </div>
+    </section>
+
+    <!-- Research Methodology -->
+    <section class="research-methodology">
+        <div class="container">
+            <div class="section-header">
+                <h2>The AI Research Methodology</h2>
+                <p class="section-subtitle">A systematic approach to AI-enhanced user research</p>
+            </div>
+            <div class="methodology-flow">
+                <div class="methodology-step">
+                    <div class="step-number">1</div>
+                    <h4>Collect</h4>
+                    <p>Gather user data from multiple sources: surveys, interviews, reviews, support tickets</p>
+                </div>
+                <div class="methodology-step">
+                    <div class="step-number">2</div>
+                    <h4>Process</h4>
+                    <p>Use AI to clean, categorize, and structure raw user feedback data</p>
+                </div>
+                <div class="methodology-step">
+                    <div class="step-number">3</div>
+                    <h4>Analyze</h4>
+                    <p>Apply AI sentiment analysis, theme extraction, and pattern recognition</p>
+                </div>
+                <div class="methodology-step">
+                    <div class="step-number">4</div>
+                    <h4>Synthesize</h4>
+                    <p>Generate personas, insights, and actionable recommendations using AI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tool Spotlight -->
+    <section class="tool-spotlight">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI Research Tools Mastery</h2>
+                <p class="section-subtitle">Essential tools for modern user research</p>
+            </div>
+            <div class="tools-carousel">
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>ChatGPT for Research</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p>Transform raw user feedback into actionable insights with advanced prompt engineering.</p>
+                        <ul class="tool-features">
+                            <li><i class="fas fa-check"></i>Sentiment analysis of user reviews</li>
+                            <li><i class="fas fa-check"></i>Theme extraction from interviews</li>
+                            <li><i class="fas fa-check"></i>Survey response analysis</li>
+                            <li><i class="fas fa-check"></i>Persona generation from data</li>
+                        </ul>
+                        <a href="#chatgpt-workshop" class="btn btn-primary btn-sm">Try Workshop</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Claude for Deep Analysis</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p>Leverage Claude's advanced reasoning for complex user behavior analysis.</p>
+                        <ul class="tool-features">
+                            <li><i class="fas fa-check"></i>Complex survey analysis</li>
+                            <li><i class="fas fa-check"></i>Multi-source data synthesis</li>
+                            <li><i class="fas fa-check"></i>Behavioral pattern identification</li>
+                            <li><i class="fas fa-check"></i>Research report generation</li>
+                        </ul>
+                        <a href="#claude-workshop" class="btn btn-primary btn-sm">Try Workshop</a>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>MonkeyLearn</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p>Automated text analysis for large-scale user feedback processing.</p>
+                        <ul class="tool-features">
+                            <li><i class="fas fa-check"></i>Automated sentiment analysis</li>
+                            <li><i class="fas fa-check"></i>Topic classification</li>
+                            <li><i class="fas fa-check"></i>Intent detection</li>
+                            <li><i class="fas fa-check"></i>Real-time processing</li>
+                        </ul>
+                        <a href="#monkeylearn-workshop" class="btn btn-primary btn-sm">Try Workshop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hands-On Workshop -->
+    <section class="hands-on-workshop" id="chatgpt-workshop">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hands-On Workshop: AI Survey Analysis</h2>
+                <p class="section-subtitle">Learn to extract insights from user surveys using AI</p>
+            </div>
+            <div class="workshop-grid">
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div class="workshop-icon">
+                            <i class="fas fa-poll"></i>
+                        </div>
+                        <h3>Exercise 1: Survey Sentiment Analysis</h3>
+                    </div>
+                    <p><strong>Goal:</strong> Analyze user satisfaction survey responses</p>
+                    <p><strong>Time:</strong> 15 minutes</p>
+                    
+                    <h4>Sample Data:</h4>
+                    <div class="prompt-example">
+"The app is okay but crashes sometimes. Love the new design though!"
+"Customer service was terrible. Waited 2 hours for help."
+"Amazing product! Would definitely recommend to others."
+"Interface is confusing. Can't find basic features easily."
+                    </div>
+                    
+                    <h4>ChatGPT Prompt:</h4>
+                    <div class="prompt-example">
+Analyze these customer survey responses:
+[Insert survey data]
+
+For each response, provide:
+1. Sentiment score (1-10)
+2. Key themes mentioned
+3. Specific pain points
+4. Positive highlights
+5. Overall summary with actionable insights
+                    </div>
+                    
+                    <a href="https://chat.openai.com/" target="_blank" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-external-link-alt"></i>
+                        Try in ChatGPT
+                    </a>
+                </div>
+                
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div class="workshop-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3>Exercise 2: Persona Generation</h3>
+                    </div>
+                    <p><strong>Goal:</strong> Create user personas from interview data</p>
+                    <p><strong>Time:</strong> 20 minutes</p>
+                    
+                    <h4>Claude Prompt Template:</h4>
+                    <div class="prompt-example">
+Based on these user interviews:
+[Insert interview transcripts]
+
+Create 3 distinct user personas including:
+- Demographics and background
+- Goals and motivations
+- Pain points and frustrations
+- Technology comfort level
+- Preferred communication style
+- Key quote that represents them
+
+Format as detailed persona cards.
+                    </div>
+                    
+                    <a href="https://claude.ai/" target="_blank" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-external-link-alt"></i>
+                        Try in Claude
+                    </a>
+                </div>
+                
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div class="workshop-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Exercise 3: Behavioral Pattern Analysis</h3>
+                    </div>
+                    <p><strong>Goal:</strong> Identify usage patterns from user data</p>
+                    <p><strong>Time:</strong> 25 minutes</p>
+                    
+                    <h4>Advanced Analysis Prompt:</h4>
+                    <div class="prompt-example">
+Analyze this user behavior data:
+[Insert usage analytics, feature adoption rates, user journey data]
+
+Identify:
+1. Common user journey patterns
+2. Drop-off points and reasons
+3. High-engagement behaviors
+4. User segmentation opportunities
+5. Feature usage correlations
+6. Recommendations for product improvements
+                    </div>
+                    
+                    <p class="mt-4"><strong>Tools needed:</strong> Your product analytics data + ChatGPT/Claude</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Case Study: Airbnb's AI-Powered User Research</h2>
+            </div>
+            <div class="case-study-grid">
+                <div class="case-study-content">
+                    <h3>The Challenge</h3>
+                    <p>Airbnb needed to understand guest preferences across millions of reviews and feedback points to improve host recommendations and user experience.</p>
+                    
+                    <h3>The AI Solution</h3>
+                    <ul>
+                        <li><strong>Natural Language Processing:</strong> Analyzed 500M+ guest reviews</li>
+                        <li><strong>Sentiment Analysis:</strong> Identified satisfaction drivers by property type</li>
+                        <li><strong>Topic Modeling:</strong> Discovered emerging guest preferences</li>
+                        <li><strong>Predictive Analytics:</strong> Forecasted guest satisfaction scores</li>
+                    </ul>
+                    
+                    <h3>Implementation Process</h3>
+                    <ol>
+                        <li>Collected reviews in 62 languages</li>
+                        <li>Applied AI translation and sentiment analysis</li>
+                        <li>Created dynamic guest personas</li>
+                        <li>Built recommendation algorithms</li>
+                        <li>A/B tested AI-driven features</li>
+                    </ol>
+                </div>
+                <div class="case-study-visual">
+                    <h3>Results Achieved</h3>
+                    <div class="metrics-highlight">
+                        <div class="metric-item">
+                            <div class="metric-number">35%</div>
+                            <div>Faster Insights</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-number">60%</div>
+                            <div>More Personas</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-number">25%</div>
+                            <div>Better Matching</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-number">$2M</div>
+                            <div>Research Savings</div>
+                        </div>
+                    </div>
+                    
+                    <h4>Key Learnings</h4>
+                    <ul>
+                        <li>AI scales research across languages and regions</li>
+                        <li>Real-time analysis enables rapid iteration</li>
+                        <li>Combined AI + human insight yields best results</li>
+                        <li>Personas become dynamic, not static documents</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Persona Builder -->
+    <section class="persona-builder">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI Persona Template</h2>
+                <p class="section-subtitle">Use this template with AI tools to generate comprehensive user personas</p>
+            </div>
+            <div class="persona-template">
+                <h3>AI-Generated Persona Example</h3>
+                <p><em>Generated from 50 user interviews and 200 survey responses</em></p>
+                
+                <div class="persona-section">
+                    <h4>Basic Information</h4>
+                    <div class="persona-field">
+                        <div class="field-label">Name:</div>
+                        <div class="field-value">Sarah the Strategic Planner</div>
+                    </div>
+                    <div class="persona-field">
+                        <div class="field-label">Age Range:</div>
+                        <div class="field-value">32-38 years old</div>
+                    </div>
+                    <div class="persona-field">
+                        <div class="field-label">Role:</div>
+                        <div class="field-value">Senior Product Manager at a B2B SaaS company</div>
+                    </div>
+                    <div class="persona-field">
+                        <div class="field-label">Location:</div>
+                        <div class="field-value">Urban areas, primarily US and Europe</div>
+                    </div>
+                </div>
+                
+                <div class="persona-section">
+                    <h4>Goals & Motivations</h4>
+                    <ul>
+                        <li>Wants to make data-driven product decisions</li>
+                        <li>Seeks to understand user behavior at scale</li>
+                        <li>Aims to improve team efficiency and productivity</li>
+                        <li>Desires to stay ahead of industry trends</li>
+                    </ul>
+                </div>
+                
+                <div class="persona-section">
+                    <h4>Pain Points & Frustrations</h4>
+                    <ul>
+                        <li>Overwhelmed by the volume of user feedback</li>
+                        <li>Struggles to identify patterns in qualitative data</li>
+                        <li>Limited time for deep user research</li>
+                        <li>Difficulty communicating insights to stakeholders</li>
+                    </ul>
+                </div>
+                
+                <div class="persona-section">
+                    <h4>Technology & Tools</h4>
+                    <div class="persona-field">
+                        <div class="field-label">Current Stack:</div>
+                        <div class="field-value">Mixpanel, Amplitude, UserVoice, Slack, Notion</div>
+                    </div>
+                    <div class="persona-field">
+                        <div class="field-label">AI Comfort:</div>
+                        <div class="field-value">Intermediate - uses ChatGPT occasionally</div>
+                    </div>
+                    <div class="persona-field">
+                        <div class="field-label">Learning Style:</div>
+                        <div class="field-value">Hands-on tutorials, peer learning, case studies</div>
+                    </div>
+                </div>
+                
+                <div class="persona-section">
+                    <h4>Key Quote</h4>
+                    <blockquote style="font-style: italic; color: var(--po-primary); font-size: 1.1rem;">
+                        "I need AI tools that help me understand my users better, not replace my judgment. 
+                        Give me insights I can act on, not just more data to analyze."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="navigation-section">
+        <div class="container">
+            <h2>Ready for Day 3?</h2>
+            <p>You've mastered AI-enhanced user research! Tomorrow we'll explore competitive intelligence and market analysis.</p>
+            
+            <div class="nav-buttons">
+                <a href="day1.html" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Day 1
+                </a>
+                <button class="btn btn-primary btn-lg" onclick="completeDay(2)">
+                    <i class="fas fa-check"></i>
+                    Mark Day 2 Complete
+                </button>
+                <a href="day3.html" class="btn btn-primary btn-lg">
+                    Continue to Day 3
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="../../shared/js/platform-core.js"></script>
+    <script>
+        // Initialize day tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.aiUpskillPlatform) {
+                window.aiUpskillPlatform.startDay('ai-for-product-owners', 2);
+                window.aiUpskillPlatform.trackPageView('product-owner-day2');
+            }
+        });
+
+        // Complete day function
+        function completeDay(dayNumber) {
+            if (window.aiUpskillPlatform) {
+                const timeSpent = Date.now() - window.aiUpskillPlatform.pageStartTime;
+                window.aiUpskillPlatform.completeDay('ai-for-product-owners', dayNumber, timeSpent, 100);
+                
+                // Show completion message
+                alert('Excellent work! You\'ve completed Day 2. Ready to master competitive intelligence?');
+                
+                // Update progress bar
+                document.querySelector('.progress-fill').style.width = '40%';
+            }
+        }
+
+        // Track workshop engagement
+        document.querySelectorAll('.workshop-card .btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if (window.aiUpskillPlatform) {
+                    window.aiUpskillPlatform.trackEvent('workshop_started', {
+                        courseId: 'ai-for-product-owners',
+                        day: 2,
+                        workshop: this.closest('.workshop-card').querySelector('h3').textContent
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.methodology-step, .tool-card, .workshop-card, .metric-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Copy prompt to clipboard functionality
+        document.querySelectorAll('.prompt-example').forEach(example => {
+            example.addEventListener('click', function() {
+                navigator.clipboard.writeText(this.textContent.trim()).then(() => {
+                    // Show temporary feedback
+                    const original = this.style.background;
+                    this.style.background = 'rgba(16, 185, 129, 0.2)';
+                    setTimeout(() => {
+                        this.style.background = original;
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

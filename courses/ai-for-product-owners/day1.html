@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: AI Foundation for Product Strategy - AI for Product Owners</title>
+    <meta name="description" content="Master AI fundamentals for product management. Learn how AI transforms product strategy, user understanding, and data-driven decision making.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Platform Styles -->
+    <link href="../../shared/css/platform-styles.css" rel="stylesheet">
+    
+    <style>
+        /* Product Owner Theme */
+        :root {
+            --po-primary: #7c3aed;
+            --po-secondary: #a855f7;
+            --po-accent: #06b6d4;
+            --po-success: #10b981;
+            --po-warning: #f59e0b;
+            
+            --po-gradient: linear-gradient(135deg, var(--po-primary), var(--po-secondary));
+            --po-gradient-light: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.1));
+        }
+        
+        /* Day-specific styling */
+        .day-header {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-16) 0;
+            text-align: center;
+        }
+        
+        .day-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: var(--space-4);
+            opacity: 0.9;
+        }
+        
+        .day-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+        }
+        
+        .day-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+        
+        .learning-objectives {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .objective-card {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .content-section {
+            padding: var(--space-12) 0;
+        }
+        
+        .content-section:nth-child(even) {
+            background: var(--gray-50);
+        }
+        
+        .lesson-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            align-items: start;
+        }
+        
+        .lesson-text {
+            padding: var(--space-6);
+        }
+        
+        .lesson-activity {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--po-accent);
+        }
+        
+        .activity-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+            color: var(--po-primary);
+            font-weight: 600;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--po-gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .key-concepts {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .concept-card {
+            background: var(--gray-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--po-accent);
+            transition: all 0.3s ease;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .concept-title {
+            color: var(--po-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .hands-on-section {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-16) 0;
+            text-align: center;
+        }
+        
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-8);
+        }
+        
+        .exercise-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+        
+        .exercise-number {
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+        }
+        
+        .navigation-section {
+            background: white;
+            padding: var(--space-12) 0;
+            text-align: center;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .progress-indicator {
+            background: var(--gray-100);
+            height: 8px;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--space-8);
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: var(--po-gradient);
+            height: 100%;
+            width: 20%;
+            border-radius: var(--radius-sm);
+            transition: width 0.3s ease;
+        }
+        
+        .resources-section {
+            background: var(--gray-50);
+            padding: var(--space-12) 0;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .resource-card {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--po-success);
+        }
+        
+        .resource-title {
+            color: var(--po-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .case-study {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .case-study-content {
+            background: var(--po-gradient-light);
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .lesson-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .day-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="../../" class="logo">
+                    <i class="fas fa-brain"></i>
+                    AI Upskilling
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Course Overview</a></li>
+                    <li><a href="../../platform/dashboard/">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Day Header -->
+    <section class="day-header">
+        <div class="container">
+            <div class="day-number">Day 1</div>
+            <h1 class="day-title">AI Foundation for Product Strategy</h1>
+            <p class="day-subtitle">Understanding AI's transformative role in modern product management</p>
+            
+            <div class="progress-indicator">
+                <div class="progress-fill"></div>
+            </div>
+            <p>Progress: Day 1 of 5 (20% Complete)</p>
+        </div>
+    </section>
+
+    <!-- Learning Objectives -->
+    <section class="learning-objectives">
+        <div class="container">
+            <div class="section-header">
+                <h2>Today's Learning Objectives</h2>
+                <p class="section-subtitle">By the end of Day 1, you'll have a solid foundation in AI for product management</p>
+            </div>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <h4><i class="fas fa-brain"></i> Understand AI's Role in Product Management</h4>
+                    <p>Learn how AI transforms traditional product management practices and creates new opportunities for innovation.</p>
+                </div>
+                <div class="objective-card">
+                    <h4><i class="fas fa-chart-line"></i> Master Data-Driven Decision Making</h4>
+                    <p>Discover how to leverage AI for better product metrics analysis and strategic decision making.</p>
+                </div>
+                <div class="objective-card">
+                    <h4><i class="fas fa-users"></i> AI-Enhanced User Understanding</h4>
+                    <p>Explore how AI can deepen customer insights and improve user experience design.</p>
+                </div>
+                <div class="objective-card">
+                    <h4><i class="fas fa-rocket"></i> Identify Quick Wins</h4>
+                    <p>Find immediate AI applications you can implement in your current product management role.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lesson 1: The AI Product Revolution -->
+    <section class="content-section">
+        <div class="container">
+            <div class="lesson-content">
+                <div class="lesson-text">
+                    <h2>Lesson 1: The AI Product Revolution</h2>
+                    <p>The product management landscape is undergoing a fundamental transformation. AI is not just another tool in your toolkit—it's reshaping how we understand users, make decisions, and create value.</p>
+                    
+                    <h3>Why AI Matters for Product Managers</h3>
+                    <ul>
+                        <li><strong>Scale Insights:</strong> Analyze thousands of user interactions in minutes, not weeks</li>
+                        <li><strong>Predict Behavior:</strong> Anticipate user needs and market trends before they emerge</li>
+                        <li><strong>Automate Analysis:</strong> Focus on strategy while AI handles data processing</li>
+                        <li><strong>Personalize Experiences:</strong> Create hyper-targeted product experiences</li>
+                    </ul>
+                    
+                    <p>According to recent studies, product teams using AI tools report 40% faster time-to-insight and 60% improvement in feature adoption rates.</p>
+                </div>
+                <div class="lesson-activity">
+                    <div class="activity-header">
+                        <div class="activity-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Activity 1: AI Product Audit</h4>
+                    </div>
+                    <p><strong>Time:</strong> 15 minutes</p>
+                    <p><strong>Goal:</strong> Identify AI opportunities in your current product</p>
+                    
+                    <ol>
+                        <li>List your top 3 product challenges</li>
+                        <li>For each challenge, brainstorm how AI could help</li>
+                        <li>Rate each opportunity: High/Medium/Low impact</li>
+                        <li>Identify which you could start this week</li>
+                    </ol>
+                    
+                    <div class="mt-4">
+                        <button class="btn btn-primary btn-sm" onclick="toggleElement('audit-template')">
+                            <i class="fas fa-download"></i>
+                            Download Template
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Concepts -->
+    <section class="key-concepts">
+        <div class="container">
+            <div class="section-header">
+                <h2>Key AI Concepts for Product Managers</h2>
+                <p class="section-subtitle">Essential terminology and concepts you need to know</p>
+            </div>
+            <div class="concepts-grid">
+                <div class="concept-card">
+                    <h4 class="concept-title">
+                        <i class="fas fa-robot"></i>
+                        Machine Learning (ML)
+                    </h4>
+                    <p>Algorithms that learn patterns from data to make predictions or decisions. Essential for user behavior analysis and feature recommendations.</p>
+                </div>
+                <div class="concept-card">
+                    <h4 class="concept-title">
+                        <i class="fas fa-brain"></i>
+                        Large Language Models (LLMs)
+                    </h4>
+                    <p>AI systems that understand and generate human-like text. Perfect for customer research, content creation, and analysis.</p>
+                </div>
+                <div class="concept-card">
+                    <h4 class="concept-title">
+                        <i class="fas fa-chart-bar"></i>
+                        Predictive Analytics
+                    </h4>
+                    <p>Using AI to forecast future trends, user behavior, and product performance based on historical data.</p>
+                </div>
+                <div class="concept-card">
+                    <h4 class="concept-title">
+                        <i class="fas fa-comment-dots"></i>
+                        Natural Language Processing (NLP)
+                    </h4>
+                    <p>AI that understands human language. Crucial for analyzing customer feedback, reviews, and support conversations.</p>
+                </div>
+                <div class="concept-card">
+                    <h4 class="concept-title">
+                        <i class="fas fa-user-circle"></i>
+                        Personalization Engines
+                    </h4>
+                    <p>AI systems that customize user experiences based on individual behavior, preferences, and context.</p>
+                </div>
+                <div class="concept-card">
+                    <h4 class="concept-title">
+                        <i class="fas fa-eye"></i>
+                        Computer Vision
+                    </h4>
+                    <p>AI that interprets visual information. Useful for analyzing user interface interactions and visual content.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lesson 2: AI-Driven Product Metrics -->
+    <section class="content-section">
+        <div class="container">
+            <div class="lesson-content">
+                <div class="lesson-text">
+                    <h2>Lesson 2: AI-Driven Product Metrics</h2>
+                    <p>Traditional product metrics tell you what happened. AI-enhanced metrics tell you what happened, why it happened, and what's likely to happen next.</p>
+                    
+                    <h3>The New Metrics Paradigm</h3>
+                    <ul>
+                        <li><strong>Predictive Metrics:</strong> Churn probability, lifetime value forecasts</li>
+                        <li><strong>Real-time Insights:</strong> Live user sentiment and behavior changes</li>
+                        <li><strong>Causal Analysis:</strong> Understanding which features drive engagement</li>
+                        <li><strong>Cohort Intelligence:</strong> AI-identified user segments and patterns</li>
+                    </ul>
+                    
+                    <h3>AI Tools for Product Analytics</h3>
+                    <p>Modern product managers have access to AI-powered analytics tools that provide deeper insights:</p>
+                    <ul>
+                        <li><strong>Mixpanel AI:</strong> Automated insights and anomaly detection</li>
+                        <li><strong>Amplitude AI:</strong> Behavioral cohort analysis and predictions</li>
+                        <li><strong>Hotjar AI:</strong> Intelligent heatmap analysis and user journey insights</li>
+                    </ul>
+                </div>
+                <div class="lesson-activity">
+                    <div class="activity-header">
+                        <div class="activity-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Activity 2: Metrics Enhancement</h4>
+                    </div>
+                    <p><strong>Time:</strong> 20 minutes</p>
+                    <p><strong>Goal:</strong> Transform your current metrics with AI insights</p>
+                    
+                    <ol>
+                        <li>List your top 5 product KPIs</li>
+                        <li>For each KPI, identify what AI could predict</li>
+                        <li>Define 3 new AI-enhanced metrics</li>
+                        <li>Sketch a dashboard with predictive elements</li>
+                    </ol>
+                    
+                    <div class="alert alert-info mt-4">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Pro Tip:</strong> Focus on leading indicators rather than lagging metrics for maximum impact.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="case-study">
+        <div class="container">
+            <div class="section-header">
+                <h2>Case Study: Spotify's AI-Powered Product Strategy</h2>
+            </div>
+            <div class="case-study-content">
+                <h3>The Challenge</h3>
+                <p>Spotify needed to improve user engagement and reduce churn in an increasingly competitive music streaming market.</p>
+                
+                <h3>The AI Solution</h3>
+                <ul>
+                    <li><strong>Discover Weekly:</strong> ML algorithms create personalized playlists based on listening history</li>
+                    <li><strong>Predictive Analytics:</strong> Identify users at risk of churning before they cancel</li>
+                    <li><strong>Dynamic Playlists:</strong> AI continuously updates recommendations based on real-time behavior</li>
+                    <li><strong>Audio Analysis:</strong> AI analyzes song characteristics to improve recommendations</li>
+                </ul>
+                
+                <h3>The Results</h3>
+                <ul>
+                    <li>40% increase in user engagement with AI-curated content</li>
+                    <li>25% reduction in churn rate</li>
+                    <li>Discover Weekly became one of the most popular features</li>
+                    <li>30% of all listening time now comes from AI recommendations</li>
+                </ul>
+                
+                <h3>Key Takeaways for Product Managers</h3>
+                <ol>
+                    <li>AI works best when it enhances the core user experience</li>
+                    <li>Predictive analytics can identify problems before they become critical</li>
+                    <li>Personalization at scale requires sophisticated AI systems</li>
+                    <li>Success metrics should measure both engagement and business outcomes</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hands-On Exercises -->
+    <section class="hands-on-section">
+        <div class="container">
+            <h2>Hands-On: Your First AI Product Analysis</h2>
+            <p>Apply what you've learned with these practical exercises using real AI tools</p>
+            
+            <div class="exercise-grid">
+                <div class="exercise-card">
+                    <div class="exercise-number">1</div>
+                    <h4>ChatGPT User Research</h4>
+                    <p>Use ChatGPT to analyze customer reviews:</p>
+                    <ol>
+                        <li>Gather 10-20 user reviews of your product</li>
+                        <li>Ask ChatGPT to identify common themes</li>
+                        <li>Request sentiment analysis and pain points</li>
+                        <li>Generate improvement recommendations</li>
+                    </ol>
+                    <a href="#" class="btn btn-secondary btn-sm mt-3">
+                        <i class="fas fa-external-link-alt"></i>
+                        Try ChatGPT
+                    </a>
+                </div>
+                
+                <div class="exercise-card">
+                    <div class="exercise-number">2</div>
+                    <h4>Claude Competitive Analysis</h4>
+                    <p>Use Claude to research competitors:</p>
+                    <ol>
+                        <li>List your top 3 competitors</li>
+                        <li>Ask Claude to analyze their features</li>
+                        <li>Identify gaps in your product</li>
+                        <li>Generate prioritized improvement ideas</li>
+                    </ol>
+                    <a href="#" class="btn btn-secondary btn-sm mt-3">
+                        <i class="fas fa-external-link-alt"></i>
+                        Try Claude
+                    </a>
+                </div>
+                
+                <div class="exercise-card">
+                    <div class="exercise-number">3</div>
+                    <h4>Perplexity Market Research</h4>
+                    <p>Use Perplexity for market intelligence:</p>
+                    <ol>
+                        <li>Research industry trends in your market</li>
+                        <li>Find recent market reports and statistics</li>
+                        <li>Identify emerging technologies</li>
+                        <li>Create a trend summary document</li>
+                    </ol>
+                    <a href="#" class="btn btn-secondary btn-sm mt-3">
+                        <i class="fas fa-external-link-alt"></i>
+                        Try Perplexity
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="resources-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Additional Resources</h2>
+                <p class="section-subtitle">Expand your knowledge with these carefully selected resources</p>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h4 class="resource-title">
+                        <i class="fas fa-video"></i>
+                        Video: AI for Product Managers
+                    </h4>
+                    <p>Comprehensive overview of AI applications in product management</p>
+                    <a href="#" class="btn btn-sm btn-secondary">Watch (15 min)</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h4 class="resource-title">
+                        <i class="fas fa-book"></i>
+                        Article: The Future of Product Management
+                    </h4>
+                    <p>How AI is reshaping the role of product managers</p>
+                    <a href="#" class="btn btn-sm btn-secondary">Read (10 min)</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h4 class="resource-title">
+                        <i class="fas fa-download"></i>
+                        Template: AI Product Roadmap
+                    </h4>
+                    <p>Ready-to-use template for planning AI integration</p>
+                    <a href="#" class="btn btn-sm btn-secondary">Download</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h4 class="resource-title">
+                        <i class="fas fa-podcast"></i>
+                        Podcast: AI Product Success Stories
+                    </h4>
+                    <p>Real-world examples from top product managers</p>
+                    <a href="#" class="btn btn-sm btn-secondary">Listen (25 min)</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="navigation-section">
+        <div class="container">
+            <h2>Ready for Day 2?</h2>
+            <p>You've completed Day 1! Tomorrow we'll dive into AI-enhanced user research techniques.</p>
+            
+            <div class="nav-buttons">
+                <a href="index.html" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-arrow-left"></i>
+                    Course Overview
+                </a>
+                <button class="btn btn-primary btn-lg" onclick="completeDay(1)">
+                    <i class="fas fa-check"></i>
+                    Mark Day 1 Complete
+                </button>
+                <a href="day2.html" class="btn btn-primary btn-lg">
+                    Continue to Day 2
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="../../shared/js/platform-core.js"></script>
+    <script>
+        // Initialize day tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.aiUpskillPlatform) {
+                window.aiUpskillPlatform.startDay('ai-for-product-owners', 1);
+                window.aiUpskillPlatform.trackPageView('product-owner-day1');
+            }
+        });
+
+        // Complete day function
+        function completeDay(dayNumber) {
+            if (window.aiUpskillPlatform) {
+                const timeSpent = Date.now() - window.aiUpskillPlatform.pageStartTime;
+                window.aiUpskillPlatform.completeDay('ai-for-product-owners', dayNumber, timeSpent, 100);
+                
+                // Show completion message
+                alert('Congratulations! You've completed Day 1. Ready for Day 2?');
+                
+                // Update progress bar
+                document.querySelector('.progress-fill').style.width = '20%';
+            }
+        }
+
+        // Toggle element visibility
+        function toggleElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.style.display = element.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        // Track exercise completion
+        document.querySelectorAll('.exercise-card .btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if (window.aiUpskillPlatform) {
+                    window.aiUpskillPlatform.trackEvent('exercise_started', {
+                        courseId: 'ai-for-product-owners',
+                        day: 1,
+                        exercise: this.closest('.exercise-card').querySelector('h4').textContent
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.objective-card, .concept-card, .exercise-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+

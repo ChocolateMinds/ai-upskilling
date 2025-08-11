@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5: AI Roadmap Planning & Strategy - AI for Product Owners</title>
+    <meta name="description" content="Complete your AI transformation with strategic roadmap planning, stakeholder communication, and continuous learning frameworks.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Platform Styles -->
+    <link href="../../shared/css/platform-styles.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --po-primary: #7c3aed;
+            --po-secondary: #a855f7;
+            --po-accent: #06b6d4;
+            --po-success: #10b981;
+            --po-warning: #f59e0b;
+            
+            --po-gradient: linear-gradient(135deg, var(--po-primary), var(--po-secondary));
+            --po-gradient-light: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.1));
+        }
+        
+        .day-header {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-16) 0;
+            text-align: center;
+        }
+        
+        .progress-fill {
+            background: white;
+            height: 100%;
+            width: 100%;
+            border-radius: var(--radius-sm);
+            transition: width 0.3s ease;
+        }
+        
+        .roadmap-section {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .roadmap-timeline {
+            position: relative;
+            margin: var(--space-8) 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+            position: relative;
+        }
+        
+        .timeline-marker {
+            width: 60px;
+            height: 60px;
+            background: var(--po-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .timeline-content {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-primary);
+            flex: 1;
+        }
+        
+        .completion-celebration {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-20) 0;
+            text-align: center;
+        }
+        
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+        
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            font-size: 1.5rem;
+        }
+        
+        .learning-objectives {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .objective-card {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .strategy-framework {
+            background: var(--gray-50);
+            padding: var(--space-12) 0;
+        }
+        
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .framework-step {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--po-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            margin: 0 auto var(--space-4);
+        }
+        
+        .success-metrics {
+            background: rgba(16, 185, 129, 0.1);
+            padding: var(--space-3);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-4);
+            color: var(--po-success);
+            font-size: 0.9rem;
+        }
+        
+        .communication-workshop {
+            background: var(--gray-900);
+            color: white;
+            padding: var(--space-16) 0;
+        }
+        
+        .communication-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--space-8);
+        }
+        
+        .communication-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .prompt-example {
+            background: rgba(0, 0, 0, 0.3);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin: var(--space-4) 0;
+            border-left: 4px solid var(--po-accent);
+        }
+        
+        .tools-mastery {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .toolkit-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-8);
+        }
+        
+        .category-section {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .tools-list {
+            margin-top: var(--space-4);
+        }
+        
+        .tool-item {
+            background: white;
+            padding: var(--space-3);
+            margin-bottom: var(--space-3);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--po-accent);
+            font-size: 0.95rem;
+        }
+        
+        .learning-framework {
+            background: var(--gray-50);
+            padding: var(--space-12) 0;
+        }
+        
+        .learning-paths {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .learning-path {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--po-success);
+        }
+        
+        @media (max-width: 768px) {
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .communication-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .toolkit-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .learning-paths {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="../../" class="logo">
+                    <i class="fas fa-brain"></i>
+                    AI Upskilling
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Course Overview</a></li>
+                    <li><a href="day4.html">Day 4</a></li>
+                    <li><a href="../../platform/dashboard/">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Day Header -->
+    <section class="day-header">
+        <div class="container">
+            <div class="day-number">Day 5</div>
+            <h1 class="day-title">AI Roadmap Planning & Strategy</h1>
+            <p class="day-subtitle">Complete your transformation with strategic implementation and continuous learning</p>
+            
+            <div class="progress-indicator">
+                <div class="progress-fill"></div>
+            </div>
+            <p>Progress: Day 5 of 5 (100% Complete)</p>
+        </div>
+    </section>
+
+    <!-- Learning Objectives -->
+    <section class="learning-objectives">
+        <div class="container">
+            <div class="section-header">
+                <h2>Today's Learning Objectives</h2>
+                <p class="section-subtitle">Complete your AI transformation with strategic implementation</p>
+            </div>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <h4><i class="fas fa-road"></i> Strategic Roadmap Planning</h4>
+                    <p>Create a comprehensive AI implementation roadmap for your organization.</p>
+                </div>
+                <div class="objective-card">
+                    <h4><i class="fas fa-users"></i> Stakeholder Communication</h4>
+                    <p>Master AI-enhanced presentations and stakeholder buy-in strategies.</p>
+                </div>
+                <div class="objective-card">
+                    <h4><i class="fas fa-cogs"></i> Process Integration</h4>
+                    <p>Embed AI tools seamlessly into existing product management workflows.</p>
+                </div>
+                <div class="objective-card">
+                    <h4><i class="fas fa-graduation-cap"></i> Continuous Learning</h4>
+                    <p>Build frameworks for staying current with AI advancements and applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Strategy Framework -->
+    <section class="strategy-framework">
+        <div class="container">
+            <div class="section-header">
+                <h2>The SCALE AI Strategy Framework</h2>
+                <p class="section-subtitle">Systematic approach to AI adoption in product management</p>
+            </div>
+            <div class="framework-grid">
+                <div class="framework-step">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>S - Scan</h3>
+                    <p>Continuously scan for new AI tools, techniques, and opportunities that could enhance your product management capabilities.</p>
+                </div>
+                <div class="framework-step">
+                    <div class="step-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>C - Calculate</h3>
+                    <p>Calculate the ROI and impact potential of AI implementations before investing time and resources.</p>
+                </div>
+                <div class="framework-step">
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>A - Accelerate</h3>
+                    <p>Accelerate high-impact AI implementations while maintaining product quality and user experience.</p>
+                </div>
+                <div class="framework-step">
+                    <div class="step-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>L - Learn</h3>
+                    <p>Learn continuously from AI implementations, failures, and successes to improve your approach.</p>
+                </div>
+                <div class="framework-step">
+                    <div class="step-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h3>E - Expand</h3>
+                    <p>Expand successful AI applications across your product organization and share best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Implementation Roadmap -->
+    <section class="roadmap-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your 90-Day AI Implementation Roadmap</h2>
+                <p class="section-subtitle">Strategic plan for integrating AI into your product management workflow</p>
+            </div>
+            
+            <div class="roadmap-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">30</div>
+                    <div class="timeline-content">
+                        <h3>Days 1-30: Foundation & Quick Wins</h3>
+                        <ul>
+                            <li><strong>Week 1:</strong> Set up ChatGPT/Claude for daily research tasks</li>
+                            <li><strong>Week 2:</strong> Implement AI-enhanced user feedback analysis</li>
+                            <li><strong>Week 3:</strong> Set up automated competitor monitoring alerts</li>
+                            <li><strong>Week 4:</strong> Train team on basic AI prompting techniques</li>
+                        </ul>
+                        <div class="success-metrics">
+                            <strong>Success Metrics:</strong> 3 AI tools adopted, 50% faster research, team trained
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">60</div>
+                    <div class="timeline-content">
+                        <h3>Days 31-60: Scale & Integration</h3>
+                        <ul>
+                            <li><strong>Week 5-6:</strong> Deploy AI-powered analytics dashboard</li>
+                            <li><strong>Week 7:</strong> Implement automated persona generation process</li>
+                            <li><strong>Week 8:</strong> Set up predictive modeling for key metrics</li>
+                        </ul>
+                        <div class="success-metrics">
+                            <strong>Success Metrics:</strong> Automated reporting, 3x faster insights, predictive accuracy >60%
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">90</div>
+                    <div class="timeline-content">
+                        <h3>Days 61-90: Optimization & Growth</h3>
+                        <ul>
+                            <li><strong>Week 9-10:</strong> Launch AI-powered feature prioritization</li>
+                            <li><strong>Week 11:</strong> Create automated competitive intelligence reports</li>
+                            <li><strong>Week 12:</strong> Scale AI tools across product organization</li>
+                        </ul>
+                        <div class="success-metrics">
+                            <strong>Success Metrics:</strong> Organization-wide adoption, ROI >300%, strategic advantage
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stakeholder Communication Workshop -->
+    <section class="communication-workshop">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI-Enhanced Stakeholder Communication</h2>
+                <p class="section-subtitle">Master the art of AI-powered presentations and reports</p>
+            </div>
+            
+            <div class="communication-grid">
+                <div class="communication-card">
+                    <h3><i class="fas fa-presentation"></i> Executive Presentations</h3>
+                    <p>Use AI to create compelling executive presentations that get buy-in</p>
+                    <div class="prompt-example">
+Create an executive presentation for AI adoption in product management:
+
+Context: [Your company/industry/current challenges]
+
+Include:
+1. Market opportunity and competitive landscape
+2. ROI projections with specific metrics
+3. Implementation timeline and resource requirements
+4. Risk mitigation strategies
+5. Success stories from similar companies
+6. Clear next steps and decision points
+
+Format: Executive-friendly slides with data visualizations and clear recommendations.
+                    </div>
+                </div>
+                
+                <div class="communication-card">
+                    <h3><i class="fas fa-chart-bar"></i> Data Storytelling</h3>
+                    <p>Transform complex AI insights into compelling data stories</p>
+                    <div class="prompt-example">
+Create a data story from these AI insights:
+[Insert your AI-generated insights, metrics, predictions]
+
+Structure:
+1. The situation (current state)
+2. The complication (problem/opportunity)
+3. The question (what should we do?)
+4. The answer (AI-driven solution)
+5. The result (expected outcomes)
+
+Make it engaging with analogies, visuals, and clear action items.
+                    </div>
+                </div>
+                
+                <div class="communication-card">
+                    <h3><i class="fas fa-file-alt"></i> Strategic Reports</h3>
+                    <p>Generate comprehensive strategy documents with AI assistance</p>
+                    <div class="prompt-example">
+Generate a strategic product report using AI analysis:
+
+Topic: [Your strategic initiative]
+
+Sections:
+1. Executive Summary with key insights
+2. Market analysis and trends
+3. Competitive positioning assessment
+4. Strategic recommendations with prioritization
+5. Implementation roadmap
+6. Success metrics and KPIs
+7. Risk assessment and mitigation
+
+Include data visualizations and specific action items.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tools Mastery -->
+    <section class="tools-mastery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your AI Product Management Toolkit</h2>
+                <p class="section-subtitle">Complete toolkit for AI-powered product management excellence</p>
+            </div>
+            
+            <div class="toolkit-categories">
+                <div class="category-section">
+                    <h3>🔬 Research & Analysis</h3>
+                    <div class="tools-list">
+                        <div class="tool-item">
+                            <strong>ChatGPT/Claude:</strong> User research analysis, competitive intelligence, market research
+                        </div>
+                        <div class="tool-item">
+                            <strong>Perplexity:</strong> Real-time market intelligence and trend analysis
+                        </div>
+                        <div class="tool-item">
+                            <strong>MonkeyLearn:</strong> Automated sentiment analysis and text classification
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category-section">
+                    <h3>📊 Analytics & Insights</h3>
+                    <div class="tools-list">
+                        <div class="tool-item">
+                            <strong>Mixpanel AI:</strong> Automated insights and anomaly detection
+                        </div>
+                        <div class="tool-item">
+                            <strong>Amplitude AI:</strong> Behavioral pattern recognition and predictions
+                        </div>
+                        <div class="tool-item">
+                            <strong>Tableau AI:</strong> Natural language data queries and automated dashboards
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category-section">
+                    <h3>🎯 Strategy & Planning</h3>
+                    <div class="tools-list">
+                        <div class="tool-item">
+                            <strong>Notion AI:</strong> Strategic planning, PRD generation, roadmap creation
+                        </div>
+                        <div class="tool-item">
+                            <strong>Gamma:</strong> AI-generated presentations and strategic communications
+                        </div>
+                        <div class="tool-item">
+                            <strong>Zapier AI:</strong> Workflow automation and process integration
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category-section">
+                    <h3>🔍 Competitive Intelligence</h3>
+                    <div class="tools-list">
+                        <div class="tool-item">
+                            <strong>SimilarWeb AI:</strong> Competitive traffic analysis and market intelligence
+                        </div>
+                        <div class="tool-item">
+                            <strong>SEMrush AI:</strong> SEO and content strategy competitive analysis
+                        </div>
+                        <div class="tool-item">
+                            <strong>Brandwatch:</strong> Social listening and brand monitoring
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Continuous Learning Framework -->
+    <section class="learning-framework">
+        <div class="container">
+            <div class="section-header">
+                <h2>Continuous AI Learning Framework</h2>
+                <p class="section-subtitle">Stay ahead in the rapidly evolving AI landscape</p>
+            </div>
+            
+            <div class="learning-paths">
+                <div class="learning-path">
+                    <h3>📚 Daily Learning (15 min/day)</h3>
+                    <ul>
+                        <li>Follow AI product management newsletters and blogs</li>
+                        <li>Experiment with new AI prompting techniques</li>
+                        <li>Test emerging AI tools for product applications</li>
+                        <li>Join AI product management communities</li>
+                    </ul>
+                </div>
+                
+                <div class="learning-path">
+                    <h3>🔬 Weekly Deep Dives (2 hours/week)</h3>
+                    <ul>
+                        <li>Study successful AI product implementations</li>
+                        <li>Analyze new AI research and applications</li>
+                        <li>Attend AI product management webinars</li>
+                        <li>Practice advanced AI use cases</li>
+                    </ul>
+                </div>
+                
+                <div class="learning-path">
+                    <h3>🎯 Monthly Mastery (1 day/month)</h3>
+                    <ul>
+                        <li>Deep dive into new AI tools and platforms</li>
+                        <li>Attend AI conferences and workshops</li>
+                        <li>Network with other AI-savvy product managers</li>
+                        <li>Review and optimize your AI toolkit</li>
+                    </ul>
+                </div>
+                
+                <div class="learning-path">
+                    <h3>🏆 Quarterly Excellence (1 week/quarter)</h3>
+                    <ul>
+                        <li>Strategic review of AI implementation ROI</li>
+                        <li>Plan next quarter's AI initiatives</li>
+                        <li>Share learnings with broader organization</li>
+                        <li>Evaluate and upgrade AI tool stack</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Completion Celebration -->
+    <section class="completion-celebration">
+        <div class="container">
+            <h2>🎉 Congratulations! You've Completed the Course!</h2>
+            <p>You've successfully transformed from an AI novice to an AI-powered product management expert</p>
+            
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>AI Product Strategist</h4>
+                    <p>Master of AI-enhanced product strategy and decision making</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h4>Research Expert</h4>
+                    <p>Expert in AI-powered user research and competitive intelligence</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Data-Driven Leader</h4>
+                    <p>Specialist in AI analytics and predictive product modeling</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4>Innovation Driver</h4>
+                    <p>Leader in AI adoption and product innovation</p>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <button class="btn btn-primary btn-lg" onclick="completeCourse()">
+                    <i class="fas fa-certificate"></i>
+                    Generate Certificate
+                </button>
+                <a href="../../courses/ai-for-engineers/" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-plus"></i>
+                    Explore More Courses
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="../../shared/js/platform-core.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.aiUpskillPlatform) {
+                window.aiUpskillPlatform.startDay('ai-for-product-owners', 5);
+                window.aiUpskillPlatform.trackPageView('product-owner-day5');
+            }
+        });
+
+        function completeCourse() {
+            if (window.aiUpskillPlatform) {
+                const timeSpent = Date.now() - window.aiUpskillPlatform.pageStartTime;
+                window.aiUpskillPlatform.completeDay('ai-for-product-owners', 5, timeSpent, 100);
+                window.aiUpskillPlatform.completeCourse('ai-for-product-owners');
+                
+                alert('🎉 Course Complete! You\'re now an AI-powered Product Manager. Certificate generated!');
+                document.querySelector('.progress-fill').style.width = '100%';
+            }
+        }
+    </script>
+</body>
+</html>

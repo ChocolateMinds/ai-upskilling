@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: Competitive Intelligence & Market Analysis - AI for Product Owners</title>
+    <meta name="description" content="Master AI-powered competitive intelligence. Learn automated competitor monitoring, market trend analysis, and strategic positioning using AI tools.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Platform Styles -->
+    <link href="../../shared/css/platform-styles.css" rel="stylesheet">
+    
+    <style>
+        /* Product Owner Theme */
+        :root {
+            --po-primary: #7c3aed;
+            --po-secondary: #a855f7;
+            --po-accent: #06b6d4;
+            --po-success: #10b981;
+            --po-warning: #f59e0b;
+            
+            --po-gradient: linear-gradient(135deg, var(--po-primary), var(--po-secondary));
+            --po-gradient-light: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.1));
+        }
+        
+        /* Day-specific styling */
+        .day-header {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-16) 0;
+            text-align: center;
+        }
+        
+        .progress-indicator {
+            background: rgba(255, 255, 255, 0.2);
+            height: 8px;
+            border-radius: var(--radius-sm);
+            margin: var(--space-6) auto var(--space-4);
+            max-width: 400px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: white;
+            height: 100%;
+            width: 60%;
+            border-radius: var(--radius-sm);
+            transition: width 0.3s ease;
+        }
+        
+        .intelligence-framework {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-8);
+        }
+        
+        .framework-pillar {
+            text-align: center;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            background: var(--po-gradient-light);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .pillar-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--po-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .competitive-matrix {
+            background: var(--gray-50);
+            padding: var(--space-12) 0;
+        }
+        
+        .matrix-table {
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin-top: var(--space-8);
+        }
+        
+        .matrix-header {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-4);
+            display: grid;
+            grid-template-columns: 200px repeat(4, 1fr);
+            gap: var(--space-2);
+            font-weight: 600;
+        }
+        
+        .matrix-row {
+            display: grid;
+            grid-template-columns: 200px repeat(4, 1fr);
+            gap: var(--space-2);
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--gray-200);
+            align-items: center;
+        }
+        
+        .matrix-row:last-child {
+            border-bottom: none;
+        }
+        
+        .matrix-row:nth-child(even) {
+            background: var(--gray-50);
+        }
+        
+        .feature-name {
+            font-weight: 600;
+            color: var(--po-primary);
+        }
+        
+        .competitor-score {
+            text-align: center;
+            padding: var(--space-2);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+        }
+        
+        .score-excellent {
+            background: var(--po-success);
+            color: white;
+        }
+        
+        .score-good {
+            background: var(--po-accent);
+            color: white;
+        }
+        
+        .score-fair {
+            background: var(--po-warning);
+            color: white;
+        }
+        
+        .score-poor {
+            background: var(--error-500);
+            color: white;
+        }
+        
+        .ai-tools-showcase {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-16) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-8);
+            position: relative;
+        }
+        
+        .tool-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        
+        .automation-workflow {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            position: relative;
+        }
+        
+        .workflow-step {
+            background: var(--gray-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            border-left: 4px solid var(--po-accent);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: var(--po-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        
+        .market-intelligence {
+            background: var(--gray-900);
+            color: white;
+            padding: var(--space-16) 0;
+            position: relative;
+        }
+        
+        .intelligence-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            align-items: start;
+        }
+        
+        .trend-analysis {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-accent);
+        }
+        
+        .trend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+            padding: var(--space-3);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+        }
+        
+        .trend-indicator {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .trend-up {
+            background: var(--po-success);
+        }
+        
+        .trend-down {
+            background: var(--error-500);
+        }
+        
+        .trend-stable {
+            background: var(--po-warning);
+        }
+        
+        .case-study-section {
+            background: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .case-study-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-8);
+            align-items: start;
+        }
+        
+        .case-study-visual {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .competitive-advantage {
+            background: var(--po-gradient-light);
+            padding: var(--space-12) 0;
+        }
+        
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .advantage-card {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border-left: 4px solid var(--po-success);
+            transition: all 0.3s ease;
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        @media (max-width: 768px) {
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .matrix-header,
+            .matrix-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .intelligence-grid,
+            .case-study-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="../../" class="logo">
+                    <i class="fas fa-brain"></i>
+                    AI Upskilling
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Course Overview</a></li>
+                    <li><a href="day2.html">Day 2</a></li>
+                    <li><a href="../../platform/dashboard/">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Day Header -->
+    <section class="day-header">
+        <div class="container">
+            <div class="day-number">Day 3</div>
+            <h1 class="day-title">Competitive Intelligence & Market Analysis</h1>
+            <p class="day-subtitle">Master AI-powered competitive strategy and market positioning</p>
+            
+            <div class="progress-indicator">
+                <div class="progress-fill"></div>
+            </div>
+            <p>Progress: Day 3 of 5 (60% Complete)</p>
+        </div>
+    </section>
+
+    <!-- Intelligence Framework -->
+    <section class="intelligence-framework">
+        <div class="container">
+            <div class="section-header">
+                <h2>The AI Intelligence Framework</h2>
+                <p class="section-subtitle">Three pillars of AI-powered competitive advantage</p>
+            </div>
+            <div class="framework-grid">
+                <div class="framework-pillar">
+                    <div class="pillar-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Monitor</h3>
+                    <p>Continuous AI-powered tracking of competitor activities, product updates, pricing changes, and market movements</p>
+                </div>
+                <div class="framework-pillar">
+                    <div class="pillar-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Analyze</h3>
+                    <p>Deep AI analysis of competitive positioning, feature gaps, customer sentiment, and strategic implications</p>
+                </div>
+                <div class="framework-pillar">
+                    <div class="pillar-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Act</h3>
+                    <p>AI-informed strategic decisions, rapid response to market changes, and proactive competitive positioning</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitive Matrix -->
+    <section class="competitive-matrix">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI-Enhanced Competitive Matrix</h2>
+                <p class="section-subtitle">Transform static competitor analysis into dynamic intelligence</p>
+            </div>
+            
+            <div class="matrix-table">
+                <div class="matrix-header">
+                    <div>Feature/Capability</div>
+                    <div>Your Product</div>
+                    <div>Competitor A</div>
+                    <div>Competitor B</div>
+                    <div>Market Leader</div>
+                </div>
+                <div class="matrix-row">
+                    <div class="feature-name">AI-Powered Search</div>
+                    <div><span class="competitor-score score-good">Good</span></div>
+                    <div><span class="competitor-score score-excellent">Excellent</span></div>
+                    <div><span class="competitor-score score-poor">Poor</span></div>
+                    <div><span class="competitor-score score-excellent">Excellent</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="feature-name">Mobile Experience</div>
+                    <div><span class="competitor-score score-excellent">Excellent</span></div>
+                    <div><span class="competitor-score score-fair">Fair</span></div>
+                    <div><span class="competitor-score score-good">Good</span></div>
+                    <div><span class="competitor-score score-good">Good</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="feature-name">Integration APIs</div>
+                    <div><span class="competitor-score score-fair">Fair</span></div>
+                    <div><span class="competitor-score score-excellent">Excellent</span></div>
+                    <div><span class="competitor-score score-excellent">Excellent</span></div>
+                    <div><span class="competitor-score score-excellent">Excellent</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="feature-name">Customer Support</div>
+                    <div><span class="competitor-score score-good">Good</span></div>
+                    <div><span class="competitor-score score-poor">Poor</span></div>
+                    <div><span class="competitor-score score-excellent">Excellent</span></div>
+                    <div><span class="competitor-score score-fair">Fair</span></div>
+                </div>
+                <div class="matrix-row">
+                    <div class="feature-name">Pricing Model</div>
+                    <div><span class="competitor-score score-excellent">Excellent</span></div>
+                    <div><span class="competitor-score score-good">Good</span></div>
+                    <div><span class="competitor-score score-fair">Fair</span></div>
+                    <div><span class="competitor-score score-good">Good</span></div>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <h3>AI-Generated Insights:</h3>
+                <ul>
+                    <li><strong>Opportunity:</strong> Integration APIs represent our biggest competitive gap</li>
+                    <li><strong>Strength:</strong> Our mobile experience and pricing model are competitive advantages</li>
+                    <li><strong>Threat:</strong> Competitor A's AI search capabilities are pulling ahead</li>
+                    <li><strong>Recommendation:</strong> Prioritize API development and AI search enhancement</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tools Showcase -->
+    <section class="ai-tools-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI Intelligence Tools Arsenal</h2>
+                <p class="section-subtitle">Master the tools that give you unfair competitive advantages</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>SimilarWeb AI</h3>
+                    </div>
+                    <p>AI-powered website analytics and competitive intelligence</p>
+                    <ul class="mt-4">
+                        <li>• Traffic analysis and user behavior</li>
+                        <li>• Competitor website performance</li>
+                        <li>• Market share insights</li>
+                        <li>• Technology stack analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>SEMrush AI</h3>
+                    </div>
+                    <p>AI-driven SEO and competitive content analysis</p>
+                    <ul class="mt-4">
+                        <li>• Keyword gap analysis</li>
+                        <li>• Content strategy insights</li>
+                        <li>• Advertising intelligence</li>
+                        <li>• Brand monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Brandwatch</h3>
+                    </div>
+                    <p>AI social listening and sentiment analysis</p>
+                    <ul class="mt-4">
+                        <li>• Real-time brand monitoring</li>
+                        <li>• Competitor sentiment tracking</li>
+                        <li>• Trend identification</li>
+                        <li>• Crisis detection</li>
+                    </ul>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Perplexity Pro</h3>
+                    </div>
+                    <p>AI research assistant for market intelligence</p>
+                    <ul class="mt-4">
+                        <li>• Real-time market research</li>
+                        <li>• Competitive analysis queries</li>
+                        <li>• Industry trend reports</li>
+                        <li>• Strategic recommendations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Automation Workflow -->
+    <section class="automation-workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>Automated Intelligence Workflow</h2>
+                <p class="section-subtitle">Set up AI systems that monitor competitors 24/7</p>
+            </div>
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <h4>Data Collection</h4>
+                    <p>AI scrapes competitor websites, monitors social media, tracks pricing changes, and analyzes app store reviews</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <h4>Smart Processing</h4>
+                    <p>AI categorizes information, identifies significant changes, and filters out noise to focus on actionable intelligence</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <h4>Pattern Recognition</h4>
+                    <p>AI identifies trends, correlations, and strategic patterns across multiple data sources and time periods</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <h4>Alert Generation</h4>
+                    <p>AI sends intelligent alerts for significant competitor moves, market shifts, or strategic opportunities</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">5</div>
+                    <h4>Strategic Insights</h4>
+                    <p>AI generates strategic recommendations, threat assessments, and opportunity analyses for product decisions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Intelligence -->
+    <section class="market-intelligence">
+        <div class="container">
+            <div class="intelligence-grid">
+                <div>
+                    <h2>Real-Time Market Trends</h2>
+                    <p class="mb-6">AI-powered trend analysis keeps you ahead of market movements</p>
+                    
+                    <div class="trend-analysis">
+                        <h3>Current Industry Trends</h3>
+                        <div class="trend-item">
+                            <div class="trend-indicator trend-up">↗</div>
+                            <div>
+                                <strong>AI Integration</strong><br>
+                                85% growth in AI feature adoption
+                            </div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-indicator trend-up">↗</div>
+                            <div>
+                                <strong>Mobile-First</strong><br>
+                                Mobile usage increased 40% YoY
+                            </div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-indicator trend-down">↘</div>
+                            <div>
+                                <strong>Traditional APIs</strong><br>
+                                Legacy integration declining 25%
+                            </div>
+                        </div>
+                        <div class="trend-item">
+                            <div class="trend-indicator trend-stable">→</div>
+                            <div>
+                                <strong>Enterprise Security</strong><br>
+                                Consistent priority across segments
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2>Competitive Alerts</h2>
+                    <div class="bg-white/10 p-6 rounded-xl">
+                        <h4 class="mb-4">Recent Intelligence</h4>
+                        <div class="space-y-3">
+                            <div class="alert-item">
+                                <span class="text-red-400">🔴 HIGH</span>
+                                <div>Competitor A launched AI search feature</div>
+                            </div>
+                            <div class="alert-item">
+                                <span class="text-yellow-400">🟡 MEDIUM</span>
+                                <div>Market Leader reduced enterprise pricing 15%</div>
+                            </div>
+                            <div class="alert-item">
+                                <span class="text-green-400">🟢 LOW</span>
+                                <div>Competitor B updated mobile app UI</div>
+                            </div>
+                            <div class="alert-item">
+                                <span class="text-blue-400">ℹ️ INFO</span>
+                                <div>Industry report: 60% expect AI features</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="case-study-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Case Study: Netflix's AI Competitive Intelligence</h2>
+            </div>
+            <div class="case-study-content">
+                <div>
+                    <h3>The Challenge</h3>
+                    <p>Netflix needed to stay ahead in the rapidly evolving streaming market with new competitors launching constantly.</p>
+                    
+                    <h3>The AI Solution</h3>
+                    <ul>
+                        <li><strong>Content Intelligence:</strong> AI analysis of competitor content catalogs and performance</li>
+                        <li><strong>Pricing Optimization:</strong> AI monitoring of global pricing strategies</li>
+                        <li><strong>Feature Tracking:</strong> Automated monitoring of competitor app updates and features</li>
+                        <li><strong>Market Analysis:</strong> AI-powered analysis of subscriber growth and churn patterns</li>
+                    </ul>
+                    
+                    <h3>Implementation Strategy</h3>
+                    <ol>
+                        <li>Built AI systems to scrape competitor platforms</li>
+                        <li>Implemented real-time pricing monitoring across 190+ countries</li>
+                        <li>Created AI models to predict content performance</li>
+                        <li>Developed automated competitive reporting</li>
+                    </ol>
+                    
+                    <h3>Results</h3>
+                    <ul>
+                        <li>30% faster response to competitive threats</li>
+                        <li>25% improvement in content acquisition decisions</li>
+                        <li>50% reduction in competitive analysis time</li>
+                        <li>Maintained market leadership despite intense competition</li>
+                    </ul>
+                </div>
+                <div class="case-study-visual">
+                    <h3>Key Metrics</h3>
+                    <div class="metric-item mb-4">
+                        <div class="metric-number">240M+</div>
+                        <div>Global Subscribers</div>
+                    </div>
+                    <div class="metric-item mb-4">
+                        <div class="metric-number">15K+</div>
+                        <div>Titles Analyzed Daily</div>
+                    </div>
+                    <div class="metric-item mb-4">
+                        <div class="metric-number">190+</div>
+                        <div>Countries Monitored</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-number">$31B</div>
+                        <div>Annual Revenue</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitive Advantage -->
+    <section class="competitive-advantage">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your AI Competitive Advantage</h2>
+                <p class="section-subtitle">Transform insights into strategic action</p>
+            </div>
+            <div class="advantage-grid">
+                <div class="advantage-card">
+                    <h4><i class="fas fa-lightning"></i> Real-Time Intelligence</h4>
+                    <p>Get notified of competitor moves within hours, not weeks. React faster than ever before.</p>
+                </div>
+                <div class="advantage-card">
+                    <h4><i class="fas fa-chart-bar"></i> Data-Driven Decisions</h4>
+                    <p>Base strategic decisions on comprehensive AI analysis rather than incomplete manual research.</p>
+                </div>
+                <div class="advantage-card">
+                    <h4><i class="fas fa-target"></i> Strategic Positioning</h4>
+                    <p>Identify market gaps and positioning opportunities with AI-powered competitive mapping.</p>
+                </div>
+                <div class="advantage-card">
+                    <h4><i class="fas fa-shield-alt"></i> Threat Prevention</h4>
+                    <p>Anticipate competitive threats before they impact your market position.</p>
+                </div>
+                <div class="advantage-card">
+                    <h4><i class="fas fa-growth"></i> Market Expansion</h4>
+                    <p>Discover new market opportunities through AI analysis of competitor blind spots.</p>
+                </div>
+                <div class="advantage-card">
+                    <h4><i class="fas fa-clock"></i> Time Efficiency</h4>
+                    <p>Reduce competitive research time by 80% while increasing insight quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="navigation-section">
+        <div class="container">
+            <h2>Ready for Day 4?</h2>
+            <p>You've mastered competitive intelligence! Tomorrow we'll dive into data-driven product decisions and AI-powered prioritization.</p>
+            
+            <div class="nav-buttons">
+                <a href="day2.html" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Day 2
+                </a>
+                <button class="btn btn-primary btn-lg" onclick="completeDay(3)">
+                    <i class="fas fa-check"></i>
+                    Mark Day 3 Complete
+                </button>
+                <a href="day4.html" class="btn btn-primary btn-lg">
+                    Continue to Day 4
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="../../shared/js/platform-core.js"></script>
+    <script>
+        // Initialize day tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.aiUpskillPlatform) {
+                window.aiUpskillPlatform.startDay('ai-for-product-owners', 3);
+                window.aiUpskillPlatform.trackPageView('product-owner-day3');
+            }
+        });
+
+        // Complete day function
+        function completeDay(dayNumber) {
+            if (window.aiUpskillPlatform) {
+                const timeSpent = Date.now() - window.aiUpskillPlatform.pageStartTime;
+                window.aiUpskillPlatform.completeDay('ai-for-product-owners', dayNumber, timeSpent, 100);
+                
+                alert('Outstanding! You\'ve mastered competitive intelligence. Ready for data-driven decisions?');
+                document.querySelector('.progress-fill').style.width = '60%';
+            }
+        }
+
+        // Animate competitive matrix on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.framework-pillar, .workflow-step, .advantage-card, .tool-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+

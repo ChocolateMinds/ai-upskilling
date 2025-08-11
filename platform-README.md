@@ -16,7 +16,7 @@ The AI Upskilling Platform is a comprehensive educational ecosystem designed to 
 | Course | Target Audience | Duration | Status |
 |--------|----------------|----------|--------|
 | 🎓 **[AI for Everyone](courses/ai-for-everyone/)** | All professionals | 5 days | ✅ Available |
-| 💡 **[AI for Product Owners & BAs](courses/ai-for-product-owners/)** | Product Managers, Business Analysts | 5 days | ✅ Available |
+| 💡 **[AI for Product Owners & BAs](courses/ai-for-product-owners/)** | Product Managers, Business Analysts | 5 days | 🚧 In Development |
 | 👔 **[AI for C-Suite Leaders](courses/ai-for-c-suite/)** | Executives, Senior Leadership | 5 days | 📋 Planned |
 | 💻 **[AI for Software Engineers](courses/ai-for-engineers/)** | Developers, DevOps Engineers | 5 days | 📋 Planned |
 | 🧪 **[AI for QA Engineers](courses/ai-for-qa/)** | Quality Assurance, Testing | 5 days | 📋 Planned |
@@ -207,7 +207,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 #### **Q1 2024**
 - ✅ Platform foundation and architecture
 - ✅ AI for Everyone course (complete)
-- ✅ AI for Product Owners & BAs course (complete)
+- 🚧 AI for Product Owners & BAs course
 - 📊 Enhanced progress tracking system
 
 #### **Q2 2024**

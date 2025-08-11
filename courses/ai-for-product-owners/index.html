@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI for Product Owners & Business Analysts - 5-Day Mastery Program</title>
+    <meta name="description" content="Transform product strategy with AI-powered user research, competitive analysis, and data-driven roadmap planning. Master the AI tools that give product teams a competitive edge.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Platform Styles -->
+    <link href="../../shared/css/platform-styles.css" rel="stylesheet">
+    
+    <style>
+        /* Product Owner Theme */
+        :root {
+            --po-primary: #7c3aed;
+            --po-secondary: #a855f7;
+            --po-accent: #06b6d4;
+            --po-success: #10b981;
+            --po-warning: #f59e0b;
+            
+            --po-gradient: linear-gradient(135deg, var(--po-primary), var(--po-secondary));
+            --po-gradient-light: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.1));
+        }
+        
+        /* Override primary colors for PO theme */
+        .hero-header {
+            background: var(--po-gradient);
+        }
+        
+        .btn-primary {
+            background: var(--po-gradient);
+        }
+        
+        .day-card.foundation {
+            border-left: 4px solid var(--po-accent);
+        }
+        
+        .day-card.specialized {
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .day-number {
+            background: var(--po-gradient);
+        }
+        
+        .feature-icon {
+            background: var(--po-gradient);
+        }
+        
+        .stat-number {
+            color: var(--po-primary);
+        }
+        
+        .highlight-item i {
+            color: var(--po-primary);
+        }
+        
+        /* Product Owner specific styling */
+        .po-badge {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-3xl);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: var(--space-6);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .methodology-section {
+            background: var(--po-gradient-light);
+            padding: var(--space-16) 0;
+            margin: var(--space-16) 0;
+            border-radius: var(--radius-2xl);
+        }
+        
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-8);
+        }
+        
+        .methodology-card {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .tools-showcase {
+            background: white;
+            padding: var(--space-16) 0;
+            margin: var(--space-16) 0;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .tool-card {
+            background: var(--gray-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .tool-card:hover {
+            border-color: var(--po-primary);
+            transform: translateY(-4px);
+        }
+        
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--po-gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            color: white;
+            font-size: 1.25rem;
+        }
+        
+        .outcomes-section {
+            background: var(--gray-900);
+            color: white;
+            padding: var(--space-20) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .outcomes-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(124, 58, 237, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-8);
+            position: relative;
+        }
+        
+        .outcome-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="../../" class="logo">
+                    <i class="fas fa-brain"></i>
+                    AI Upskilling
+                </a>
+                <ul class="nav-links">
+                    <li><a href="../../">All Courses</a></li>
+                    <li><a href="../../courses/ai-for-everyone/">General Course</a></li>
+                    <li><a href="../../platform/dashboard/">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-header">
+        <div class="container">
+            <div class="hero-content">
+                <div class="po-badge">
+                    <i class="fas fa-lightbulb"></i>
+                    Product Owner & Business Analyst Track
+                </div>
+                <h1 class="hero-title">AI-Powered Product Strategy</h1>
+                <p class="hero-subtitle">
+                    Transform your product management with AI-enhanced user research, competitive intelligence, 
+                    and data-driven decision making. Master the tools that give product teams a decisive competitive advantage.
+                </p>
+                <a href="#curriculum" class="btn btn-primary btn-lg">
+                    Start Your Transformation
+                    <i class="fas fa-rocket"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Days to Mastery</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2-3</div>
+                <div class="stat-label">Hours per Day</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">AI Tools Mastered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50%</div>
+                <div class="stat-label">Faster Insights</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="methodology-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>The A.N.A.L.Y.Z.E. Methodology</h2>
+                <p class="section-subtitle">
+                    Our proven framework for integrating AI into product management workflows
+                </p>
+            </div>
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <h4><strong>A</strong>ssess Current State</h4>
+                    <p>Evaluate existing processes, data sources, and decision-making workflows to identify AI integration opportunities.</p>
+                </div>
+                <div class="methodology-card">
+                    <h4><strong>N</strong>avigate AI Landscape</h4>
+                    <p>Understand available AI tools and their specific applications to product management challenges.</p>
+                </div>
+                <div class="methodology-card">
+                    <h4><strong>A</strong>ugment Research</h4>
+                    <p>Enhance user research with AI-powered survey analysis, sentiment analysis, and persona generation.</p>
+                </div>
+                <div class="methodology-card">
+                    <h4><strong>L</strong>everage Competitive Intelligence</h4>
+                    <p>Automate competitive analysis, market monitoring, and trend identification using AI tools.</p>
+                </div>
+                <div class="methodology-card">
+                    <h4><strong>Y</strong>ield Data-Driven Insights</h4>
+                    <p>Transform raw data into actionable product insights using AI analysis and visualization tools.</p>
+                </div>
+                <div class="methodology-card">
+                    <h4><strong>Z</strong>one In On Priorities</h4>
+                    <p>Use AI to optimize feature prioritization, resource allocation, and roadmap planning.</p>
+                </div>
+                <div class="methodology-card">
+                    <h4><strong>E</strong>xecute With Confidence</h4>
+                    <p>Implement AI-enhanced processes and continuously optimize based on performance data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Overview -->
+    <section class="course-overview" id="curriculum">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your 5-Day Product Transformation</h2>
+                <p class="section-subtitle">
+                    From AI fundamentals to advanced product strategy - master the tools that define modern product management.
+                </p>
+            </div>
+
+            <div class="curriculum-grid">
+                <!-- Day 1 -->
+                <div class="day-card foundation">
+                    <div class="day-header">
+                        <div class="day-number">1</div>
+                        <div class="day-info">
+                            <h3>AI Foundation for Product Strategy</h3>
+                            <span class="day-type">Foundation • Universal</span>
+                        </div>
+                    </div>
+                    <ul class="day-highlights">
+                        <li>
+                            <i class="fas fa-brain"></i>
+                            <div>
+                                <strong>AI Product Mindset:</strong> Understanding AI's role in modern product management
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <strong>Data-Driven Product Decisions:</strong> Using AI for product metrics and KPI analysis
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <strong>AI-Enhanced User Understanding:</strong> Leveraging AI for customer insights
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-rocket"></i>
+                            <div>
+                                <strong>Quick Wins:</strong> Immediate AI applications for product managers
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="day1.html" class="day-cta">
+                        Start Day 1
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="day-card specialized">
+                    <div class="day-header">
+                        <div class="day-number">2</div>
+                        <div class="day-info">
+                            <h3>AI-Enhanced User Research</h3>
+                            <span class="day-type">Specialized • Product Management</span>
+                        </div>
+                    </div>
+                    <ul class="day-highlights">
+                        <li>
+                            <i class="fas fa-search"></i>
+                            <div>
+                                <strong>Automated Survey Analysis:</strong> AI-powered sentiment and theme analysis
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-user-circle"></i>
+                            <div>
+                                <strong>AI Persona Generation:</strong> Creating detailed user personas from data
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-comments"></i>
+                            <div>
+                                <strong>Interview Intelligence:</strong> AI transcription and insight extraction
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-chart-pie"></i>
+                            <div>
+                                <strong>Behavioral Analytics:</strong> AI-driven user behavior pattern analysis
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="day2.html" class="day-cta">
+                        Start Day 2
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="day-card specialized">
+                    <div class="day-header">
+                        <div class="day-number">3</div>
+                        <div class="day-info">
+                            <h3>Competitive Intelligence & Market Analysis</h3>
+                            <span class="day-type">Specialized • Strategic Analysis</span>
+                        </div>
+                    </div>
+                    <ul class="day-highlights">
+                        <li>
+                            <i class="fas fa-eye"></i>
+                            <div>
+                                <strong>Automated Competitor Monitoring:</strong> AI-powered competitive tracking
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-trending-up"></i>
+                            <div>
+                                <strong>Market Trend Analysis:</strong> AI identification of market opportunities
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <strong>Feature Gap Analysis:</strong> AI-driven competitive feature comparison
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-newspaper"></i>
+                            <div>
+                                <strong>News & Social Intelligence:</strong> AI monitoring of industry conversations
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="day3.html" class="day-cta">
+                        Start Day 3
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="day-card specialized">
+                    <div class="day-header">
+                        <div class="day-number">4</div>
+                        <div class="day-info">
+                            <h3>Data-Driven Product Decisions</h3>
+                            <span class="day-type">Specialized • Analytics & Strategy</span>
+                        </div>
+                    </div>
+                    <ul class="day-highlights">
+                        <li>
+                            <i class="fas fa-database"></i>
+                            <div>
+                                <strong>Product Analytics AI:</strong> Advanced analytics with AI interpretation
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-crystal-ball"></i>
+                            <div>
+                                <strong>Predictive Product Modeling:</strong> AI forecasting for product decisions
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-sort-amount-up"></i>
+                            <div>
+                                <strong>AI-Powered Prioritization:</strong> Smart feature ranking and resource allocation
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-clipboard-list"></i>
+                            <div>
+                                <strong>Requirement Generation:</strong> AI-assisted user story and PRD creation
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="day4.html" class="day-cta">
+                        Start Day 4
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="day-card specialized">
+                    <div class="day-header">
+                        <div class="day-number">5</div>
+                        <div class="day-info">
+                            <h3>AI Roadmap Planning & Strategy</h3>
+                            <span class="day-type">Strategic • Implementation</span>
+                        </div>
+                    </div>
+                    <ul class="day-highlights">
+                        <li>
+                            <i class="fas fa-road"></i>
+                            <div>
+                                <strong>Strategic Roadmap AI:</strong> AI-optimized product roadmap planning
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-handshake"></i>
+                            <div>
+                                <strong>Stakeholder Communication:</strong> AI-enhanced presentations and reports
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-cogs"></i>
+                            <div>
+                                <strong>Process Integration:</strong> Embedding AI into product workflows
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong>Continuous Learning:</strong> Building AI-powered product culture
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="day5.html" class="day-cta">
+                        Start Day 5
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tools Showcase -->
+    <section class="tools-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2>Master These AI Tools</h2>
+                <p class="section-subtitle">
+                    Hands-on experience with the most powerful AI tools for product management
+                </p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h4>ChatGPT & Claude</h4>
+                    <p>Advanced prompting for product research, analysis, and communication</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Mixpanel AI</h4>
+                    <p>AI-powered product analytics and user behavior insights</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h4>SimilarWeb AI</h4>
+                    <p>Competitive intelligence and market analysis automation</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>UserVoice AI</h4>
+                    <p>AI-enhanced customer feedback analysis and prioritization</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h4>Notion AI</h4>
+                    <p>AI-powered documentation, PRDs, and project management</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-presentation"></i>
+                    </div>
+                    <h4>Gamma</h4>
+                    <p>AI-generated presentations and stakeholder communications</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>Perplexity</h4>
+                    <p>AI-powered research and market intelligence gathering</p>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h4>Zapier AI</h4>
+                    <p>Automated workflows connecting product tools and data</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expected Outcomes -->
+    <section class="outcomes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Transform Your Product Impact</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">
+                    Measurable improvements you'll achieve in your product management effectiveness
+                </p>
+            </div>
+            <div class="outcomes-grid">
+                <div class="outcome-card">
+                    <h3>3x Faster Insights</h3>
+                    <p>Reduce time from research to actionable insights from weeks to days using AI-powered analysis.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>50% Better Prioritization</h3>
+                    <p>Make more accurate feature prioritization decisions with AI-enhanced data analysis and prediction.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>2x More User Understanding</h3>
+                    <p>Generate deeper customer insights with AI-powered persona creation and behavioral analysis.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>10x Competitive Advantage</h3>
+                    <p>Stay ahead of competition with automated monitoring and AI-driven market intelligence.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>5x Communication Impact</h3>
+                    <p>Create more compelling stakeholder presentations and product narratives with AI assistance.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>Career Acceleration</h3>
+                    <p>Position yourself as an AI-savvy product leader ready for senior product management roles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Product Strategy?</h2>
+                <p>Join the next generation of AI-powered product managers driving innovation and growth.</p>
+                <div class="cta-buttons">
+                    <a href="day1.html" class="btn btn-primary btn-lg">
+                        Start Your Transformation
+                        <i class="fas fa-rocket"></i>
+                    </a>
+                    <a href="../../courses/ai-for-everyone/" class="btn btn-secondary btn-lg">
+                        Begin with Foundation Course
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="../../shared/js/platform-core.js"></script>
+    <script>
+        // Initialize progress tracking for product owner course
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.aiUpskillPlatform) {
+                window.aiUpskillPlatform.trackPageView('product-owner-overview');
+                
+                // Track course interest
+                window.aiUpskillPlatform.trackEvent('course_viewed', {
+                    courseId: 'ai-for-product-owners',
+                    courseName: 'AI for Product Owners & BAs'
+                });
+            }
+        });
+
+        // Track day start clicks
+        document.querySelectorAll('.day-cta').forEach(button => {
+            button.addEventListener('click', function() {
+                const dayMatch = this.href.match(/day(\d+)/);
+                if (dayMatch && window.aiUpskillPlatform) {
+                    const dayNumber = parseInt(dayMatch[1]);
+                    window.aiUpskillPlatform.startDay('ai-for-product-owners', dayNumber);
+                    window.aiUpskillPlatform.trackEvent('day_started', {
+                        courseId: 'ai-for-product-owners',
+                        dayNumber: dayNumber
+                    });
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate methodology cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.methodology-card, .tool-card, .outcome-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+
