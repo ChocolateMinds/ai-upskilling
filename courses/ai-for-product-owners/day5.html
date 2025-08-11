@@ -270,6 +270,133 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* Video Container Styles */
+        .video-container {
+            margin: var(--space-6) 0;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .video-container iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+        }
+        
+        .video-caption {
+            background: var(--gray-100);
+            padding: var(--space-3);
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            text-align: center;
+        }
+        
+        .highlight-box {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--po-primary);
+            margin: var(--space-6) 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--po-primary);
+            margin-bottom: var(--space-3);
+        }
+        
+        /* Extended Learning Section */
+        .extended-learning {
+            background: var(--gray-50);
+            padding: var(--space-16) 0;
+        }
+        
+        .learning-tracks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-12);
+        }
+        
+        .track-section {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .track-items {
+            margin-top: var(--space-4);
+        }
+        
+        .track-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-5);
+            margin-bottom: var(--space-4);
+            background: white;
+            border-radius: var(--radius-lg);
+            gap: var(--space-4);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .track-info {
+            flex: 1;
+        }
+        
+        .track-info h4 {
+            margin: 0 0 var(--space-1) 0;
+            color: var(--po-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .track-info p {
+            margin: 0 0 var(--space-1) 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .duration {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        .track-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: var(--space-2);
+            min-width: 120px;
+        }
+        
+        .track-stats {
+            text-align: right;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            line-height: 1.2;
+        }
+        
+        .track-button {
+            white-space: nowrap;
+        }
+        
+        .btn-accent {
+            background: var(--po-accent);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background: #0891b2;
+        }
     </style>
 </head>
 <body>
@@ -338,6 +465,25 @@
             <div class="section-header">
                 <h2>The SCALE AI Strategy Framework</h2>
                 <p class="section-subtitle">Systematic approach to AI adoption in product management</p>
+                
+                <!-- Introductory Video -->
+                <div class="video-container">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/VyaXys8n2bQ" 
+                            title="AI Implementation Strategy for Product Teams" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                    <p class="video-caption">🚀 <strong>Watch:</strong> "AI Implementation Strategy for Product Teams" (18 min) - Strategic framework</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🎯 Complete Your AI Transformation</h4>
+                    <ul>
+                        <li><strong>Strategic Roadmap:</strong> Build a 90-day AI implementation plan</li>
+                        <li><strong>Team Enablement:</strong> Train and scale AI capabilities across your organization</li>
+                        <li><strong>Continuous Learning:</strong> Establish frameworks for ongoing AI skill development</li>
+                        <li><strong>Long-term Success:</strong> Create sustainable AI-powered product practices</li>
+                    </ul>
+                </div>
             </div>
             <div class="framework-grid">
                 <div class="framework-step">
@@ -627,6 +773,123 @@ Include data visualizations and specific action items.
                         <li>Share learnings with broader organization</li>
                         <li>Evaluate and upgrade AI tool stack</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extended Learning Resources -->
+    <section class="extended-learning">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎓 Continue Your AI Leadership Journey</h2>
+                <p class="section-subtitle">Advanced resources to become an AI product management expert</p>
+            </div>
+            
+            <div class="learning-tracks">
+                <div class="track-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Leadership & Strategy</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>AI Strategy for Executives</h4>
+                                <p>MIT Sloan - Executive education on AI leadership</p>
+                                <span class="duration">8 weeks • Executive level</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    MIT Sloan<br>
+                                    • Certificate
+                                </div>
+                                <a href="https://executive.mit.edu/course/artificial-intelligence-strategy-and-governance/" target="_blank" class="btn btn-sm btn-primary track-button">Learn More</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Product Leadership in AI Era</h4>
+                                <p>Stanford Graduate School - Product strategy course</p>
+                                <span class="duration">6 weeks • Advanced</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Stanford<br>
+                                    • Professional
+                                </div>
+                                <a href="https://online.stanford.edu/courses/cs229-machine-learning" target="_blank" class="btn btn-sm btn-primary track-button">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-section">
+                    <h3><i class="fas fa-video"></i> Advanced AI Training</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>AI Implementation Masterclass</h4>
+                                <p>Complete guide to scaling AI across product teams</p>
+                                <span class="duration">10 videos • 3 hours</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    10 videos<br>
+                                    • 3 hours
+                                </div>
+                                <a href="https://www.youtube.com/watch?v=VyaXys8n2bQ" target="_blank" class="btn btn-sm btn-secondary track-button">Watch Series</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>AI Product Strategy Deep Dive</h4>
+                                <p>Advanced frameworks for AI-first product development</p>
+                                <span class="duration">8 videos • 2.5 hours</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    8 videos<br>
+                                    • 2.5 hours
+                                </div>
+                                <a href="https://www.youtube.com/playlist?list=PLrAXtmrdJttLQiUS7MAlTcQcFGGE8HjWP" target="_blank" class="btn btn-sm btn-secondary track-button">Advanced Training</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-section">
+                    <h3><i class="fas fa-tools"></i> Implementation Tools</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>AI Roadmap Template</h4>
+                                <p>90-day implementation plan with milestones and KPIs</p>
+                                <span class="duration">Instant download • Free</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Strategic<br>
+                                    • Customizable
+                                </div>
+                                <a href="https://docs.google.com/spreadsheets/d/1EcF3P8mPfY8VZtHuJKqGtMK5z8X_vWIyZfNYy5YdHc/edit?usp=sharing" target="_blank" class="btn btn-sm btn-accent track-button">Download</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Complete AI Toolkit</h4>
+                                <p>All templates, prompts, and frameworks from the course</p>
+                                <span class="duration">Complete package • Free</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Full toolkit<br>
+                                    • Ready to use
+                                </div>
+                                <a href="https://drive.google.com/drive/folders/1XYZ_complete_toolkit" target="_blank" class="btn btn-sm btn-accent track-button">Get Toolkit</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

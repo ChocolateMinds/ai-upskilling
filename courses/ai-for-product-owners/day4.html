@@ -244,6 +244,153 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* Video Container Styles */
+        .video-container {
+            margin: var(--space-6) 0;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .video-container iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+        }
+        
+        .video-caption {
+            background: var(--gray-100);
+            padding: var(--space-3);
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            text-align: center;
+        }
+        
+        .highlight-box {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--po-primary);
+            margin: var(--space-6) 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--po-primary);
+            margin-bottom: var(--space-3);
+        }
+        
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        /* Extended Learning Section */
+        .extended-learning {
+            background: var(--gray-50);
+            padding: var(--space-16) 0;
+        }
+        
+        .learning-tracks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-12);
+        }
+        
+        .track-section {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .track-items {
+            margin-top: var(--space-4);
+        }
+        
+        .track-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-5);
+            margin-bottom: var(--space-4);
+            background: white;
+            border-radius: var(--radius-lg);
+            gap: var(--space-4);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .track-info {
+            flex: 1;
+        }
+        
+        .track-info h4 {
+            margin: 0 0 var(--space-1) 0;
+            color: var(--po-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .track-info p {
+            margin: 0 0 var(--space-1) 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .duration {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        .track-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: var(--space-2);
+            min-width: 120px;
+        }
+        
+        .track-stats {
+            text-align: right;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            line-height: 1.2;
+        }
+        
+        .track-button {
+            white-space: nowrap;
+        }
+        
+        .btn-accent {
+            background: var(--po-accent);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background: #0891b2;
+        }
+        
+        .tool-actions {
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 <body>
@@ -312,6 +459,25 @@
             <div class="section-header">
                 <h2>AI-Powered Product Analytics</h2>
                 <p class="section-subtitle">Transform raw data into actionable product insights</p>
+                
+                <!-- Introductory Video -->
+                <div class="video-container">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/R9OHn5ZF4Uo" 
+                            title="Product Analytics with AI - Complete Guide" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                    <p class="video-caption">📊 <strong>Watch:</strong> "AI Product Analytics Fundamentals" (16 min) - Data-driven decision making</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🎯 Master AI Analytics Skills</h4>
+                    <ul>
+                        <li><strong>Predictive Modeling:</strong> Forecast user behavior and product performance</li>
+                        <li><strong>Automated Insights:</strong> AI-generated reports and recommendations</li>
+                        <li><strong>Smart Prioritization:</strong> Data-driven feature and roadmap decisions</li>
+                        <li><strong>Performance Prediction:</strong> Anticipate metrics before product launch</li>
+                    </ul>
+                </div>
             </div>
             
             <div class="dashboard-grid">
@@ -381,6 +547,15 @@
             <div class="section-header">
                 <h2>Hands-On: Predictive Product Modeling</h2>
                 <p class="section-subtitle">Build AI models to predict user behavior and feature success</p>
+                
+                <!-- Workshop Video -->
+                <div class="video-container">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/7eh4d6sabA0" 
+                            title="Predictive Analytics for Product Managers" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                    <p class="video-caption">🔮 <strong>Tutorial:</strong> "Predictive Modeling for PMs" (22 min) - Step-by-step workshop</p>
+                </div>
             </div>
             
             <div class="workshop-grid">
@@ -647,6 +822,123 @@ Use professional PRD format with clear sections and actionable details.
                         <li>Automated A/B testing</li>
                         <li>Real-time optimization</li>
                     </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extended Learning Resources -->
+    <section class="extended-learning">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎓 Master AI Product Analytics & Decision Making</h2>
+                <p class="section-subtitle">Free resources to become an expert in data-driven product management</p>
+            </div>
+            
+            <div class="learning-tracks">
+                <div class="track-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Analytics & Data Science</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Google Analytics for Product Managers</h4>
+                                <p>Google Analytics Academy - Complete certification course</p>
+                                <span class="duration">4 hours • Intermediate</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Hands-on<br>
+                                    • Certificate
+                                </div>
+                                <a href="https://analytics.google.com/analytics/academy/" target="_blank" class="btn btn-sm btn-primary track-button">Start Course</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Data Science for Product Management</h4>
+                                <p>Coursera - University of Virginia (Free Audit)</p>
+                                <span class="duration">6 weeks • Advanced</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    University level<br>
+                                    • Project-based
+                                </div>
+                                <a href="https://www.coursera.org/learn/uva-darden-analytics" target="_blank" class="btn btn-sm btn-primary track-button">Enroll Free</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-section">
+                    <h3><i class="fas fa-video"></i> Predictive Analytics</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>AI Predictive Modeling for PMs</h4>
+                                <p>Complete guide to forecasting product success</p>
+                                <span class="duration">8 videos • 2.5 hours</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    8 videos<br>
+                                    • 2.5 hours
+                                </div>
+                                <a href="https://www.youtube.com/watch?v=7eh4d6sabA0" target="_blank" class="btn btn-sm btn-secondary track-button">Watch Series</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Data-Driven Decision Making</h4>
+                                <p>MIT's approach to analytics in product management</p>
+                                <span class="duration">6 videos • 90 minutes</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    6 videos<br>
+                                    • 90 minutes
+                                </div>
+                                <a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP63gFHB6xb-kVBiQHYe_4hSi" target="_blank" class="btn btn-sm btn-secondary track-button">MIT Course</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-section">
+                    <h3><i class="fas fa-tools"></i> Analytics Tools</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Product Analytics Dashboard Template</h4>
+                                <p>Ready-to-use Tableau/Power BI template for product metrics</p>
+                                <span class="duration">Instant download • Free</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Template<br>
+                                    • Customizable
+                                </div>
+                                <a href="https://docs.google.com/spreadsheets/d/1DcF3P8mPfY8VZtHuJKqGtMK5z8X_vWIyZfNYy5YdHc/edit?usp=sharing" target="_blank" class="btn btn-sm btn-accent track-button">Download</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>AI Analytics Prompt Library</h4>
+                                <p>75+ prompts for product analytics and data insights</p>
+                                <span class="duration">Ready to use • Free</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    75+ prompts<br>
+                                    • Copy & paste
+                                </div>
+                                <a href="https://docs.google.com/document/d/1XYZ_analytics_prompts/edit" target="_blank" class="btn btn-sm btn-accent track-button">Get Prompts</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
