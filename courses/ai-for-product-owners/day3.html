@@ -348,6 +348,153 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* Video Container Styles */
+        .video-container {
+            margin: var(--space-6) 0;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .video-container iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+        }
+        
+        .video-caption {
+            background: var(--gray-100);
+            padding: var(--space-3);
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            text-align: center;
+        }
+        
+        .highlight-box {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--po-primary);
+            margin: var(--space-6) 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--po-primary);
+            margin-bottom: var(--space-3);
+        }
+        
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        /* Extended Learning Section */
+        .extended-learning {
+            background: var(--gray-50);
+            padding: var(--space-16) 0;
+        }
+        
+        .learning-tracks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-12);
+        }
+        
+        .track-section {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .track-items {
+            margin-top: var(--space-4);
+        }
+        
+        .track-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-5);
+            margin-bottom: var(--space-4);
+            background: white;
+            border-radius: var(--radius-lg);
+            gap: var(--space-4);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .track-info {
+            flex: 1;
+        }
+        
+        .track-info h4 {
+            margin: 0 0 var(--space-1) 0;
+            color: var(--po-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .track-info p {
+            margin: 0 0 var(--space-1) 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .duration {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        .track-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: var(--space-2);
+            min-width: 120px;
+        }
+        
+        .track-stats {
+            text-align: right;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            line-height: 1.2;
+        }
+        
+        .track-button {
+            white-space: nowrap;
+        }
+        
+        .btn-accent {
+            background: var(--po-accent);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background: #0891b2;
+        }
+        
+        .tool-actions {
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 <body>
@@ -388,6 +535,25 @@
             <div class="section-header">
                 <h2>The AI Intelligence Framework</h2>
                 <p class="section-subtitle">Three pillars of AI-powered competitive advantage</p>
+                
+                <!-- Introductory Video -->
+                <div class="video-container">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/H2fJXe20bEU" 
+                            title="AI for Competitive Intelligence" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                    <p class="video-caption">🔍 <strong>Watch:</strong> "AI-Powered Competitive Intelligence" (14 min) - Market Analysis Techniques</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🎯 Master These AI Intelligence Skills</h4>
+                    <ul>
+                        <li><strong>Automated Competitor Monitoring:</strong> Real-time tracking of competitor moves</li>
+                        <li><strong>Market Trend Analysis:</strong> AI-powered pattern recognition in market data</li>
+                        <li><strong>Strategic Positioning:</strong> Data-driven competitive advantage identification</li>
+                        <li><strong>Intelligence Automation:</strong> Set up workflows for continuous market insights</li>
+                    </ul>
+                </div>
             </div>
             <div class="framework-grid">
                 <div class="framework-pillar">
@@ -750,6 +916,123 @@
                 <div class="advantage-card">
                     <h4><i class="fas fa-clock"></i> Time Efficiency</h4>
                     <p>Reduce competitive research time by 80% while increasing insight quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extended Learning Resources -->
+    <section class="extended-learning">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎓 Master Competitive Intelligence with AI</h2>
+                <p class="section-subtitle">Free resources to become an expert in AI-powered market analysis</p>
+            </div>
+            
+            <div class="learning-tracks">
+                <div class="track-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Market Intelligence Courses</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Competitive Strategy</h4>
+                                <p>Harvard Business School Online - Free case studies</p>
+                                <span class="duration">Self-paced • Advanced</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Case studies<br>
+                                    • Expert level
+                                </div>
+                                <a href="https://online.hbs.edu/subjects/strategy.aspx" target="_blank" class="btn btn-sm btn-primary track-button">Access Free</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Market Research with AI</h4>
+                                <p>Google Analytics Academy - AI for market insights</p>
+                                <span class="duration">3 hours • Intermediate</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Hands-on<br>
+                                    • Certificate
+                                </div>
+                                <a href="https://analytics.google.com/analytics/academy/" target="_blank" class="btn btn-sm btn-primary track-button">Start Course</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-section">
+                    <h3><i class="fas fa-video"></i> Intelligence Tutorials</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>AI Competitive Analysis</h4>
+                                <p>Complete guide to automated competitor tracking</p>
+                                <span class="duration">6 videos • 90 minutes</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    6 videos<br>
+                                    • 90 minutes
+                                </div>
+                                <a href="https://www.youtube.com/watch?v=H2fJXe20bEU" target="_blank" class="btn btn-sm btn-secondary track-button">Watch Series</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Market Trend Analysis with AI</h4>
+                                <p>Using AI tools for market pattern recognition</p>
+                                <span class="duration">4 videos • 1 hour</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    4 videos<br>
+                                    • 1 hour
+                                </div>
+                                <a href="https://www.youtube.com/playlist?list=PLrAXtmrdJttM5HeM6rf-T1mpqm9AqnWHS" target="_blank" class="btn btn-sm btn-secondary track-button">Learn Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-section">
+                    <h3><i class="fas fa-tools"></i> Intelligence Tools</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Competitor Analysis Template</h4>
+                                <p>Ready-to-use framework for AI competitor tracking</p>
+                                <span class="duration">Instant download • Free</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Template<br>
+                                    • Customizable
+                                </div>
+                                <a href="https://docs.google.com/spreadsheets/d/1CcF3P8mPfY8VZtHuJKqGtMK5z8X_vWIyZfNYy5YdHc/edit?usp=sharing" target="_blank" class="btn btn-sm btn-accent track-button">Download</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>AI Intelligence Prompt Library</h4>
+                                <p>50+ prompts for market analysis and competitor research</p>
+                                <span class="duration">Ready to use • Free</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    50+ prompts<br>
+                                    • Copy & paste
+                                </div>
+                                <a href="https://docs.google.com/document/d/1XYZ_intelligence_prompts/edit" target="_blank" class="btn btn-sm btn-accent track-button">Get Prompts</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
