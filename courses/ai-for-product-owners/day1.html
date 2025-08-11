@@ -245,14 +245,30 @@
         }
         
         .btn-outline {
-            background: transparent;
-            border: 2px solid var(--po-primary);
-            color: var(--po-primary);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: white;
+            backdrop-filter: blur(10px);
         }
         
         .btn-outline:hover {
-            background: var(--po-primary);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
             color: white;
+            transform: translateY(-1px);
+        }
+        
+        .hands-on-section .btn-outline {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .hands-on-section .btn-outline:hover {
+            background: white;
+            color: var(--po-primary);
+            border-color: white;
         }
         
         .ml-2 {
@@ -300,30 +316,58 @@
         .track-item {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            padding: var(--space-4);
-            margin-bottom: var(--space-3);
-            background: var(--gray-50);
+            align-items: center;
+            padding: var(--space-5);
+            margin-bottom: var(--space-4);
+            background: white;
             border-radius: var(--radius-lg);
             gap: var(--space-4);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .track-info {
+            flex: 1;
         }
         
         .track-info h4 {
-            margin: 0 0 var(--space-2) 0;
+            margin: 0 0 var(--space-1) 0;
             color: var(--po-primary);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
         
         .track-info p {
             margin: 0 0 var(--space-1) 0;
             color: var(--gray-600);
             font-size: 0.9rem;
+            line-height: 1.4;
         }
         
         .duration {
             font-size: 0.8rem;
             color: var(--gray-500);
             font-style: italic;
+            font-weight: 500;
+        }
+        
+        .track-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: var(--space-2);
+            min-width: 120px;
+        }
+        
+        .track-stats {
+            text-align: right;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            line-height: 1.2;
+        }
+        
+        .track-button {
+            white-space: nowrap;
         }
         
         .learning-commitment {
@@ -914,21 +958,43 @@
                                 <p>University of London (Coursera) - No programming required</p>
                                 <span class="duration">6 weeks • Beginner</span>
                             </div>
-                            <a href="https://www.coursera.org/learn/uol-machine-learning-for-all" target="_blank" class="btn btn-sm btn-primary">Enroll Free</a>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Self-paced<br>
+                                    • Certificate
+                                </div>
+                                <a href="https://www.coursera.org/learn/uol-machine-learning-for-all" target="_blank" class="btn btn-sm btn-primary track-button">Enroll Free</a>
+                            </div>
                         </div>
                         
                         <div class="track-item">
-                            <h4>AI Product Management</h4>
-                            <p>Duke University (Coursera) - Specialization for PMs</p>
-                            <span class="duration">4 courses • Intermediate</span>
-                            <a href="https://www.coursera.org/specializations/ai-product-management-duke" target="_blank" class="btn btn-sm btn-primary">Start Specialization</a>
+                            <div class="track-info">
+                                <h4>AI Product Management</h4>
+                                <p>Duke University (Coursera) - Specialization for PMs</p>
+                                <span class="duration">4 courses • Intermediate</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Multiple modules<br>
+                                    • Professional
+                                </div>
+                                <a href="https://www.coursera.org/specializations/ai-product-management-duke" target="_blank" class="btn btn-sm btn-primary track-button">Start Specialization</a>
+                            </div>
                         </div>
                         
                         <div class="track-item">
-                            <h4>Generative AI for Product Managers</h4>
-                            <p>DeepLearning.AI - Short course on practical AI applications</p>
-                            <span class="duration">1 week • Beginner</span>
-                            <a href="https://www.deeplearning.ai/short-courses/" target="_blank" class="btn btn-sm btn-primary">Take Course</a>
+                            <div class="track-info">
+                                <h4>Generative AI for Product Managers</h4>
+                                <p>DeepLearning.AI - Short course on practical AI applications</p>
+                                <span class="duration">1 week • Beginner</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Video-based<br>
+                                    • Interactive
+                                </div>
+                                <a href="https://www.deeplearning.ai/short-courses/" target="_blank" class="btn btn-sm btn-primary track-button">Take Course</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -937,17 +1003,33 @@
                     <h3><i class="fas fa-video"></i> YouTube Playlists</h3>
                     <div class="track-items">
                         <div class="track-item">
-                            <h4>AI for Product Managers (Playlist)</h4>
-                            <p>Product School's comprehensive video series</p>
-                            <span class="duration">12 videos • 3 hours total</span>
-                            <a href="https://www.youtube.com/playlist?list=PLjAuKit_6xYFZP3ssBgU4xG6Fj3h5KJe5" target="_blank" class="btn btn-sm btn-secondary">Watch Playlist</a>
+                            <div class="track-info">
+                                <h4>AI for Product Managers (Playlist)</h4>
+                                <p>Product School's comprehensive video series</p>
+                                <span class="duration">12 videos • 3 hours total</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    12 videos<br>
+                                    • 3 hours total
+                                </div>
+                                <a href="https://www.youtube.com/playlist?list=PLjAuKit_6xYFZP3ssBgU4xG6Fj3h5KJe5" target="_blank" class="btn btn-sm btn-secondary track-button">Watch Playlist</a>
+                            </div>
                         </div>
                         
                         <div class="track-item">
-                            <h4>ChatGPT Masterclass for Business</h4>
-                            <p>Practical prompts and use cases for professionals</p>
-                            <span class="duration">15 videos • 2.5 hours</span>
-                            <a href="https://www.youtube.com/playlist?list=PLjAuKit_6xYFZP3ssBgU4xG6Fj3h5KJe5" target="_blank" class="btn btn-sm btn-secondary">Watch Series</a>
+                            <div class="track-info">
+                                <h4>ChatGPT Masterclass for Business</h4>
+                                <p>Practical prompts and use cases for professionals</p>
+                                <span class="duration">15 videos • 2.5 hours</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    15 videos<br>
+                                    • 2.5 hours
+                                </div>
+                                <a href="https://www.youtube.com/playlist?list=PLdxuOh8hNZMgXZAubCLHeFDfkn7FchvHI" target="_blank" class="btn btn-sm btn-secondary track-button">Watch Series</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -956,17 +1038,33 @@
                     <h3><i class="fas fa-tools"></i> Hands-On Tools</h3>
                     <div class="track-items">
                         <div class="track-item">
-                            <h4>Google AI Essentials</h4>
-                            <p>Free certificate program covering AI fundamentals</p>
-                            <span class="duration">Self-paced • Certificate</span>
-                            <a href="https://www.coursera.org/professional-certificates/google-ai-essentials" target="_blank" class="btn btn-sm btn-accent">Get Certificate</a>
+                            <div class="track-info">
+                                <h4>Google AI Essentials</h4>
+                                <p>Free certificate program covering AI fundamentals</p>
+                                <span class="duration">Self-paced • Certificate</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Self-paced<br>
+                                    • Certificate
+                                </div>
+                                <a href="https://www.coursera.org/professional-certificates/google-ai-essentials" target="_blank" class="btn btn-sm btn-accent track-button">Get Certificate</a>
+                            </div>
                         </div>
                         
                         <div class="track-item">
-                            <h4>Microsoft AI Business School</h4>
-                            <p>Case studies and frameworks for AI adoption</p>
-                            <span class="duration">Multiple modules • Free</span>
-                            <a href="https://www.microsoft.com/ai/ai-business-school" target="_blank" class="btn btn-sm btn-accent">Explore</a>
+                            <div class="track-info">
+                                <h4>Microsoft AI Business School</h4>
+                                <p>Case studies and frameworks for AI adoption</p>
+                                <span class="duration">Multiple modules • Free</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Multiple modules<br>
+                                    • Free
+                                </div>
+                                <a href="https://www.microsoft.com/ai/ai-business-school" target="_blank" class="btn btn-sm btn-accent track-button">Explore</a>
+                            </div>
                         </div>
                     </div>
                 </div>
