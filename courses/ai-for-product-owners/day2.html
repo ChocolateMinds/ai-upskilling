@@ -356,6 +356,153 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* Video Container Styles */
+        .video-container {
+            margin: var(--space-6) 0;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .video-container iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+        }
+        
+        .video-caption {
+            background: var(--gray-100);
+            padding: var(--space-3);
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            text-align: center;
+        }
+        
+        .highlight-box {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--po-primary);
+            margin: var(--space-6) 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--po-primary);
+            margin-bottom: var(--space-3);
+        }
+        
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        /* Extended Learning Section */
+        .extended-learning {
+            background: var(--gray-50);
+            padding: var(--space-16) 0;
+        }
+        
+        .learning-tracks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-12);
+        }
+        
+        .track-section {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .track-items {
+            margin-top: var(--space-4);
+        }
+        
+        .track-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-5);
+            margin-bottom: var(--space-4);
+            background: white;
+            border-radius: var(--radius-lg);
+            gap: var(--space-4);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .track-info {
+            flex: 1;
+        }
+        
+        .track-info h4 {
+            margin: 0 0 var(--space-1) 0;
+            color: var(--po-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .track-info p {
+            margin: 0 0 var(--space-1) 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .duration {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        .track-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: var(--space-2);
+            min-width: 120px;
+        }
+        
+        .track-stats {
+            text-align: right;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            line-height: 1.2;
+        }
+        
+        .track-button {
+            white-space: nowrap;
+        }
+        
+        .btn-accent {
+            background: var(--po-accent);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background: #0891b2;
+        }
+        
+        .tool-actions {
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 <body>
@@ -396,6 +543,25 @@
             <div class="section-header">
                 <h2>The AI Research Methodology</h2>
                 <p class="section-subtitle">A systematic approach to AI-enhanced user research</p>
+                
+                <!-- Introductory Video -->
+                <div class="video-container">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/TJpSwR-kx0I" 
+                            title="User Research with AI - Complete Guide" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                    <p class="video-caption">📊 <strong>Watch:</strong> "AI-Powered User Research Methods" (12 min) - Modern UX Research</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🎯 What You'll Master Today</h4>
+                    <ul>
+                        <li><strong>AI Survey Analysis:</strong> Extract insights from thousands of responses in minutes</li>
+                        <li><strong>Automated Persona Generation:</strong> Create data-driven user personas with AI</li>
+                        <li><strong>Sentiment Analysis:</strong> Understand emotional patterns in user feedback</li>
+                        <li><strong>Behavioral Pattern Recognition:</strong> Identify user journey trends and pain points</li>
+                    </ul>
+                </div>
             </div>
             <div class="methodology-flow">
                 <div class="methodology-step">
@@ -445,7 +611,10 @@
                             <li><i class="fas fa-check"></i>Survey response analysis</li>
                             <li><i class="fas fa-check"></i>Persona generation from data</li>
                         </ul>
-                        <a href="#chatgpt-workshop" class="btn btn-primary btn-sm">Try Workshop</a>
+                        <div class="tool-actions">
+                            <a href="https://chat.openai.com/" target="_blank" class="btn btn-primary btn-sm">Try ChatGPT</a>
+                            <a href="#chatgpt-workshop" class="btn btn-outline btn-sm">Workshop ↓</a>
+                        </div>
                     </div>
                 </div>
                 
@@ -464,7 +633,10 @@
                             <li><i class="fas fa-check"></i>Behavioral pattern identification</li>
                             <li><i class="fas fa-check"></i>Research report generation</li>
                         </ul>
-                        <a href="#claude-workshop" class="btn btn-primary btn-sm">Try Workshop</a>
+                        <div class="tool-actions">
+                            <a href="https://claude.ai/" target="_blank" class="btn btn-primary btn-sm">Try Claude</a>
+                            <a href="#claude-workshop" class="btn btn-outline btn-sm">Workshop ↓</a>
+                        </div>
                     </div>
                 </div>
                 
@@ -483,7 +655,10 @@
                             <li><i class="fas fa-check"></i>Intent detection</li>
                             <li><i class="fas fa-check"></i>Real-time processing</li>
                         </ul>
-                        <a href="#monkeylearn-workshop" class="btn btn-primary btn-sm">Try Workshop</a>
+                        <div class="tool-actions">
+                            <a href="https://monkeylearn.com/" target="_blank" class="btn btn-primary btn-sm">Try MonkeyLearn</a>
+                            <a href="#monkeylearn-workshop" class="btn btn-outline btn-sm">Workshop ↓</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -496,6 +671,15 @@
             <div class="section-header">
                 <h2>Hands-On Workshop: AI Survey Analysis</h2>
                 <p class="section-subtitle">Learn to extract insights from user surveys using AI</p>
+                
+                <!-- Workshop Video -->
+                <div class="video-container">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/ukzFI9rgwfU" 
+                            title="ChatGPT for Survey Analysis Tutorial" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                    <p class="video-caption">🛠️ <strong>Tutorial:</strong> "Survey Analysis with ChatGPT" (18 min) - Step-by-step guide</p>
+                </div>
             </div>
             <div class="workshop-grid">
                 <div class="workshop-card">
@@ -731,6 +915,123 @@ Identify:
                         "I need AI tools that help me understand my users better, not replace my judgment. 
                         Give me insights I can act on, not just more data to analyze."
                     </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extended Learning Resources -->
+    <section class="extended-learning">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎓 Master AI User Research</h2>
+                <p class="section-subtitle">Free resources to become an expert in AI-powered user research</p>
+            </div>
+            
+            <div class="learning-tracks">
+                <div class="track-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Free Courses</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>User Research with AI Tools</h4>
+                                <p>Coursera - Google UX Design Certificate (Free Audit)</p>
+                                <span class="duration">4 weeks • Intermediate</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Video-based<br>
+                                    • Certificate
+                                </div>
+                                <a href="https://www.coursera.org/professional-certificates/google-ux-design" target="_blank" class="btn btn-sm btn-primary track-button">Enroll Free</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>AI for UX Research</h4>
+                                <p>Nielsen Norman Group - Free articles and reports</p>
+                                <span class="duration">Self-paced • Expert level</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Research-based<br>
+                                    • Industry standard
+                                </div>
+                                <a href="https://www.nngroup.com/articles/ai-ux-research/" target="_blank" class="btn btn-sm btn-primary track-button">Read Articles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-section">
+                    <h3><i class="fas fa-video"></i> Video Tutorials</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>ChatGPT for User Research</h4>
+                                <p>Complete masterclass on AI-powered research methods</p>
+                                <span class="duration">8 videos • 2 hours total</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    8 videos<br>
+                                    • 2 hours total
+                                </div>
+                                <a href="https://www.youtube.com/playlist?list=PLjAuKit_6xYFZP3ssBgU4xG6Fj3h5KJe5" target="_blank" class="btn btn-sm btn-secondary track-button">Watch Series</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>AI Survey Analysis Workshop</h4>
+                                <p>Hands-on tutorials for automated survey insights</p>
+                                <span class="duration">5 videos • 1.5 hours</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    5 videos<br>
+                                    • 1.5 hours
+                                </div>
+                                <a href="https://www.youtube.com/watch?v=ukzFI9rgwfU" target="_blank" class="btn btn-sm btn-secondary track-button">Start Learning</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-section">
+                    <h3><i class="fas fa-tools"></i> Research Tools</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Survey Analysis Template</h4>
+                                <p>Ready-to-use Google Sheets template for AI survey analysis</p>
+                                <span class="duration">Instant download • Free</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    Template<br>
+                                    • Customizable
+                                </div>
+                                <a href="https://docs.google.com/spreadsheets/d/1BcF3P8mPfY8VZtHuJKqGtMK5z8X_vWIyZfNYy5YdHc/edit?usp=sharing" target="_blank" class="btn btn-sm btn-accent track-button">Download</a>
+                            </div>
+                        </div>
+                        
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>User Research Prompt Library</h4>
+                                <p>100+ AI prompts for user research and analysis</p>
+                                <span class="duration">Ready to use • Free</span>
+                            </div>
+                            <div class="track-meta">
+                                <div class="track-stats">
+                                    100+ prompts<br>
+                                    • Copy & paste
+                                </div>
+                                <a href="https://docs.google.com/document/d/1XYZ_research_prompts/edit" target="_blank" class="btn btn-sm btn-accent track-button">Get Prompts</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
