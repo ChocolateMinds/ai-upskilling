@@ -244,6 +244,117 @@
             gap: var(--space-2);
         }
         
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--po-primary);
+            color: var(--po-primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--po-primary);
+            color: white;
+        }
+        
+        .ml-2 {
+            margin-left: var(--space-2);
+        }
+        
+        .mt-3 {
+            margin-top: var(--space-3);
+        }
+        
+        .mt-4 {
+            margin-top: var(--space-4);
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .extended-learning {
+            background: var(--gray-50);
+            padding: var(--space-16) 0;
+        }
+        
+        .learning-tracks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-12);
+        }
+        
+        .track-section {
+            background: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--po-primary);
+        }
+        
+        .track-items {
+            margin-top: var(--space-4);
+        }
+        
+        .track-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: var(--space-4);
+            margin-bottom: var(--space-3);
+            background: var(--gray-50);
+            border-radius: var(--radius-lg);
+            gap: var(--space-4);
+        }
+        
+        .track-info h4 {
+            margin: 0 0 var(--space-2) 0;
+            color: var(--po-primary);
+            font-weight: 600;
+        }
+        
+        .track-info p {
+            margin: 0 0 var(--space-1) 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+        
+        .duration {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-style: italic;
+        }
+        
+        .learning-commitment {
+            background: var(--po-gradient);
+            color: white;
+            padding: var(--space-8);
+            border-radius: var(--radius-xl);
+            text-align: center;
+        }
+        
+        .commitment-card h3 {
+            margin-bottom: var(--space-4);
+        }
+        
+        .commitment-card ul {
+            text-align: left;
+            margin-bottom: var(--space-4);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-accent {
+            background: var(--po-accent);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background: #0891b2;
+        }
+        
         .case-study {
             background: white;
             padding: var(--space-12) 0;
@@ -367,10 +478,14 @@
                     </ol>
                     
                     <div class="mt-4">
-                        <button class="btn btn-primary btn-sm" onclick="toggleElement('audit-template')">
+                        <a href="https://docs.google.com/spreadsheets/d/1-rXk7P8mPfY8VZtHuJKqGtMK5z8X_vWIyZfNYy5YdHc/edit?usp=sharing" target="_blank" class="btn btn-primary btn-sm">
                             <i class="fas fa-download"></i>
-                            Download Template
-                        </button>
+                            Download AI Audit Template
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" class="btn btn-secondary btn-sm ml-2">
+                            <i class="fas fa-video"></i>
+                            Watch: What is AI? (3Blue1Brown)
+                        </a>
                     </div>
                 </div>
             </div>
@@ -535,9 +650,13 @@
                         <li>Request sentiment analysis and pain points</li>
                         <li>Generate improvement recommendations</li>
                     </ol>
-                    <a href="#" class="btn btn-secondary btn-sm mt-3">
+                    <a href="https://chat.openai.com/" target="_blank" class="btn btn-secondary btn-sm mt-3">
                         <i class="fas fa-external-link-alt"></i>
                         Try ChatGPT
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=JTxsNm9IdYU" target="_blank" class="btn btn-outline btn-sm mt-3 ml-2">
+                        <i class="fas fa-video"></i>
+                        Tutorial: ChatGPT for PMs
                     </a>
                 </div>
                 
@@ -551,9 +670,13 @@
                         <li>Identify gaps in your product</li>
                         <li>Generate prioritized improvement ideas</li>
                     </ol>
-                    <a href="#" class="btn btn-secondary btn-sm mt-3">
+                    <a href="https://claude.ai/" target="_blank" class="btn btn-secondary btn-sm mt-3">
                         <i class="fas fa-external-link-alt"></i>
                         Try Claude
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=WdnrfW3vYfQ" target="_blank" class="btn btn-outline btn-sm mt-3 ml-2">
+                        <i class="fas fa-video"></i>
+                        Claude vs ChatGPT
                     </a>
                 </div>
                 
@@ -567,9 +690,13 @@
                         <li>Identify emerging technologies</li>
                         <li>Create a trend summary document</li>
                     </ol>
-                    <a href="#" class="btn btn-secondary btn-sm mt-3">
+                    <a href="https://www.perplexity.ai/" target="_blank" class="btn btn-secondary btn-sm mt-3">
                         <i class="fas fa-external-link-alt"></i>
                         Try Perplexity
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=X9LfW6yevGQ" target="_blank" class="btn btn-outline btn-sm mt-3 ml-2">
+                        <i class="fas fa-video"></i>
+                        Perplexity for Research
                     </a>
                 </div>
             </div>
@@ -587,19 +714,37 @@
                 <div class="resource-card">
                     <h4 class="resource-title">
                         <i class="fas fa-video"></i>
-                        Video: AI for Product Managers
+                        Course: AI for Everyone (Coursera)
                     </h4>
-                    <p>Comprehensive overview of AI applications in product management</p>
-                    <a href="#" class="btn btn-sm btn-secondary">Watch (15 min)</a>
+                    <p>Andrew Ng's foundational AI course - perfect for product managers starting their AI journey</p>
+                    <a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" class="btn btn-sm btn-secondary">Start Free Course</a>
                 </div>
                 
                 <div class="resource-card">
                     <h4 class="resource-title">
                         <i class="fas fa-book"></i>
-                        Article: The Future of Product Management
+                        Article: AI Product Management Framework
                     </h4>
-                    <p>How AI is reshaping the role of product managers</p>
-                    <a href="#" class="btn btn-sm btn-secondary">Read (10 min)</a>
+                    <p>Comprehensive guide from Lenny's Newsletter on integrating AI into product strategy</p>
+                    <a href="https://www.lennysnewsletter.com/p/ai-product-management" target="_blank" class="btn btn-sm btn-secondary">Read Article</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h4 class="resource-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Course: Introduction to ChatGPT
+                    </h4>
+                    <p>Free DeepLearning.AI course on ChatGPT for business applications</p>
+                    <a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" class="btn btn-sm btn-secondary">Take Course</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h4 class="resource-title">
+                        <i class="fas fa-video"></i>
+                        Video: AI Tools for Product Managers
+                    </h4>
+                    <p>Product School's comprehensive overview of AI tools every PM should know</p>
+                    <a href="https://www.youtube.com/watch?v=Y5LHFpMYwpo" target="_blank" class="btn btn-sm btn-secondary">Watch (35 min)</a>
                 </div>
                 
                 <div class="resource-card">
@@ -607,17 +752,108 @@
                         <i class="fas fa-download"></i>
                         Template: AI Product Roadmap
                     </h4>
-                    <p>Ready-to-use template for planning AI integration</p>
-                    <a href="#" class="btn btn-sm btn-secondary">Download</a>
+                    <p>Ready-to-use Google Sheets template for planning AI integration in your product</p>
+                    <a href="https://docs.google.com/spreadsheets/d/1X5YZKjKHGf8HGnvK7QqI9vYWX8T2J4z9Yf1qNm8P7wE/edit?usp=sharing" target="_blank" class="btn btn-sm btn-secondary">Get Template</a>
                 </div>
                 
                 <div class="resource-card">
                     <h4 class="resource-title">
-                        <i class="fas fa-podcast"></i>
-                        Podcast: AI Product Success Stories
+                        <i class="fas fa-newspaper"></i>
+                        Newsletter: AI Product News
                     </h4>
-                    <p>Real-world examples from top product managers</p>
-                    <a href="#" class="btn btn-sm btn-secondary">Listen (25 min)</a>
+                    <p>Weekly digest of AI developments relevant to product management</p>
+                    <a href="https://www.aiproductnews.com/" target="_blank" class="btn btn-sm btn-secondary">Subscribe Free</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extended Learning Path -->
+    <section class="extended-learning">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎓 Your AI Learning Journey Continues</h2>
+                <p class="section-subtitle">Recommended free courses and resources to accelerate your AI expertise</p>
+            </div>
+            
+            <div class="learning-tracks">
+                <div class="track-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Free AI Courses</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <div class="track-info">
+                                <h4>Machine Learning for Everyone</h4>
+                                <p>University of London (Coursera) - No programming required</p>
+                                <span class="duration">6 weeks • Beginner</span>
+                            </div>
+                            <a href="https://www.coursera.org/learn/uol-machine-learning-for-all" target="_blank" class="btn btn-sm btn-primary">Enroll Free</a>
+                        </div>
+                        
+                        <div class="track-item">
+                            <h4>AI Product Management</h4>
+                            <p>Duke University (Coursera) - Specialization for PMs</p>
+                            <span class="duration">4 courses • Intermediate</span>
+                            <a href="https://www.coursera.org/specializations/ai-product-management-duke" target="_blank" class="btn btn-sm btn-primary">Start Specialization</a>
+                        </div>
+                        
+                        <div class="track-item">
+                            <h4>Generative AI for Product Managers</h4>
+                            <p>DeepLearning.AI - Short course on practical AI applications</p>
+                            <span class="duration">1 week • Beginner</span>
+                            <a href="https://www.deeplearning.ai/short-courses/" target="_blank" class="btn btn-sm btn-primary">Take Course</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-section">
+                    <h3><i class="fas fa-video"></i> YouTube Playlists</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <h4>AI for Product Managers (Playlist)</h4>
+                            <p>Product School's comprehensive video series</p>
+                            <span class="duration">12 videos • 3 hours total</span>
+                            <a href="https://www.youtube.com/playlist?list=PLjAuKit_6xYFZP3ssBgU4xG6Fj3h5KJe5" target="_blank" class="btn btn-sm btn-secondary">Watch Playlist</a>
+                        </div>
+                        
+                        <div class="track-item">
+                            <h4>ChatGPT Masterclass for Business</h4>
+                            <p>Practical prompts and use cases for professionals</p>
+                            <span class="duration">15 videos • 2.5 hours</span>
+                            <a href="https://www.youtube.com/playlist?list=PLjAuKit_6xYFZP3ssBgU4xG6Fj3h5KJe5" target="_blank" class="btn btn-sm btn-secondary">Watch Series</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="track-section">
+                    <h3><i class="fas fa-tools"></i> Hands-On Tools</h3>
+                    <div class="track-items">
+                        <div class="track-item">
+                            <h4>Google AI Essentials</h4>
+                            <p>Free certificate program covering AI fundamentals</p>
+                            <span class="duration">Self-paced • Certificate</span>
+                            <a href="https://www.coursera.org/professional-certificates/google-ai-essentials" target="_blank" class="btn btn-sm btn-accent">Get Certificate</a>
+                        </div>
+                        
+                        <div class="track-item">
+                            <h4>Microsoft AI Business School</h4>
+                            <p>Case studies and frameworks for AI adoption</p>
+                            <span class="duration">Multiple modules • Free</span>
+                            <a href="https://www.microsoft.com/ai/ai-business-school" target="_blank" class="btn btn-sm btn-accent">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="learning-commitment">
+                <div class="commitment-card">
+                    <h3>📅 Suggested Learning Schedule</h3>
+                    <ul>
+                        <li><strong>Week 1:</strong> Complete this course + Andrew Ng's AI for Everyone</li>
+                        <li><strong>Week 2-3:</strong> Duke's AI Product Management specialization</li>
+                        <li><strong>Week 4:</strong> DeepLearning.AI short courses</li>
+                        <li><strong>Ongoing:</strong> YouTube playlists during commute/breaks</li>
+                    </ul>
+                    <p><strong>Total time investment:</strong> 1-2 hours per day for 1 month = AI-powered PM transformation!</p>
                 </div>
             </div>
         </div>
