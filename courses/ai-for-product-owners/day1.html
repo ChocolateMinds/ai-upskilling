@@ -355,6 +355,75 @@
             background: #0891b2;
         }
         
+        .video-container {
+            margin: var(--space-6) 0;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .video-container iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+        }
+        
+        .video-caption {
+            background: var(--gray-100);
+            padding: var(--space-3);
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            text-align: center;
+        }
+        
+        .highlight-box {
+            background: var(--po-gradient-light);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--po-primary);
+            margin: var(--space-6) 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--po-primary);
+            margin-bottom: var(--space-3);
+        }
+        
+        .tool-showcase {
+            background: var(--gray-50);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            margin: var(--space-6) 0;
+        }
+        
+        .tool-showcase .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+        
+        .tool-showcase .tool-card {
+            background: white;
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            text-align: center;
+            border-left: 3px solid var(--po-accent);
+        }
+        
+        .tool-showcase .tool-card h4 {
+            margin-bottom: var(--space-2);
+            color: var(--po-primary);
+            font-size: 1rem;
+        }
+        
+        .tool-showcase .tool-card p {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-bottom: var(--space-3);
+        }
+        
         .case-study {
             background: white;
             padding: var(--space-12) 0;
@@ -450,6 +519,15 @@
                     <h2>Lesson 1: The AI Product Revolution</h2>
                     <p>The product management landscape is undergoing a fundamental transformation. AI is not just another tool in your toolkit—it's reshaping how we understand users, make decisions, and create value.</p>
                     
+                    <!-- Embedded Video -->
+                    <div class="video-container">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/aircAruvnKk" 
+                                title="What is AI? - 3Blue1Brown" frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                        <p class="video-caption">📺 <strong>Watch:</strong> "What is AI?" by 3Blue1Brown (3 min) - Perfect introduction to AI concepts</p>
+                    </div>
+                    
                     <h3>Why AI Matters for Product Managers</h3>
                     <ul>
                         <li><strong>Scale Insights:</strong> Analyze thousands of user interactions in minutes, not weeks</li>
@@ -458,7 +536,25 @@
                         <li><strong>Personalize Experiences:</strong> Create hyper-targeted product experiences</li>
                     </ul>
                     
-                    <p>According to recent studies, product teams using AI tools report 40% faster time-to-insight and 60% improvement in feature adoption rates.</p>
+                    <div class="highlight-box">
+                        <h4>📊 Impact Statistics</h4>
+                        <p>According to recent studies, product teams using AI tools report:</p>
+                        <ul>
+                            <li><strong>40% faster</strong> time-to-insight</li>
+                            <li><strong>60% improvement</strong> in feature adoption rates</li>
+                            <li><strong>3x more accurate</strong> user behavior predictions</li>
+                            <li><strong>50% reduction</strong> in manual research time</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Additional Video -->
+                    <div class="video-container">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/JTxsNm9IdYU" 
+                                title="ChatGPT for Product Managers" frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                        <p class="video-caption">🎯 <strong>Watch:</strong> "ChatGPT for Product Managers" (8 min) - Practical AI applications for PMs</p>
+                    </div>
                 </div>
                 <div class="lesson-activity">
                     <div class="activity-header">
@@ -554,6 +650,15 @@
                     <h2>Lesson 2: AI-Driven Product Metrics</h2>
                     <p>Traditional product metrics tell you what happened. AI-enhanced metrics tell you what happened, why it happened, and what's likely to happen next.</p>
                     
+                    <!-- Video for Lesson 2 -->
+                    <div class="video-container">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/Y5LHFpMYwpo" 
+                                title="AI Tools for Product Managers" frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                        <p class="video-caption">📈 <strong>Watch:</strong> "AI Tools Every Product Manager Should Know" (15 min) - Product School</p>
+                    </div>
+                    
                     <h3>The New Metrics Paradigm</h3>
                     <ul>
                         <li><strong>Predictive Metrics:</strong> Churn probability, lifetime value forecasts</li>
@@ -562,13 +667,36 @@
                         <li><strong>Cohort Intelligence:</strong> AI-identified user segments and patterns</li>
                     </ul>
                     
-                    <h3>AI Tools for Product Analytics</h3>
-                    <p>Modern product managers have access to AI-powered analytics tools that provide deeper insights:</p>
-                    <ul>
-                        <li><strong>Mixpanel AI:</strong> Automated insights and anomaly detection</li>
-                        <li><strong>Amplitude AI:</strong> Behavioral cohort analysis and predictions</li>
-                        <li><strong>Hotjar AI:</strong> Intelligent heatmap analysis and user journey insights</li>
-                    </ul>
+                    <div class="tool-showcase">
+                        <h3>🛠️ AI Tools for Product Analytics</h3>
+                        <p>Modern product managers have access to AI-powered analytics tools that provide deeper insights:</p>
+                        <div class="tools-grid">
+                            <div class="tool-card">
+                                <h4><i class="fas fa-chart-line"></i> Mixpanel AI</h4>
+                                <p>Automated insights and anomaly detection</p>
+                                <a href="https://mixpanel.com/ai/" target="_blank" class="btn btn-sm btn-primary">Try Free</a>
+                            </div>
+                            <div class="tool-card">
+                                <h4><i class="fas fa-brain"></i> Amplitude AI</h4>
+                                <p>Behavioral cohort analysis and predictions</p>
+                                <a href="https://amplitude.com/ai" target="_blank" class="btn btn-sm btn-primary">Explore</a>
+                            </div>
+                            <div class="tool-card">
+                                <h4><i class="fas fa-eye"></i> Hotjar AI</h4>
+                                <p>Intelligent heatmap analysis and user journey insights</p>
+                                <a href="https://www.hotjar.com/ai/" target="_blank" class="btn btn-sm btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Educational Video -->
+                    <div class="video-container">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/ukzFI9rgwfU" 
+                                title="Product Analytics for Product Managers" frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                        <p class="video-caption">📊 <strong>Learn:</strong> "Product Analytics Fundamentals" (20 min) - Essential PM knowledge</p>
+                    </div>
                 </div>
                 <div class="lesson-activity">
                     <div class="activity-header">
@@ -895,15 +1023,34 @@
 
         // Complete day function
         function completeDay(dayNumber) {
+            // Show completion message regardless of platform availability
+            const completionMessage = `🎉 Congratulations! You've completed Day ${dayNumber}!\n\n` +
+                                    `✅ Lessons completed\n` +
+                                    `✅ Exercises practiced\n` +
+                                    `✅ Resources explored\n\n` +
+                                    `Ready to continue to Day ${dayNumber + 1}?`;
+            
+            if (confirm(completionMessage)) {
+                // If user clicks OK, redirect to next day
+                if (dayNumber < 5) {
+                    window.location.href = `day${dayNumber + 1}.html`;
+                } else {
+                    // Last day completed
+                    alert('🏆 Course Complete! You\'re now an AI-powered Product Manager!');
+                }
+            }
+            
+            // Update progress bar
+            const progressBar = document.querySelector('.progress-fill');
+            if (progressBar) {
+                const progressPercent = (dayNumber / 5) * 100;
+                progressBar.style.width = progressPercent + '%';
+            }
+            
+            // Platform tracking (if available)
             if (window.aiUpskillPlatform) {
-                const timeSpent = Date.now() - window.aiUpskillPlatform.pageStartTime;
+                const timeSpent = Date.now() - (window.aiUpskillPlatform.pageStartTime || Date.now());
                 window.aiUpskillPlatform.completeDay('ai-for-product-owners', dayNumber, timeSpent, 100);
-                
-                // Show completion message
-                alert('Congratulations! You've completed Day 1. Ready for Day 2?');
-                
-                // Update progress bar
-                document.querySelector('.progress-fill').style.width = '20%';
             }
         }
 
