@@ -75,6 +75,220 @@
             gap: var(--space-2);
         }
         
+        /* Enhanced Day Cards Design */
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-12);
+        }
+        
+        .day-card {
+            background: white;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            position: relative;
+        }
+        
+        .day-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 32px 80px rgba(124, 58, 237, 0.2);
+        }
+        
+        .day-card.foundation .day-header {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+        }
+        
+        .day-card.specialized .day-header {
+            background: var(--po-gradient);
+        }
+        
+        .day-header {
+            padding: var(--space-8);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .day-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+        
+        .day-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-4);
+        }
+        
+        .day-number {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .day-type {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-lg);
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+        
+        .day-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: var(--space-2);
+            color: white;
+        }
+        
+        .day-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .day-content {
+            padding: var(--space-8);
+        }
+        
+        .learning-objectives {
+            margin-bottom: var(--space-6);
+        }
+        
+        .learning-objectives h4 {
+            color: var(--po-primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .objectives-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+            color: var(--gray-700);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .objectives-list li::before {
+            content: '✓';
+            background: var(--po-gradient);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .day-footer {
+            padding: 0 var(--space-8) var(--space-8);
+            border-top: 1px solid var(--gray-100);
+            padding-top: var(--space-6);
+            margin-top: var(--space-6);
+        }
+        
+        .day-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-6);
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--po-primary);
+            margin-bottom: var(--space-1);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+        
+        .day-action {
+            text-align: center;
+        }
+        
+        .btn-day {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-4) var(--space-8);
+            background: var(--po-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-day::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-day:hover::before {
+            left: 100%;
+        }
+        
+        .btn-day:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.3);
+        }
+        
         .methodology-section {
             background: var(--po-gradient-light);
             padding: var(--space-16) 0;
@@ -289,42 +503,46 @@
                 <!-- Day 1 -->
                 <div class="day-card foundation">
                     <div class="day-header">
-                        <div class="day-number">1</div>
-                        <div class="day-info">
-                            <h3>AI Foundation for Product Strategy</h3>
-                            <span class="day-type">Foundation • Universal</span>
+                        <div class="day-meta">
+                            <div class="day-number">1</div>
+                            <div class="day-type">Foundation</div>
+                        </div>
+                        <h3 class="day-title">AI Foundation for Product Strategy</h3>
+                        <p class="day-description">Build your AI product mindset and discover immediate applications for modern product management</p>
+                    </div>
+                    <div class="day-content">
+                        <div class="learning-objectives">
+                            <h4><i class="fas fa-target"></i> Learning Objectives</h4>
+                            <ul class="objectives-list">
+                                <li><strong>AI Product Mindset:</strong> Understanding AI's role in modern product management</li>
+                                <li><strong>Data-Driven Decisions:</strong> Using AI for product metrics and KPI analysis</li>
+                                <li><strong>User Understanding:</strong> Leveraging AI for customer insights</li>
+                                <li><strong>Quick Wins:</strong> Immediate AI applications for product managers</li>
+                            </ul>
                         </div>
                     </div>
-                    <ul class="day-highlights">
-                        <li>
-                            <i class="fas fa-brain"></i>
-                            <div>
-                                <strong>AI Product Mindset:</strong> Understanding AI's role in modern product management
+                    <div class="day-footer">
+                        <div class="day-stats">
+                            <div class="stat">
+                                <div class="stat-number">46min</div>
+                                <div class="stat-label">Videos</div>
                             </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-chart-line"></i>
-                            <div>
-                                <strong>Data-Driven Product Decisions:</strong> Using AI for product metrics and KPI analysis
+                            <div class="stat">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Tools</div>
                             </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-users"></i>
-                            <div>
-                                <strong>AI-Enhanced User Understanding:</strong> Leveraging AI for customer insights
+                            <div class="stat">
+                                <div class="stat-number">15+</div>
+                                <div class="stat-label">Resources</div>
                             </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-rocket"></i>
-                            <div>
-                                <strong>Quick Wins:</strong> Immediate AI applications for product managers
-                            </div>
-                        </li>
-                    </ul>
-                    <a href="day1.html" class="day-cta">
-                        Start Day 1
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
+                        </div>
+                        <div class="day-action">
+                            <a href="day1.html" class="btn-day">
+                                <i class="fas fa-play"></i>
+                                Start Day 1
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Day 2 -->
